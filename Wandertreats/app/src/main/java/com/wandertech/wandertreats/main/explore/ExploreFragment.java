@@ -84,20 +84,7 @@ public class ExploreFragment extends Fragment implements MerchantItemAdapter.Ite
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
-
         appFunctions = MyApp.getInstance().getGeneralFun(container.getContext());
-//        try {
-//            ((MainActivity) getActivity()).  getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-//            appFunctions.setWindowFlag((Activity) getActivity(), WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS ,false);
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                ((MainActivity) getActivity()).  getWindow().setStatusBarColor(getResources().getColor(R.color.gray,  ((MainActivity) getActivity()).getTheme()));
-//            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                ((MainActivity) getActivity()). getWindow().setStatusBarColor(getResources().getColor(R.color.gray));
-//            }
-//        }catch (Exception e){
-//            appFunctions.showMessage(e.toString());
-//        }
 
         binding = FragmentExploreBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

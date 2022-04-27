@@ -207,9 +207,9 @@ public class HomeFragment extends Fragment implements GridCategoryAdapter.ItemOn
                         int diff = (view.getBottom() - (mainScollView.getHeight() + mainScollView.getScrollY()));
 
                         if(mainScollView.getScrollY() == 0){
-                            dropShadow.setVisibility(View.GONE);
+                          ///  dropShadow.setVisibility(View.GONE);
                         }else{
-                            dropShadow.setVisibility(View.VISIBLE);
+                           // dropShadow.setVisibility(View.VISIBLE);
                         }
                     }
                 });

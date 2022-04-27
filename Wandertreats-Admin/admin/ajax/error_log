@@ -1,0 +1,2 @@
+[11-Sep-2020 09:31:01 Asia/Manila] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/trikaroo/public_html/trikaroo-admin/ajax/ajax_get_drivers_locations.php on line 7
+[11-Sep-2020 09:32:41 Asia/Manila] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/trikaroo/public_html/trikaroo-admin/ajax/ajax_get_drivers_locations.php on line 7
