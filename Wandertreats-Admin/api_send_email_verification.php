@@ -15,10 +15,18 @@
          $mail = new PHPMailer;
          $mail->isSMTP();
         
-         $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
-         $htmlContent = file_get_contents("https://wanderlustphtravel.com/wandertreats/resources/email_account_confirmation.php?username=Laurence");
+        $params = array(
+            'userId'=>'1',
+            'token'=>'ewewewew',
+            'username' => 'Laurence',
+            'url' => 'https://wanderlustphtravel.com/wandertreats/resources/email_account_successfully_confirmed.php'
+         );
 
+        $urlExtension = "?username=".$params['username']."&url=".$params['url']."&userId=".$params['userId']."&token=".$params['token']."";
+        $htmlContent = file_get_contents("https://wanderlustphtravel.com/wandertreats/resources/email_account_confirmation.php?".$urlExtension);
+        //$htmlContent = "jasjhas";
         
          $mail->Host = 'smtp.gmail.com';
          $mail->Port = 587;
@@ -26,7 +34,7 @@
          $mail->SMTPAuth = true;
         
          $mail->Username = 'renceveterans.dev@gmail.com';
-         $mail->Password = 'ljeslkzyjigdvnpo';
+         $mail->Password = 'sytcurldrsaaaymh';
         
          $mail->setFrom( 'renceveterans.dev@gmail.com', 'Wander Treats Test' );
          $mail->addAddress('laurencevegerano@gmail.com', 'Laurence Invoice');

@@ -9,9 +9,9 @@
     // require_once 'vendor/twilio/Services/Twilio.php';
     
     $sender  = isset($_REQUEST['sender']) ? trim($_REQUEST['sender']) : '1';
-    $sender_email  = isset($_REQUEST['sender_email']) ? trim($_REQUEST['sender_email']) : '';
-    $recipient  = isset($_REQUEST['recipient']) ? trim($_REQUEST['recipient']) : '';
-    $recipient_email  = isset($_REQUEST['recipient_email']) ? trim($_REQUEST['recipient_email']) : '';
+    $sender_email  = isset($_REQUEST['sender_email']) ? trim($_REQUEST['sender_email']) : 'renceveterans.dev@gmail.com';
+    $recipient  = isset($_REQUEST['recipient']) ? trim($_REQUEST['recipient']) : 'sdsdd';
+    $recipient_email  = isset($_REQUEST['recipient_email']) ? trim($_REQUEST['recipient_email']) : 'laurencevegerano@gmail.com';
     $subject = isset($_REQUEST['subject']) ? trim($_REQUEST['subject']) : 'WT211215PN4TI';
     $cc_email = isset($_REQUEST['cc_email']) ? trim($_REQUEST['cc_email']) : 'WT211215PN4TI';
     $message = isset($_REQUEST['message']) ? trim($_REQUEST['message']) : 'asasasasasassas';
@@ -67,7 +67,7 @@
          $mail->SMTPAuth = true;
         
          $mail->Username = 'renceveterans.dev@gmail.com';
-         $mail->Password = 'ljeslkzyjigdvnpo';
+         $mail->Password = 'sytcurldrsaaaymh';
         
          $mail->setFrom( $sender_email, $sender);
          $mail->addAddress($recipient_email, $recipient);

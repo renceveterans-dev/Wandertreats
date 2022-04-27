@@ -108,7 +108,7 @@
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <!-- LOGO -->
         <tr>
-            <td bgcolor="#2196F3" align="center">
+            <td bgcolor="#22a8e3" align="center">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td align="center" valign="top" style="padding: 40px 10px 40px 10px;"> </td>
@@ -117,11 +117,11 @@
             </td>
         </tr>
         <tr>
-            <td bgcolor="#2196F3" align="center" style="padding: 0px 10px 0px 10px;">
+            <td bgcolor="#22a8e3" align="center" style="padding: 0px 10px 0px 10px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                            <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Welcome!</h1> <img src=" https://img.icons8.com/clouds/100/000000/handshake.png" width="125" height="120" style="display: block; border: 0px;" />
+                            <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Verified!</h1> <img src="https://wanderlustphtravel.com//wandertreats/uploads/logo.png" width="125" height="120" style="display: block; border: 0px;" />
                         </td>
                     </tr>
                 </table>
@@ -132,11 +132,11 @@
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">Hi <?= $_REQUEST['username']; ?> !, We're excited to have you get started. First, you need to confirm your account. Just press the button below.</p>
+                            <p style="margin: 0;">Hi <?= $_REQUEST['username']; ?> !, Your email has been successfully verified! Enjoy now the using Wandertreats and avail best deals from different nearest store nearby.</p>
                         </td>
                     
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td bgcolor="#ffffff" align="left">
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
@@ -150,17 +150,17 @@
                                 </tr>
                             </table>
                         </td>
-                    </tr> <!-- COPY -->
-                    <tr>
+                    </tr> --> <!-- COPY -->
+                    <!-- <tr>
                         <td bgcolor="#ffffff" align="center" style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                             <p style="margin: 0;">If that doesn't work, copy and paste the following link in your browser:</p>
                         </td>
-                    </tr> <!-- COPY -->
-                    <tr>
+                    </tr>  --><!-- COPY -->
+                    <!-- <tr>
                         <td bgcolor="#ffffff"align="center"style="padding: 20px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                             <p style="margin: 0;"><a href="#" target="_blank" style="color: #1746e0;">https://bit.li.utlddssdstueincx</a></p>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td bgcolor="#ffffff" align="center" style="padding: 0px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                             <p style="margin: 0;">If you have any questions, just reply to this email—we're always happy to help out.</p>
@@ -201,3 +201,35 @@
 </body>
 
 </html>
+<?php
+    //RENCEVTERANS 27/04/2022
+    header('Content-type: application/json');
+    ini_set('display_errors',1);
+    include_once('../general_functions.php');
+
+    $data['title'] = "Email was successfully verified!";
+    $data['description'] = "Hi Laurence, Your email has been successfully verified! Enjoy now the using Wandertreats and avail best deals from different nearest store nearby.";
+    //NOTIFCATION FOREGROUND
+    $data['activity'] = "AUTO_LOGOUT";
+    $data['message'] = "Hi Laurence, Your email has been successfully verified! Enjoy now the using Wandertreats and avail best deals from different nearest store nearby.";;
+
+    notify("User", "1", $data);
+
+
+    $notifData['iUserId'] = "1";
+    $notifData['vUserType'] = $target;
+    $notifData['vTitle'] = $data['title'];
+    $notifData['vDescription'] = $data['description'];
+    $notifData['vType'] = '';
+    $notifData['vImage'] = '';
+    $notifData['vUrl'] = '';
+    $notifData['vIntent'] = '';
+    $notifData['vSent'] = '';
+
+    $notifData['eStatus'] = 'Unread';
+
+
+    $adminId = myQuery("notifications",  $notifData, "insert_getlastid");
+
+
+?>
