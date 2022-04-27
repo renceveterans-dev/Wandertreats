@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/contentView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomArea"
+            android:orientation="vertical">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/onBoardViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <LinearLayout
+            android:id="@+id/layoutBars"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_above="@+id/bottomArea"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/layoubarsArea"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/bottomArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/storeBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:background="@drawable/button_style"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Store"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/productBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/button_style"
+                android:fontFamily="@font/poppins_medium"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="Product"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/homeBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:background="@drawable/button_style"
+                android:fontFamily="@font/poppins_medium"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="Home"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/registerBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:background="@drawable/button_style"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Sign up"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size_16" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/loginBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@color/transparent"
+                android:fontFamily="@font/poppins_medium"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="ALREAY HAVE AN ACCOUNT"
+                android:textAllCaps="false"
+                android:textColor="@color/appThemeColor"
+                android:textSize="@dimen/txt_size_16" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/claimBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:background="@drawable/button_style"
+                android:fontFamily="@font/poppins_medium"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="Claim"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/locationPickerBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:background="@drawable/button_style"
+                android:fontFamily="@font/poppins_medium"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="Location Pcker"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/searchLocBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:background="@drawable/button_style"
+                android:fontFamily="@font/poppins_medium"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="Search Location"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

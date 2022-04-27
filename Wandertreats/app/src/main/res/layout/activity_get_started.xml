@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="15dp"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginStart="15dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="SKIP"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:focusable="true"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="22sp"
+            android:textColor="@color/appThemeColor"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/skip"/>
+
+
+
+        <LinearLayout
+            android:id="@+id/layoutBars"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/layoubarsArea"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/next"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/next"
+            android:text="next"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+    </LinearLayout>
+
+
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button"
+        app:cornerRadius="23dp"
+        android:id="@+id/getStartedBtn"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_alignParentBottom="true"
+        android:text="Get Started"
+        android:textAlignment="center"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"/>
+
+
+
+</RelativeLayout>

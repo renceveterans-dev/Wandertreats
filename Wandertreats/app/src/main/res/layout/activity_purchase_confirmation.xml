@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/mainContent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#75E5E5E5"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/background_gradient"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:id="@+id/content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/treats"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/titleTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Name"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/txt_size_20" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/downloadBtn"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="30dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/download"
+                    android:visibility="visible"
+                    app:tint="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/downloadTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Download"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/txt_size_20" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/background_rounded_top"
+                    android:backgroundTint="@color/white"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/successImg"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:src="@drawable/check"
+                        android:visibility="visible" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/headeingTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Successfully Confirmed"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/txt_size_16" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/messageTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Successfully Confirmed"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/txt_size_16"
+                        android:visibility="gone" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/storeNameTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Successfully Confirmed"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/txt_size_16" />
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/paidDetailsArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|center_vertical"
+                            android:layout_marginTop="30dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/subtotalAmounLabel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="start"
+                                android:text="Subtotal"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/txt_size_16" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/subtotalAmounTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="end"
+                                android:text="Download"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/txt_size_16" />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|center_vertical"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/totalAmounLabel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_medium"
+                                android:gravity="start"
+                                android:text="Total Amount"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/txt_size_16" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/totalAmounTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_medium"
+                                android:gravity="end"
+                                android:text="Download"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/txt_size_16" />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/unPaidDetailsArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/toPayMessage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center"
+                            android:text="Total amount to be paid on the store is"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/txt_size_16" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/toPayAmounTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:gravity="center"
+                            android:text="Download"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/txt_size_16" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/purchaseNoTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Successfully Confirmed"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/txt_size_14" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/purchaseDateTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Successfully Confirmed"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/txt_size_14" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <LinearLayout
+                    android:id="@+id/layoutZigzag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="top|center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/zigzag_downward"
+                    android:backgroundTint="@color/white"
+                    android:clickable="false"
+                    android:orientation="vertical"
+                    android:visibility="visible" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/okayBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50"
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:textAllCaps="false"
+            android:background="@drawable/button_style"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="Okay"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp" />
+
+
+    </RelativeLayout>
+</LinearLayout>

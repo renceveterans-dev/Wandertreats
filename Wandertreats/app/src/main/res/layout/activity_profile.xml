@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appThemeColor_bg">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/contentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/mainToolbar"
+            layout="@layout/toolbar_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/profileNameTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_size_22"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/appThemeFontColor"
+            android:text="Laurence Vegerano"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/profileDescTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_size_14"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/appThemeFontColor"
+            android:text="Laurence Vegerano"/>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="25dp"
+                android:orientation="horizontal">
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fNameTxtLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:hint="First Name"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        android:outlineAmbientShadowColor="@color/ThemeColorPrimary"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:helperTextTextColor="@color/appThemeColor_red"
+                        app:errorTextColor="@color/appThemeColor_red">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/fNameTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:textColorHint="@color/light_gray"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="@dimen/txt_size_16"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/lNameTxtLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:hint="Last Name"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        android:outlineAmbientShadowColor="@color/ThemeColorPrimary"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:helperTextTextColor="@color/appThemeColor_red"
+                        app:errorTextColor="@color/appThemeColor_red">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/lNameTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:textColorHint="@color/light_gray"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="@dimen/txt_size_16"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/emailTxtLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:hint="Email Address"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        android:outlineAmbientShadowColor="@color/ThemeColorPrimary"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:helperTextTextColor="@color/appThemeColor_red"
+                        app:errorTextColor="@color/appThemeColor_red">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/emailTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:includeFontPadding="false"
+                            android:textColorHint="@color/light_gray"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="@dimen/txt_size_16"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/mobileTxtLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:hint="Mobile Number"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        android:outlineAmbientShadowColor="@color/ThemeColorPrimary"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:helperTextTextColor="@color/appThemeColor_red"
+                        app:errorTextColor="@color/appThemeColor_red">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/mobileTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:includeFontPadding="false"
+                            android:textColorHint="@color/light_gray"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="@dimen/txt_size_16"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+<!--                <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:id="@+id/fNameTxtLayout"-->
+<!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:hint="First Name"-->
+<!--                        app:boxCornerRadiusBottomEnd="8dp"-->
+<!--                        android:outlineAmbientShadowColor="@color/ThemeColorPrimary"-->
+<!--                        app:boxCornerRadiusTopEnd="8dp"-->
+<!--                        app:boxCornerRadiusBottomStart="8dp"-->
+<!--                        app:boxCornerRadiusTopStart="8dp"-->
+<!--                        app:helperTextTextColor="@color/appThemeColor_red"-->
+<!--                        app:errorTextColor="@color/appThemeColor_red">-->
+
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/fNameTxt"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textSize="@dimen/txt_size_14"/>-->
+
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:id="@+id/lNameTxtLayout"-->
+<!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:hint="Last Name"-->
+<!--                        app:boxCornerRadiusBottomEnd="8dp"-->
+<!--                        android:outlineAmbientShadowColor="@color/ThemeColorPrimary"-->
+<!--                        app:boxCornerRadiusTopEnd="8dp"-->
+<!--                        app:boxCornerRadiusBottomStart="8dp"-->
+<!--                        app:boxCornerRadiusTopStart="8dp"-->
+<!--                        app:helperTextTextColor="@color/appThemeColor_red"-->
+<!--                        app:errorTextColor="@color/appThemeColor_red">-->
+
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/lNameTxt"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textSize="@dimen/txt_size_14"/>-->
+
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:id="@+id/emailTxtLayout"-->
+<!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:hint="Email Address"-->
+<!--                        app:boxCornerRadiusBottomEnd="8dp"-->
+<!--                        android:outlineAmbientShadowColor="@color/ThemeColorPrimary"-->
+<!--                        app:boxCornerRadiusTopEnd="8dp"-->
+<!--                        app:boxCornerRadiusBottomStart="8dp"-->
+<!--                        app:boxCornerRadiusTopStart="8dp"-->
+<!--                        app:helperTextTextColor="@color/appThemeColor_red"-->
+<!--                        app:errorTextColor="@color/appThemeColor_red">-->
+
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/emailTxt"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="@dimen/txt_size_14"/>-->
+
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:id="@+id/mobileTxtLayout"-->
+<!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:hint="Mobile Number"-->
+<!--                        app:boxCornerRadiusBottomEnd="8dp"-->
+<!--                        android:outlineAmbientShadowColor="@color/ThemeColorPrimary"-->
+<!--                        app:boxCornerRadiusTopEnd="8dp"-->
+<!--                        app:boxCornerRadiusBottomStart="8dp"-->
+<!--                        app:boxCornerRadiusTopStart="8dp"-->
+<!--                        app:helperTextTextColor="@color/appThemeColor_red"-->
+<!--                        app:errorTextColor="@color/appThemeColor_red">-->
+
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/mobileTxt"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="@dimen/txt_size_14"/>-->
+
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+
+
+<!--                </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:gravity="top"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/saveBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50"
+                android:textColor="@color/white"
+                android:layout_margin="20dp"
+                android:layout_gravity="bottom"
+                android:textAllCaps="true"
+                android:textSize="@dimen/txt_size_16"
+                android:background="@drawable/button_style"
+                android:text="Save"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

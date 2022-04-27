@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:aap="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/itemCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="5dp"
+        android:elevation="1dp"
+        aap:cardCornerRadius="12dp"
+        aap:cardBackgroundColor="#ffffff">
+
+        <LinearLayout
+            android:id="@+id/viewBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/button_white_style"
+            android:orientation="vertical">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="-5dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical">
+
+                    <RadioButton
+                        android:id="@+id/selectedBtn"
+                        android:layout_width="27dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="0dp"
+                        android:gravity="center_vertical" />
+
+                </RadioGroup>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/titleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center_vertical"
+                    android:text="Item Header"
+                    android:visibility="gone"
+                    android:clickable="false"
+                    android:textAllCaps="true"
+                    android:textColor="@color/appThemeFontColor"
+                    android:textSize="@dimen/txt_size_16" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mesageText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center_vertical"
+                    android:text="Item Header"
+                    android:clickable="false"
+                    android:textAllCaps="true"
+                    android:textColor="@color/appThemeFontColor"
+                    android:textSize="@dimen/txt_size_16" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

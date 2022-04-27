@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/space_60"
+    tools:context=".main.home.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layouArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/greetingsTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Feeds"
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_size_22" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/notificationBtn"
+                android:layout_width="@dimen/space_25"
+                android:layout_height="@dimen/space_25"
+                android:fontFamily="@font/poppins_regular"
+                android:src="@drawable/icon_notification_dark"
+                android:tint="@color/black" />
+        </LinearLayout>
+
+
+        <androidx.cardview.widget.CardView
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_45"
+            android:layout_margin="15dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/searchTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Search Store, Products and Location"
+                    android:padding="10dp"
+                    android:textColor="@color/appThemeFontColor"
+                    android:textSize="@dimen/txt_size_16" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/scanBtn"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="15dp"
+                    android:clickable="true"
+                    android:fontFamily="@font/poppins_regular"
+                    android:foreground="?selectableItemBackground"
+                    android:src="@drawable/scan" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--        //-->
+
+        <View
+            android:id="@+id/bgGradient"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/mainContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/mainContent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/loaderShimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/mainContent"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/item_shimmering_feeds" />
+                        <include layout="@layout/item_shimmering_feeds" />
+                        <include layout="@layout/item_shimmering_feeds" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/feedRRecyclerListArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/feedRecyclerList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/noDataArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:padding="25dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/nodata"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:textSize="@dimen/txt_size_20"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="No Result."
+                        android:orientation="vertical"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

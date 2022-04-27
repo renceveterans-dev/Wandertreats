@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "374079889892",
+    "project_id": "wandertreats-e260a",
+    "storage_bucket": "wandertreats-e260a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374079889892:android:404c24a5986f5c2474a7f1",
+        "android_client_info": {
+          "package_name": "com.wandertech.wandertreats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374079889892-klmpkmdll9mr1ki76fob9nai24beffql.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wandertech.wandertreats",
+            "certificate_hash": "ccbc5bddd289e1da64eefc432a23c5359175a42a"
+          }
+        },
+        {
+          "client_id": "374079889892-erp5l1cevopu94kjug2q5qb7vbtm9pgj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd7BpX7EIcsBvzopXcXBf4RZVx-gW-jJE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374079889892-erp5l1cevopu94kjug2q5qb7vbtm9pgj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

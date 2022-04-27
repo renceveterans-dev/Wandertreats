@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appThemeColor_bg"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="false"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            android:contentInsetStart="0dp"
+            android:contentInsetLeft="0dp"
+            android:background="@android:color/transparent">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:expandedTitleMarginEnd="64dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp"
+                android:contentInsetStart="0dp"
+                android:contentInsetLeft="0dp"
+                android:background="@android:color/transparent"
+                android:elevation="0dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/productImageArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:minHeight="200dp"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/storeImage"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/background_gradient"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible" />
+
+
+                            <ImageView
+                                android:id="@+id/productMask"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/product_masking"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="15dp"
+                                android:orientation="vertical">
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/storeNameTxt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/logoImage"
+                                    android:layout_gravity="center|center_vertical"
+                                    android:layout_marginBottom="20dp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:gravity="center_horizontal"
+                                    android:text="Prroduct Name"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/txt_size_16"
+                                    android:visibility="visible"
+                                    tools:ignore="VectorDrawableCompat" />
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/logoImage"
+                                    android:layout_width="96dp"
+                                    android:layout_height="96dp"
+
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="10dp"
+                                    android:src="@drawable/user"
+                                    app:civ_border_color="#FF000000"
+                                    app:civ_border_width="2dp" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+                        </RelativeLayout>
+
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/productArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/headingTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|center_vertical"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:textSize="@dimen/txt_size_20"
+                            android:text="Successfuly Claimed!"
+                            android:textColor="@color/appThemeFontColor"
+                            android:visibility="visible"
+                            tools:ignore="VectorDrawableCompat" />
+
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/productLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|center_vertical"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="hHhahaha"
+                            android:textColor="@color/appThemeFontColor"
+                            android:visibility="visible"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/productNameTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|center_vertical"
+                            android:layout_marginBottom="30dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:textSize="@dimen/txt_size_16"
+                            android:text="hHhahaha"
+                            android:textColor="@color/appThemeFontColor"
+                            android:visibility="visible"
+                            tools:ignore="VectorDrawableCompat" />
+
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:layout_collapseMode="pin"
+                    android:layout_marginTop="@dimen/space_25"
+                    android:contentInsetEnd="0dp"
+                    android:contentInsetRight="0dp"
+                    android:background="@color/white"
+                    android:contentInsetStart="0dp"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetRight="0dp"
+                    app:contentInsetStart="0dp"
+                    app:navigationIcon="?attr/homeAsUpIndicator"
+                    android:elevation="0dp">
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/titleTxt"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingStart="10dp"
+                                android:singleLine="true"
+                                android:fontFamily="@font/poppins_medium"
+                                android:gravity="center|center_horizontal"
+                                android:textAlignment="center"
+                                android:text="ahah"
+                                android:textColor="@color/white"
+                                android:includeFontPadding="false"
+                                android:textSize="@dimen/txt_size_16"
+                                android:visibility="visible" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/ordertitleTxt"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="start|center_vertical"
+                                android:maxLines="2"
+                                android:paddingStart="10dp"
+                                android:textAlignment="viewStart"
+                                android:textSize="@dimen/txt_size_14"
+                                android:textAllCaps="true"
+                                android:visibility="gone" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/subTitleTxt"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="end|center_vertical"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:textAlignment="viewEnd"
+                                android:textSize="@dimen/txt_size_16"
+                                android:visibility="gone" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/addVehicleTxtView"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="0"
+                                android:gravity="center"
+                                android:text="+"
+                                android:textSize="40sp"
+                                android:textStyle="bold"
+                                android:visibility="gone"
+                                />
+
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/logoutImageview"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="0"
+                                android:padding="10dp"
+                                android:visibility="gone" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/callImageview"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="0"
+                                android:padding="10dp"
+                                android:visibility="gone" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/shareBtn"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center|center_vertical"
+                                android:gravity="center|center_vertical"
+                                android:paddingEnd="5dp"
+                                android:text="@string/fa_check_solid"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/txt_size_16"
+                                app:solid_icon="true" />
+
+                        </LinearLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </com.google.android.material.appbar.MaterialToolbar>
+
+
+
+
+
+
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/mainContentShimmering"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/mainContent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/item_shimmering_main" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible">
+
+                            <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                                android:id="@+id/circularProgressBar"
+                                android:layout_width="190dp"
+                                android:background="@drawable/circle"
+                                android:backgroundTint="@color/white"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="center_horizontal"
+                                app:background_progressbar_color="@color/shimmer_placeholder"
+                                app:background_progressbar_width="5dp"
+                                app:progressbar_color="@color/appThemeColor_dark"
+                                app:progressbar_width="10dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/TimeCount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:gravity="center"
+                                    app:fontFamily="@font/poppins_medium"
+                                    android:includeFontPadding="false"
+                                    android:padding="1dp"
+                                    android:text="00:00"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/appThemeColor_dark"
+                                    android:textSize="54dp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/TimeCount"
+                                    android:gravity="center"
+                                    android:minLines="1"
+                                    android:includeFontPadding="false"
+                                    app:fontFamily="@font/poppins_medium"
+                                    android:text="seconds"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/appThemeColor_dark"
+                                    android:textSize="16dp" />
+
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/noteTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center_vertical"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
+                        android:text="hHhahaha"
+                        android:textColor="@color/appThemeFontColor"
+                        android:visibility="visible"
+                        tools:ignore="VectorDrawableCompat" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+

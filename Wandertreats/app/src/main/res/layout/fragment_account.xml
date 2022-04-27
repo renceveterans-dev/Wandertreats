@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/appThemeColor_bg"
+    tools:context=".main.account.AccountFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:background="@color/appThemeColor" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_gravity="center_horizontal"
+
+                        android:src="@color/shimmer_placeholder"
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="1dp" />
+
+                    <com.hbb20.GThumb
+                        android:id="@+id/profile_gthumb"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        app:gtMonoBGColor="@color/app_alert"
+                        app:gtTextSize="28sp" />
+
+                </RelativeLayout>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/userNameTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center_horizontal"
+                android:text="Laurence Vegerano"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size_22" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/userNameLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:text="Laurence Vegerano"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size_14" />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:contentPadding="0dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/profileArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="15dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="15dp"
+                            android:gravity="center_vertical"
+                            android:src="@drawable/user_icon"
+                            android:tint="@color/appThemeColor" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_medium"
+                            android:gravity="start"
+                            android:text="Profile"
+                            android:textColor="@color/appThemeFontColor"
+                            android:textSize="@dimen/txt_size_16" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="15dp"
+                            android:gravity="center_vertical"
+                            android:src="@drawable/icon_right_arrow" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/seperator" />
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/saveAddressArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="horizontal"
+                        android:padding="15dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="15dp"
+                            android:gravity="center_vertical"
+                            android:src="@drawable/address"
+                            android:tint="@color/appThemeColor"
+                            app:tint="@color/appThemeColor" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_medium"
+                            android:gravity="start"
+                            android:text="Address"
+                            android:textColor="@color/appThemeFontColor"
+                            android:textSize="@dimen/txt_size_16" />
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="15dp"
+                            android:gravity="center_vertical"
+                            android:src="@drawable/icon_right_arrow" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/seperator" />
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/voucherArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="15dp"
+                        android:visibility="gone">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="15dp"
+                            android:gravity="center_vertical"
+                            android:src="@drawable/price_tag"
+                            app:tint="@color/appThemeColor" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_medium"
+                            android:gravity="start"
+                            android:text="Voucher"
+                            android:textColor="@color/appThemeFontColor"
+                            android:textSize="@dimen/txt_size_16" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="15dp"
+                            android:gravity="center_vertical"
+                            android:src="@drawable/icon_right_arrow" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/seperator"
+                        android:visibility="gone" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/supportArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="horizontal"
+                        android:padding="15dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="15dp"
+                            android:gravity="center_vertical"
+                            android:src="@drawable/help_support"
+                            app:tint="@color/appThemeColor" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_medium"
+                            android:gravity="start"
+                            android:text="Support"
+                            android:textColor="@color/appThemeFontColor"
+                            android:textSize="@dimen/txt_size_16" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="15dp"
+                            android:gravity="center_vertical"
+                            android:src="@drawable/icon_right_arrow" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/verifyEmailArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/app_alert"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:contentPadding="0dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/mail"
+                        app:tint="@color/appThemeColor_dark" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/verifyEmailBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/txt_size_16"
+                            android:visibility="gone" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="@string/very_mail"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/txt_size_14" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <ImageView
+                        android:id="@+id/closeVerifyEmailBtn"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="15dp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:src="@drawable/close" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:contentPadding="0dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/referralArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Share Joy &amp; get rewarded"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/txt_size_16" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Share Joy &amp; get rewarded"
+                            android:textColor="@color/appThemeColor"
+                            android:textSize="@dimen/txt_size_14" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="15dp"
+                        android:src="@drawable/reward" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:contentPadding="0dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/logoutArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="15dp"
+                        android:gravity="center_vertical"
+                        android:src="@drawable/logout"
+                        app:tint="@color/appThemeColor" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15dp"
+                        android:gravity="center_vertical"
+                        android:src="@drawable/next"
+                        android:visibility="gone" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="start"
+                        android:text="Logout"
+                        android:textColor="@color/appThemeFontColor"
+                        android:textSize="@dimen/txt_size_16" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+    </RelativeLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/space_60"
+    tools:context=".main.home.HomeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/bgGradient"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mainTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_bold"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Explore"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_size_22" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/mainContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mainTitle"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchArea"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_45"
+                android:layout_margin="15dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="4dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/searchTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:clickable="true"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="Search Store, Products and Location"
+                        android:padding="10dp"
+                        android:textColor="@color/appThemeFontColor"
+                        android:textSize="@dimen/txt_size_16" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/scanBtn"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="?selectableItemBackground"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="15dp"
+                        android:src="@drawable/scan" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/mainRecyclerListArea"
+            android:layout_below="@+id/mainContent">
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <org.osmdroid.views.MapView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/mainRecyclerListArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/seperator" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/loaderShimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="15dp"
+                    android:visibility="visible">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <include layout="@layout/item_shimmering_main_list" />
+
+                                <include layout="@layout/item_shimmering_main_list" />
+
+                                <include layout="@layout/item_shimmering_main_list" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            <!--        <androidx.recyclerview.widget.RecyclerView-->
+                            <!--            android:id="@+id/itemRecyclerView"-->
+                            <!--            android:layout_width="match_parent"-->
+                            <!--            android:layout_height="match_parent"-->
+                            <!--            android:orientation="horizontal"/>-->
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mainRecyclerList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="15dp"
+                    android:visibility="gone" />
+
+
+            </RelativeLayout>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+    <TextView
+        android:id="@+id/textHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+</androidx.appcompat.widget.LinearLayoutCompat>

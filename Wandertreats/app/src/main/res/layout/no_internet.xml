@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aop="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:background="@color/appThemeColor_bg"
+    app:ignore="NamespaceTypo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_above="@id/tryAgainBtn"
+        android:padding="25dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/outOfServiceArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:background="@mipmap/ic_launcher"
+                android:layout_marginBottom="10dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/noInternetTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/appThemeFontColor"
+                android:textSize="@dimen/txt_size_16"
+                android:text="Something went wrong."/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/noInternetMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/appThemeFontColor"
+                android:textSize="@dimen/txt_size_14"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Check your internet connection and try again."/>
+
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/tryAgainBtn"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/appThemeColor_dark"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="TRY AGAIN"
+        app:cornerRadius="15dp" />
+
+
+
+</RelativeLayout>

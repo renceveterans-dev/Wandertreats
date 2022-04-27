@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appThemeColor_bg"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search Location"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/appThemeFontColor"
+        android:textSize="@dimen/txt_size_22"
+        android:fontFamily="@font/poppins_medium"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_45"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="8dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/searchTxt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical"
+                android:ellipsize="end"
+                android:lines="1"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Search Store, Products and Location"
+                android:textColor="@color/appThemeFontColor"
+                android:textSize="@dimen/txt_size_16" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/clearBtn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="15dp"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:fontFamily="@font/poppins_regular"
+                android:src="@drawable/icon_close" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/resultsRecyclerList"
+            android:layout_width="match_parent"
+            android:padding="5dp"
+            android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/loadingLocationArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <com.wang.avi.AVLoadingIndicatorView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:paddingStart="30dp"
+                android:layout_marginTop="20dp"
+                android:paddingEnd="20dp"
+                app:indicatorColor="@color/gray"
+                app:indicatorName="BallPulseSyncIndicator" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/noDataArea"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:padding="25dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/nodata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textSize="@dimen/txt_size_20"
+                android:fontFamily="@font/poppins_medium"
+                android:text="No Result."
+                android:orientation="vertical"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <color name="colorPrimary">@color/ThemeColorPrimary</color>
+    <color name="colorPrimaryDark">@color/ThemeColorPrimaryDark</color>
+    <color name="colorAccent">@color/ThemeColorPrimaryDark</color>
+
+    <color name="ThemeColorPrimary">#fccb1f</color>
+
+    <color name="ThemeColorLight">#DFE0DF</color>
+    <color name="ThemeColorPrimaryDark">#402E32</color>
+    <color name="ThemeColorSecondary">#A48E5C</color>
+
+<!--    <color name="appThemeColor">#0667B2</color>-->
+<!--    <color name="appThemeColor_dark">#1F487E</color>-->
+
+    <color name="appThemeColor">#22a8e3</color>
+    <color name="appThemeColor_light">#25C1CF</color>
+    <color name="appThemeColor_dark">#1F6DAA</color>
+
+    <color name="appThemeColor_fade_light">#cee6f2</color>
+
+    <color name="appThemeColor_bg">#34E5E5E5</color>
+    <color name="appThemeColor_success">#68ca44</color>
+
+    <color name="appThemeColor_red">#E05046</color>
+    <color name="appThemeColor_warning">#E05046</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="gray">#A1A1A1</color>
+    <color name="light_gray">#9EA1A1A1</color>
+
+    <color name="shimmer_placeholder">#dddddd</color>
+    <color name="appThemeFontColor">#FF000000</color>
+    <color name="seperator">#16000000</color>
+
+    <color name="transparent">#00ffffff</color>
+
+    <color name="alert_primary">#cce5ff</color>
+    <color name="alert_info">#d1ecf1</color>
+    <color name="alert_success">#d4edda</color>
+    <color name="alert_warning">#fff3cd</color>
+    <color name="alert_danger">#f8d7da</color>
+
+    <color name="app_alert">#b9eefa</color>
+
+    <color name="background_1">#bfe06b</color>
+    <color name="background_2">#ffbec8</color>
+    <color name="background_3">#ffd368</color>
+    <color name="background_4">#87c7d0</color>
+    <color name="background_5">#f5c7ca</color>
+
+       <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">@color/appThemeColor</color>
+    <color name="dot_dark_screen2">@color/appThemeColor</color>
+    <color name="dot_dark_screen3">@color/appThemeColor</color>
+    <color name="dot_dark_screen4">@color/appThemeColor</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#d8d8d8</color>
+    <color name="dot_light_screen2">#d8d8d8</color>
+    <color name="dot_light_screen3">#d8d8d8</color>
+    <color name="dot_light_screen4">#d8d8d8</color>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+        <item>@color/dot_light_screen4</item>
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+        <item>@color/dot_light_screen4</item>
+        <item>@color/dot_light_screen4</item>
+        <item>@color/dot_light_screen4</item>
+    </array>
+
+    <array name="array_dot_active">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+        <item>@color/dot_dark_screen4</item>
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+        <item>@color/dot_dark_screen4</item>
+        <item>@color/dot_dark_screen4</item>
+    </array>
+
+    <color name="dot_dark_slider">#E6E6E6</color>
+
+
+    <!-- dots active colors -->
+    <color name="dot_light_slider">#ffffff</color>
+
+    <array name="array_slider_active">
+        <item>@color/dot_dark_slider</item>
+        <item>@color/dot_dark_slider</item>
+        <item>@color/dot_dark_slider</item>
+        <item>@color/dot_dark_slider</item>
+    </array>
+
+    <array name="array_slider_inactive">
+        <item>@color/dot_light_slider</item>
+        <item>@color/dot_light_slider</item>
+        <item>@color/dot_light_slider</item>
+        <item>@color/dot_light_slider</item>
+    </array>
+
+</resources>

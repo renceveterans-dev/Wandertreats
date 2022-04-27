@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Wander Treats</string>
+    <string name="title_home">Home</string>
+    <string name="title_explore">Explore</string>
+    <string name="title_feed">Feeds</string>
+    <string name="title_orders">Orders</string>
+    <string name="title_me">Me</string>
+    <string name="title_treats">Treats</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="notifications_admin_channel_name">notifications_admin_channel_name</string>
+    <string name="notifications_admin_channel_description">Trikaroo_admin_channel_description</string>
+
+    <string name="icon_smiley">&#xf5b8;</string>
+    <string name="scanner_error">Error</string>
+
+    <string name="facebook_app_id">336068101395105</string>
+    <string name="fb_login_protocol_scheme">fb336068101395105</string>
+    <string name="very_mail">Confirm your email address to verry your account. <font fgcolor='#402E32'>Verify Now</font></string>
+
+    <string name="key_hash">xSLzBBuLJunOQPB89rtzM54FXx4=</string>
+
+</resources>

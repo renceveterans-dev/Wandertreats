@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.treats.TreatsFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mainTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/poppins_bold"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Your Treats!"
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_size_22" />
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/mainTab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:layout_below="@+id/mainTitle"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <com.google.android.material.tabs.TabItem
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Active" />
+
+        <com.google.android.material.tabs.TabItem
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="History" />
+
+        <com.google.android.material.tabs.TabItem
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Favorites" />
+
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/mainTab"
+        android:background="@color/seperator"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mainTab"
+        android:orientation="vertical">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/loaderShimmer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/mainContent"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_shimmering_purchased" />
+                <include layout="@layout/item_shimmering_purchased" />
+                <include layout="@layout/item_shimmering_purchased" />
+                <include layout="@layout/item_shimmering_purchased" />
+                <include layout="@layout/item_shimmering_purchased" />
+                <include layout="@layout/item_shimmering_purchased" />
+                <include layout="@layout/item_shimmering_purchased" />
+                <include layout="@layout/item_shimmering_purchased" />
+                <include layout="@layout/item_shimmering_purchased" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/treatsRecyclerListArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/treatsRecyclerList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/noDataArea"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:padding="25dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/nodata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textSize="@dimen/txt_size_20"
+                android:fontFamily="@font/poppins_medium"
+                android:text="No Result."
+                android:orientation="vertical"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</RelativeLayout>
