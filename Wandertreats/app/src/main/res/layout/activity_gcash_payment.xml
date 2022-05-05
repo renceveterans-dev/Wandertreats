@@ -252,11 +252,11 @@
                                         android:id="@+id/copyText"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:fontFamily="@font/poppins_medium"
-                                        android:text="09398296855"
-                                        android:gravity="center_vertical"
-                                        android:layout_weight="1"
                                         android:layout_gravity="center_vertical"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center_vertical"
+                                        android:text="09398296855"
                                         android:textColor="@color/black"
                                         android:textSize="@dimen/txt_size_14" />
 
@@ -264,13 +264,13 @@
                                         android:id="@+id/copyBtn"
                                         android:layout_width="20dp"
                                         android:layout_height="20dp"
-                                        android:layout_marginTop="-4dp"
-                                        android:foreground="?android:attr/selectableItemBackground"
-                                        android:layout_marginStart="10dp"
-                                        android:background="@drawable/copy_to_clipboard"
                                         android:layout_gravity="center_vertical"
-                                        android:scaleType="centerCrop"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_marginTop="-4dp"
+                                        android:background="@drawable/copy_to_clipboard"
+                                        android:foreground="?android:attr/selectableItemBackground"
                                         android:gravity="center_vertical"
+                                        android:scaleType="centerCrop"
                                         android:visibility="visible" />
 
                                 </LinearLayout>
@@ -361,12 +361,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_medium"
-                                android:hint="Reference No."
-                                android:maxLines="1"
-                                android:importantForAutofill="no"
                                 android:gravity="center|start"
-                                android:maxLength="5"
+                                android:hint="Reference No."
+                                android:importantForAutofill="no"
                                 android:inputType="number|textNoSuggestions"
+                                android:maxLength="5"
+                                android:maxLines="1"
                                 android:textSize="@dimen/txt_size_16" />
 
                         </com.google.android.material.textfield.TextInputLayout>

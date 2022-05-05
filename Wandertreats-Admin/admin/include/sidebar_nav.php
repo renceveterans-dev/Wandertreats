@@ -147,7 +147,7 @@
 				<div class="nav-item has-sub">
 					<a href="javascript:void(0)"><i class="ik ik-list"></i><span>Orders</span></a>
 					<div class="submenu-content">
-						<a href="products_categories.php" class="menu-item">Product Categories</a>
+						<a href="purchase_all.php" class="menu-item">All Purchase Orders</a>
 						<a href="products_all.php" class="menu-item">All Products</a>
 						<a href="products_featured.php" class="menu-item">Featured Products</a>
 					</div>

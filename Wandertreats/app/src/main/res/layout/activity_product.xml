@@ -58,9 +58,9 @@
                                 android:id="@+id/productImage"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:visibility="visible"
+                                android:scaleType="centerCrop"
                                 android:src="@drawable/background_gradient"
-                                android:scaleType="centerCrop"/>
+                                android:visibility="visible" />
 
                             <androidx.viewpager.widget.ViewPager
                                 android:id="@+id/viewpagerImagePreview"
@@ -165,16 +165,6 @@
 
                             android:orientation="horizontal">
 
-                            <ImageView
-                                android:id="@+id/backImgView"
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="20dp"
-                                android:layout_weight="0"
-                                android:background="@drawable/back"
-                                android:visibility="gone" />
-
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/titleTxt"
                                 android:layout_width="0dp"
@@ -197,7 +187,6 @@
                                 android:layout_weight="1"
                                 android:gravity="start|center_vertical"
                                 android:maxLines="2"
-                                android:paddingStart="10dp"
                                 android:textAlignment="viewStart"
                                 android:textSize="@dimen/txt_size_14"
                                 android:textAllCaps="true"
@@ -249,7 +238,7 @@
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/shareBtn"
-                                android:layout_width="50dp"
+                                android:layout_width="60dp"
                                 android:layout_height="50dp"
                                 android:layout_gravity="center|center_vertical"
                                 android:gravity="center|center_vertical"
@@ -377,7 +366,7 @@
                         android:layout_marginTop="15dp"
                         android:text="lorem "
                         android:textColor="@color/appThemeFontColor"
-                        android:textSize="@dimen/txt_size_16" />
+                        android:textSize="@dimen/txt_size_14" />
 
 
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -418,7 +407,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="Php 123.98594"
                         android:textColor="@color/appThemeFontColor"
-                        android:textSize="@dimen/txt_size_16" />
+                        android:textSize="@dimen/txt_size_14" />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -458,7 +447,7 @@
                         android:text="N/A"
                         android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/appThemeFontColor"
-                        android:textSize="@dimen/txt_size_16" />
+                        android:textSize="@dimen/txt_size_14" />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -499,7 +488,7 @@
                         android:text="N/A"
                         android:layout_marginStart="25dp"
                         android:textColor="@color/appThemeFontColor"
-                        android:textSize="@dimen/txt_size_16" />
+                        android:textSize="@dimen/txt_size_14" />
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>

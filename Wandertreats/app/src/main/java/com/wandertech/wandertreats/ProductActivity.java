@@ -71,7 +71,6 @@ public class ProductActivity extends AppCompatActivity implements AppBarLayout.O
     private TextInputEditText usernameTxt, passwordTxt;
     private CollapsingToolbarLayout collapsing_toolbar;
     private AppBarLayout appBarLayout;
-    private ImageView backImgView;
     private LinearLayoutCompat productArea;
     private LinearLayoutCompat productImageArea;
     private MaterialToolbar materialToolbar;
@@ -127,7 +126,6 @@ public class ProductActivity extends AppCompatActivity implements AppBarLayout.O
         materialToolbar.setLayoutParams(params);
 
         productArea = binding.productArea;
-        backImgView = binding.backImgView;
         shareBtn = binding.shareBtn;
         buyBtn = binding.buyBtn;
 

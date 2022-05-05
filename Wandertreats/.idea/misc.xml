@@ -3,7 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_product.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_about.xml" value="0.33" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_about_detail.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_contact_us.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_gcash_payment.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_product.xml" value="0.33" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_profile.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_search.xml" value="0.5647249190938511" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_verify.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/dialog_alert_2.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/fragment_account.xml" value="0.2" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/toolbar_main.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/User/Documents/WanderTreats2/app/src/main/res/drawable/background_gradient.xml" value="0.196" />
         <entry key="..\:/Users/User/Documents/WanderTreats2/app/src/main/res/drawable/background_tag.xml" value="0.1915" />
         <entry key="..\:/Users/User/Documents/WanderTreats2/app/src/main/res/drawable/button_style.xml" value="0.196" />

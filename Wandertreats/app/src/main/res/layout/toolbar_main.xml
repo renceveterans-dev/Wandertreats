@@ -83,8 +83,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:singleLine="true"
-                android:gravity="center|center_horizontal"
-                android:textAlignment="center"
+                android:gravity="start|center_vertical"
                 android:text=""
                 android:textAllCaps="false"
                 android:textColor="@color/appThemeFontColor"
@@ -171,7 +170,7 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/addImgView"
-                android:layout_width="50dp"
+                android:layout_width="60dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:padding="12dp"

@@ -38,6 +38,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
+import com.wandertech.wandertreats.AboutActivity;
 import com.wandertech.wandertreats.ContactUsActivity;
 import com.wandertech.wandertreats.LocationPickerActivity;
 import com.wandertech.wandertreats.MainActivity;
@@ -57,6 +58,7 @@ import com.wandertech.wandertreats.utils.Constants;
 import com.wandertech.wandertreats.utils.Utils;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class AccountFragment  extends Fragment {
@@ -64,7 +66,7 @@ public class AccountFragment  extends Fragment {
     private ExploreViewModel notificationsViewModel;
     private FragmentAccountBinding binding;
     public AppCompatTextView titleTxt;
-    public LinearLayoutCompat profileArea, logoutArea,saveAddressArea, voucherArea, supportArea, referralArea;
+    public LinearLayoutCompat profileArea, logoutArea,saveAddressArea, aboutArea, supportArea, referralArea;
     public GeneralFunctions appFunctions;
     private CircleImageView profile_image;
     private AppCompatTextView userNameTxt, userNameLabel;
@@ -100,7 +102,7 @@ public class AccountFragment  extends Fragment {
             profileData = appFunctions.retrieveValue(Utils.USER_PROFILE_JSON);
 
             profileArea = binding.profileArea;
-            voucherArea = binding.voucherArea;
+            aboutArea = binding.aboutArea;
             supportArea = binding.supportArea;
             verifyEmailArea = binding.verifyEmailArea;
             saveAddressArea =binding.saveAddressArea;
@@ -117,14 +119,14 @@ public class AccountFragment  extends Fragment {
             profileArea.setOnClickListener(new setOnClickAct());
             saveAddressArea.setOnClickListener(new setOnClickAct());
             referralArea.setOnClickListener(new setOnClickAct());
-            voucherArea.setOnClickListener(new setOnClickAct());
+            aboutArea.setOnClickListener(new setOnClickAct());
             supportArea.setOnClickListener(new setOnClickAct());
             logoutArea.setOnClickListener(new setOnClickAct());
             verifyEmailBtn.setOnClickListener(new setOnClickAct());
             closeVerifyEmailBtn.setOnClickListener(new setOnClickAct());
 
             userNameTxt.setText(appFunctions.getJsonValue("vName", profileData)+" "+appFunctions.getJsonValue("vLastName", profileData));
-            userNameLabel.setText(appFunctions.getJsonValue("vName", profileData)+" "+appFunctions.getJsonValue("vLastName", profileData));
+            userNameLabel.setText(("@"+appFunctions.getJsonValue("vName", profileData)+""+appFunctions.getJsonValue("vLastName", profileData)).replace(" ", "").toLowerCase(Locale.ROOT));
         }
 
 
@@ -162,6 +164,12 @@ public class AccountFragment  extends Fragment {
                 case R.id.referralArea:
 
                     new StartActProcess(getContext()).startAct(ReferralActivity.class);
+
+                    break;
+
+                case R.id.aboutArea:
+
+                    new StartActProcess(getContext()).startAct(AboutActivity.class);
 
                     break;
 
@@ -226,11 +234,11 @@ public class AccountFragment  extends Fragment {
                     break;
 
                 case R.id.closeVerifyEmailBtn:
-                    appFunctions.collapse(verifyEmailBtn, 500, 0);
+                    appFunctions.collapse(verifyEmailArea, 500, 0);
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            verifyEmailBtn.setVisibility(View.GONE);
+                            verifyEmailArea.setVisibility(View.GONE);
                         }
                     }, 500);
                     break;
@@ -259,6 +267,9 @@ public class AccountFragment  extends Fragment {
         HashMap<String, String> parameters = new HashMap<String, String>();
         parameters.put("type", "SEND_EMAIL_VERIFICATION");
         parameters.put("userId", appFunctions.getMemberId());
+        parameters.put("token", "");
+        parameters.put("username", appFunctions.getJsonValue("vName", profileData));
+        parameters.put("email", appFunctions.getJsonValue("vEmail", profileData));
         parameters.put("latitude", appFunctions.retrieveValue(Utils.CURRENT_LATITUDE));
         parameters.put("longitude", appFunctions.retrieveValue(Utils.CURRENT_LONGITUDE));
         parameters.put("userType", Utils.app_type);
@@ -285,7 +296,6 @@ public class AccountFragment  extends Fragment {
                         builder.setView(dialog);
 
                         title.setVisibility(View.GONE);
-                        seperator4.setVisibility(View.GONE);
                         message.setText("We have sent you an verification email to "+appFunctions.getJsonValue("vEmail", profileData));
                         positive_btn.setText("Okay");
                         

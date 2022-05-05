@@ -360,8 +360,8 @@
             'Content-Type:application/json'
         );  
 
-         echo safe_json_encode($fields);
-        echo safe_json_encode($headers);
+         //echo safe_json_encode($fields);
+        //echo safe_json_encode($headers);
         
         $ch = curl_init();
  

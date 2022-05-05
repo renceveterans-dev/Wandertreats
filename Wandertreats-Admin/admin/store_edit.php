@@ -44,6 +44,14 @@
 <div class="main-content">
     <div class="container-fluid">
 		
+		<style>
+			.leaflet-container {
+				height: 400px;
+				width: 600px;
+				max-width: 100%;
+				max-height: 100%;
+			}
+		</style>
 		
 		<!-- START OF CONTENTS -->
 		
@@ -238,48 +246,57 @@
 	                    <h3>Edit Store Location</h3>
 	                </div>
 	                <div class="card d-flex">
-	                   <div id="map" style="width: 100%; height: 380px"></div>
-					    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-					    <script>
-					    // Creating map options
-					    var mapOptions = {
-					        center: [<?= $merchantArr['vLatitude']; ?>, <?= $merchantArr['vLongitude']; ?>],
-					        zoom: 18
-					    }
+	                	<div id="map"style="width: 100%; height: 380px"></div>
+<script>
 
-					    // Creating a map object
-					    var map = new L.map('map', mapOptions);
+	var map = L.map('map').setView([14.064282036257191, 121.63258737975941], 13);
 
-					    var marker = null;
+	var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
+	}).addTo(map);
 
-					    // Creating a Layer object
-					    var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+	// var marker = L.marker([51.5, -0.09]).addTo(map)
+	// 	.bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
 
-					    // Adding layer to the map
-					    map.addLayer(layer);
+	// var circle = L.circle([51.508, -0.11], {
+	// 	color: 'red',
+	// 	fillColor: '#f03',
+	// 	fillOpacity: 0.5,
+	// 	radius: 500
+	// }).addTo(map).bindPopup('I am a circle.');
 
-						// Target's GPS coordinates.
-						var target = L.latLng('<?= $merchantArr['vLatitude']; ?>', '<?= $merchantArr['vLongitude']; ?>');
+	// var polygon = L.polygon([
+	// 	[51.509, -0.08],
+	// 	[51.503, -0.06],
+	// 	[51.51, -0.047]
+	// ]).addTo(map).bindPopup('I am a polygon.');
 
-						// Set map's center to target with zoom 14.
-						map.setView(target, 18);
 
-						// Place a marker on the same location.
-						marker = L.marker(target).addTo(map);
+	var popup = L.popup()
+		.setLatLng([14.064854432928476, 121.63250154928996])
+		.setContent('Wandertreats Headquearters.')
+		.openOn(map);
 
-						map.on('click', function(e) {
-						   	
-						   	if (marker !== null) {
-						        map.removeLayer(marker);
-						    }
-						    var lat = e.latlng.lat;
-                			var lng = e.latlng.lng;
-							document.getElementById("StoreLatitude").value = lat;
-							document.getElementById("StoreLongitude").value = lng ;
-						    marker = L.marker(e.latlng).addTo(map);
-						});
+	function onMapClick(e) {
+		var lat = e.latlng.lat;
+		var lng = e.latlng.lng;
+		document.getElementById("StoreLatitude").value = lat;
+		document.getElementById("StoreLongitude").value = lng ;
+		popup
+			.setLatLng(e.latlng)
+			.setContent('Set this location for <?= $merchantArr['vStoreName']; ?> ' )//+ e.latlng.toString()
+			.openOn(map);
+	}
 
-					    </script>
+	map.on('click', onMapClick);
+
+</script>
+	                   
 					    <input id="StoreLatitude" type="hidden" class="form-control"  placeholder="Store Latitude" value="<?= $merchantArr['vLatitude']; ?>">
                        <input id="StoreLongitude" type="hidden" class="form-control" placeholder="Store Longitude" value="<?= $merchantArr['vLongitude']; ?>">
                       	

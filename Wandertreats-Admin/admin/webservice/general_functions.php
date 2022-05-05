@@ -5007,27 +5007,15 @@
 
 
     
-    
-    // function  getAllOnlineDrivers($sourceLocationArr){
-        
-    //     $str_date = @date('Y-m-d H:i:s', strtotime('-410 minutes'));
-    //     $sql = "SELECT * , (3956 * 2 * ASIN(SQRT( POWER(SIN(( ".$sourceLocationArr[0]." - vLatitude) * pi()/180 / 2), 2) +COS( ".$sourceLocationArr[0]." * pi()/180) * COS(vLatitude * pi()/180) * POWER(SIN(( ". $sourceLocationArr[1]." - vLongitude) * pi()/180 / 2), 2) ))) as distance, vFirebaseDeviceToken, vLatitude, vLongitude, iDriverId, vName, vLastName from register_driver where iTodaId = '".$todaId."' AND vAvailability = 'Available' AND eStatus = 'active' AND (vTripStatus != 'FINISHED' OR vTripStatus != 'NONE') AND tLocationUpdateDate > '".$str_date."' having distance <= 5 order by distance";
-    //     $statement = $obj->query($sql);
-    //     $allDriverData = $statement ->fetchAll();
-        
-    //     return $allDriverData;
-    // }
-    
-    // function  getAllOnlineAvailableDrivers($sourceLocationArr){
-        
-    //     $str_date = @date('Y-m-d H:i:s', strtotime('-410 minutes'));
-    //     //SELECT ALL DRIVERS AVAILABLE
-    //     $sql = "SELECT * , (3956 * 2 * ASIN(SQRT( POWER(SIN(( ".$sourceLocationArr[0]." - vLatitude) * pi()/180 / 2), 2) +COS( ".$sourceLocationArr[0]." * pi()/180) * COS(vLatitude * pi()/180) * POWER(SIN(( ". $sourceLocationArr[1]." - vLongitude) * pi()/180 / 2), 2) ))) as distance, vFirebaseDeviceToken, vLatitude, vLongitude, iDriverId, vName, vLastName from register_driver where iTodaId = '".$todaId."' AND vAvailability = 'Available' AND eStatus = 'active' AND (vTripStatus = 'FINISHED' OR vTripStatus = 'NONE') AND tLocationUpdateDate > '".$str_date."' having distance <= 5 order by distance";
-    //     $statement = $obj->query($sql);
-    //     $availableDriverData = $statement ->fetchAll();
-        
-    //     return $availableDriverData;
-    // }
+    function stringToSecret(string $string = NULL){
+        if (!$string) {
+            return NULL;
+        }
+        $length = strlen($string);
+        $visibleCount = (int) round($length / 4);
+        $hiddenCount = $length - ($visibleCount * 2);
+        return substr($string, 0, $visibleCount) . str_repeat('*', $hiddenCount) . substr($string, ($visibleCount * -1), $visibleCount);
+    }
 
     
 

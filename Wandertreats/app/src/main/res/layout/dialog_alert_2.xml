@@ -89,7 +89,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingBottom="10dp"
+                        android:paddingBottom="20dp"
                         android:layout_gravity="center|center_horizontal">
 
                         <RelativeLayout
@@ -101,6 +101,7 @@
                                 style="@style/Widget.MaterialComponents.Button"
                                 android:layout_width="180dp"
                                 android:layout_height="55dp"
+                                android:layout_centerInParent="true"
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="8dp"
                                 android:layout_marginRight="8dp"
@@ -108,8 +109,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/txt_size_16"
                                 app:cornerRadius="12dp"
-                                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck"
-                                android:layout_centerInParent="true" />
+                                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
                         </RelativeLayout>
 

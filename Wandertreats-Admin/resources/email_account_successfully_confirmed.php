@@ -208,15 +208,17 @@
     include_once('../general_functions.php');
 
     $data['title'] = "Email was successfully verified!";
-    $data['description'] = "Hi Laurence, Your email has been successfully verified! Enjoy now the using Wandertreats and avail best deals from different nearest store nearby.";
+    $data['description'] = "Hi ".$_REQUEST['username'].", Your email has been successfully verified! Enjoy now the using Wandertreats and avail best deals from different nearest store nearby.";
     //NOTIFCATION FOREGROUND
     $data['activity'] = "AUTO_LOGOUT";
-    $data['message'] = "Hi Laurence, Your email has been successfully verified! Enjoy now the using Wandertreats and avail best deals from different nearest store nearby.";;
+    $data['message'] = "Hi ".$_REQUEST['username'].", Your email has been successfully verified! Enjoy now the using Wandertreats and avail best deals from different nearest store nearby.";;
 
-    notify("User", "1", $data);
+    notify("User", $_REQUEST['userId'], $data);
+
+    //CHECK IF ACCOUNT IS ALREADY VERIFIED.
 
 
-    $notifData['iUserId'] = "1";
+    $notifData['iUserId'] = $_REQUEST['userId'];
     $notifData['vUserType'] = $target;
     $notifData['vTitle'] = $data['title'];
     $notifData['vDescription'] = $data['description'];

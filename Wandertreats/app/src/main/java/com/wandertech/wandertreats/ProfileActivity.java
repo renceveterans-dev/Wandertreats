@@ -94,6 +94,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void setLabel() {
 
+        toolbar.setTitle("Profile");
+        toolbar.setTitleCentered(true);
+        toolbar.setTitleTextColor(getActContext().getResources().getColor(R.color.black));
         titleTxt.setText("Profile");
 
         profileNameTxt.setText(appFunctions.getJsonValue("vName", profileData)+" "+appFunctions.getJsonValue("vLastName", profileData));

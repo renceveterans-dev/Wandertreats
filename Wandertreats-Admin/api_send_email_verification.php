@@ -18,14 +18,14 @@
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
         $params = array(
-            'userId'=>'1',
-            'token'=>'ewewewew',
-            'username' => 'Laurence',
-            'url' => 'https://wanderlustphtravel.com/wandertreats/resources/email_account_successfully_confirmed.php'
+            'userId'=> $_REQUEST['userId'],
+            'token'=> $_REQUEST['token'],
+            'name'=> $_REQUEST['username'],
+            'url'=>'https://wanderlustphtravel.com/wandertreats/resources/email_account_successfully_confirmed.php'
          );
 
-        $urlExtension = "?username=".$params['username']."&url=".$params['url']."&userId=".$params['userId']."&token=".$params['token']."";
-        $htmlContent = file_get_contents("https://wanderlustphtravel.com/wandertreats/resources/email_account_confirmation.php?".$urlExtension);
+        $urlExtension = "?username=".$params['name']."&url=".$params['url']."&userId=".$params['userId']."&token=".$params['token']."";
+        $htmlContent = file_get_contents("https://wanderlustphtravel.com/wandertreats/resources/email_account_confirmation.php".$urlExtension);
         //$htmlContent = "jasjhas";
         
          $mail->Host = 'smtp.gmail.com';
