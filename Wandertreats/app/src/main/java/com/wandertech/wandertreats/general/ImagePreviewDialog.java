@@ -95,6 +95,44 @@ public class ImagePreviewDialog {
 
     }
 
+    public void createPreview(Bitmap url){
+
+        ViewTreeObserver vto = preview .getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                preview.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+//                int width  = linearLayout.getMeasuredWidth();
+//                int height = linearLayout.getMeasuredHeight();
+//                c.drawBitmap(Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565), 0, 0, p);
+
+                Glide.with(mContext)
+                        .load(url)
+                        .dontTransform()
+                        .into(preview);
+
+                Glide.with(mContext).asBitmap().load(url).into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        int width = preview.getMeasuredWidth();
+                        int diw = resource.getWidth();
+                        if (diw > 0) {
+                            int height = 0;
+                            height = width * resource.getHeight() / diw;
+                            resource = Bitmap.createScaledBitmap(resource, width, height, false);
+                        }
+                        preview.setImageBitmap(resource);
+                    }
+
+                });
+                // Rest code skipped
+            }
+        });
+
+
+    }
+
+
 
 
     public void setCancelable(Boolean a){

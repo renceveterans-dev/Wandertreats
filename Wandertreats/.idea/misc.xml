@@ -16,6 +16,7 @@
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_contact_us.xml" value="0.22" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_gcash_payment.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_get_direction.xml" value="0.25" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_launcher.xml" value="0.25" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_location_details.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_location_picker.xml" value="0.25" />
@@ -24,7 +25,7 @@
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_notification_details.xml" value="0.25" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_product.xml" value="0.37822349570200575" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_profile.xml" value="0.4827109266943292" />
-        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_purchase_confirmation.xml" value="0.33" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_purchase_confirmation.xml" value="0.25" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_purchase_preview.xml" value="0.22" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_purchased_details.xml" value="0.33" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/activity_register.xml" value="0.5" />
@@ -42,10 +43,11 @@
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/fragment_account.xml" value="0.33" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/fragment_explore.xml" value="0.33" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/fragment_feed.xml" value="0.15" />
-        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/fragment_home.xml" value="0.14" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/fragment_treats.xml" value="0.33" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/item_card_selection.xml" value="0.33" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/item_feeds.xml" value="0.16" />
+        <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/item_grid_category_view.xml" value="0.35104166666666664" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/item_main_list.xml" value="0.22" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/item_merchant.xml" value="0.2572463768115942" />
         <entry key="..\:/Users/User/Documents/GitHub/Wandertreats/Wandertreats/app/src/main/res/layout/item_merchant_list.xml" value="0.33" />

@@ -96,7 +96,7 @@ public class GridCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     .centerCrop()
                     .skipMemoryCache(true)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .placeholder(mContext.getResources().getDrawable(R.color.white))
+                    .placeholder(mContext.getResources().getDrawable(R.color.transparent))
                     .into(itemHolder.itemThumbnail);
 
             itemHolder.itemCard.setOnClickListener(new View.OnClickListener() {

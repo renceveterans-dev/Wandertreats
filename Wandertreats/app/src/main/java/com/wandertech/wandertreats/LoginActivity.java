@@ -390,8 +390,6 @@ public class LoginActivity extends AppCompatActivity {
 
         hideKeyboard((Activity) getActContext());
 
-       // appFunctions.showMessage(data);
-
         HashMap<String, String> parameters = new HashMap<String, String>();
         parameters.put("type", "LOGIN_WITH_FACEBOOK");
         parameters.put("userId", appFunctions.getMemberId());
@@ -409,6 +407,9 @@ public class LoginActivity extends AppCompatActivity {
         exeWebServer.setDataResponseListener(new ExecuteWebServiceApi.SetDataResponse() {
             @Override
             public void setResponse(String responseString) {
+
+                appFunctions.showMessage(responseString);
+
 
                 if(responseString != null){
 

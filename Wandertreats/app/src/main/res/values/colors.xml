@@ -32,6 +32,8 @@
     <color name="gray">#A1A1A1</color>
     <color name="light_gray">#9EA1A1A1</color>
 
+    <color name="lighter_gray">#45DDDDDD</color>
+
     <color name="shimmer_placeholder">#dddddd</color>
     <color name="appThemeFontColor">#FF000000</color>
     <color name="seperator">#16000000</color>

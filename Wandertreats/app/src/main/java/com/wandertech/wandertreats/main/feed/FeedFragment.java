@@ -55,17 +55,6 @@ public class FeedFragment extends Fragment implements FeedPostAdapter.setOnClick
 
        //
         appFunctions = MyApp.getInstance().getGeneralFun(container.getContext());
-//        try {
-//            ((MainActivity) getActivity()).  getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-//            appFunctions.setWindowFlag((Activity) getActivity(), WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS ,false);
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                ((MainActivity) getActivity()).  getWindow().setStatusBarColor(getResources().getColor(R.color.gray,  ((MainActivity) getActivity()).getTheme()));
-//            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                ((MainActivity) getActivity()). getWindow().setStatusBarColor(getResources().getColor(R.color.gray));
-//            }
-//        }catch (Exception e){
-//            appFunctions.showMessage(e.toString());
-//        }
 
         binding = FragmentFeedBinding.inflate(inflater, container, false);
 
@@ -96,57 +85,64 @@ public class FeedFragment extends Fragment implements FeedPostAdapter.setOnClick
 
     public void loadData() {
 
+        if(getActivity() != null) {
 
-        HashMap<String, String> parameters = new HashMap<String, String>();
-        parameters.put("type", "LOAD_NOTIFICATION");
-        parameters.put("userId", appFunctions.getMemberId());
-        parameters.put("userType", Utils.app_type);
+            getActivity().runOnUiThread(new Runnable() {
+                public void run() {
 
-        ExecuteWebServiceApi exeWebServer = new ExecuteWebServiceApi(getActContext(), parameters, "api_load_feeds.php", true);
-        exeWebServer.setLoaderConfig(getActContext(), false,appFunctions);
-        exeWebServer.setDataResponseListener(new ExecuteWebServiceApi.SetDataResponse() {
-            @Override
-            public void setResponse(String responseString) {
+                    HashMap<String, String> parameters = new HashMap<String, String>();
+                    parameters.put("type", "LOAD_NOTIFICATION");
+                    parameters.put("userId", appFunctions.getMemberId());
+                    parameters.put("userType", Utils.app_type);
 
+                    ExecuteWebServiceApi exeWebServer = new ExecuteWebServiceApi(getActContext(), parameters, "api_load_feeds.php", true);
+                    exeWebServer.setLoaderConfig(getActContext(), false,appFunctions);
+                    exeWebServer.setDataResponseListener(new ExecuteWebServiceApi.SetDataResponse() {
+                        @Override
+                        public void setResponse(String responseString) {
+                            if(responseString != null){
 
+                                if(appFunctions.checkDataAvail(Utils.action_str, responseString)){
 
-                if(responseString != null){
+                                    feedsArr = Data.getFeedsData(appFunctions.getJsonArray("data", responseString), appFunctions);
+                                    //Toast.makeText(getActContext(),feedsArr.toString(), Toast.LENGTH_SHORT).show();
+                                    if(feedsArr.size()>0){
+                                        loaderShimmer.setVisibility(View.GONE);
+                                        feedRRecyclerListArea.setVisibility(View.VISIBLE);
+                                        noDataArea.setVisibility(View.GONE);
 
-                    if(appFunctions.checkDataAvail(Utils.action_str, responseString)){
+                                        feedPostAdapter = new FeedPostAdapter(getActivity(), feedsArr);
+                                        feedRecyclerList.setLayoutManager(new LinearLayoutManager(getActContext()));
+                                        feedPostAdapter.itemOnClick(FeedFragment.this);
+                                        feedRecyclerList.setAdapter(feedPostAdapter);
+                                    }else{
+                                        loaderShimmer.setVisibility(View.GONE);
+                                        feedRRecyclerListArea.setVisibility(View.GONE);
+                                        noDataArea.setVisibility(View.VISIBLE);
+                                    }
 
-                        feedsArr = Data.getFeedsData(appFunctions.getJsonArray("data", responseString), appFunctions);
-                        //Toast.makeText(getActContext(),feedsArr.toString(), Toast.LENGTH_SHORT).show();
-                        if(feedsArr.size()>0){
-                            loaderShimmer.setVisibility(View.GONE);
-                            feedRRecyclerListArea.setVisibility(View.VISIBLE);
-                            noDataArea.setVisibility(View.GONE);
+                                }else{
 
-                            feedPostAdapter = new FeedPostAdapter(getActivity(), feedsArr);
-                            feedRecyclerList.setLayoutManager(new LinearLayoutManager(getActContext()));
-                            feedPostAdapter.itemOnClick(FeedFragment.this);
-                            feedRecyclerList.setAdapter(feedPostAdapter);
-                        }else{
-                            loaderShimmer.setVisibility(View.GONE);
-                            feedRRecyclerListArea.setVisibility(View.GONE);
-                            noDataArea.setVisibility(View.VISIBLE);
+                                    //Toast.makeText(getActContext(),responseString, Toast.LENGTH_SHORT).show();
+                                    loaderShimmer.setVisibility(View.GONE);
+                                    feedRRecyclerListArea.setVisibility(View.GONE);
+                                    noDataArea.setVisibility(View.VISIBLE);
+                                }
+
+                            }else{
+                                loaderShimmer.setVisibility(View.GONE);
+                                feedRRecyclerListArea.setVisibility(View.VISIBLE);
+                                noDataArea.setVisibility(View.VISIBLE);
+                            }
                         }
-
-                    }else{
-
-                        //Toast.makeText(getActContext(),responseString, Toast.LENGTH_SHORT).show();
-                        loaderShimmer.setVisibility(View.GONE);
-                        feedRRecyclerListArea.setVisibility(View.GONE);
-                        noDataArea.setVisibility(View.VISIBLE);
-                    }
-
-                }else{
-                    loaderShimmer.setVisibility(View.GONE);
-                    feedRRecyclerListArea.setVisibility(View.VISIBLE);
-                    noDataArea.setVisibility(View.VISIBLE);
+                    });
+                    exeWebServer.execute();
                 }
-            }
-        });
-        exeWebServer.execute();
+            });
+
+        }
+
+
     }
 
     @Override

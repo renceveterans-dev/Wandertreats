@@ -98,17 +98,6 @@ public class HomeFragment extends Fragment implements GridCategoryAdapter.ItemOn
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         appFunctions = MyApp.getInstance().getGeneralFun(container.getContext());
-//        try {
-//            ((MainActivity) getActivity()).  getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-//            appFunctions.setWindowFlag((Activity) getActivity(), WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS ,false);
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                ((MainActivity) getActivity()).  getWindow().setStatusBarColor(getResources().getColor(R.color.appThemeColor,  ((MainActivity) getActivity()).getTheme()));
-//            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                ((MainActivity) getActivity()). getWindow().setStatusBarColor(getResources().getColor(R.color.appThemeColor));
-//            }
-//        }catch (Exception e){
-//            appFunctions.showMessage("sas"+ e.toString());
-//        }
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -138,17 +127,6 @@ public class HomeFragment extends Fragment implements GridCategoryAdapter.ItemOn
 
             badgeTextView = binding.notificationBadge.badgeTextView;
 
-            //mainRecylerList = binding.mainRecyclerList;
-            homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-                @Override
-                public void onChanged(@Nullable String s) {
-                    textView.setText(s);
-                }
-            });
-
-
-
-
         }
 
         setListner();
@@ -158,64 +136,67 @@ public class HomeFragment extends Fragment implements GridCategoryAdapter.ItemOn
     }
 
     private void setListner() {
+        if(getActivity() != null) {
 
-        getActivity().runOnUiThread(new Runnable() {
-            public void run() {
+            getActivity().runOnUiThread(new Runnable() {
+                public void run() {
 
-                notificationBtn.setOnClickListener(new setOnClickAct());
-                searchTxt.setOnClickListener(new setOnClickAct());
-                scanBtn.setOnClickListener(new setOnClickAct());
-                locationArea.setOnClickListener(new setOnClickAct());
+                    notificationBtn.setOnClickListener(new setOnClickAct());
+                    searchTxt.setOnClickListener(new setOnClickAct());
+                    scanBtn.setOnClickListener(new setOnClickAct());
+                    locationArea.setOnClickListener(new setOnClickAct());
 
 
 
-                ((MainActivity)getActivity()).setLocationListener(new MainActivity.LocationListener() {
-                    @Override
-                    public void onLocationFound(String address, double latitude, double longitude) {
+                    ((MainActivity)getActivity()).setLocationListener(new MainActivity.LocationListener() {
+                        @Override
+                        public void onLocationFound(String address, double latitude, double longitude) {
 
-                        try {
-                            appFunctions.storeData(Utils.CURRENT_ADDRESSS, address);
-                            appFunctions.storeData(Utils.CURRENT_LATITUDE, latitude+ "");
-                            appFunctions.storeData(Utils.CURRENT_LONGITUDE, longitude + "");
-                            locationTxt.setText(appFunctions.retrieveValue(Utils.CURRENT_ADDRESSS));
-                            loadingLocation.setVisibility(View.GONE);
-                            achorDownIcon.setVisibility(View.VISIBLE);
-                            locationTxt.setVisibility(View.VISIBLE);
-                            loadData();
-                        }catch (Exception e){
-                            appFunctions.showMessage(e.toString());
+                            try {
+                                appFunctions.storeData(Utils.CURRENT_ADDRESSS, address);
+                                appFunctions.storeData(Utils.CURRENT_LATITUDE, latitude+ "");
+                                appFunctions.storeData(Utils.CURRENT_LONGITUDE, longitude + "");
+                                locationTxt.setText(appFunctions.retrieveValue(Utils.CURRENT_ADDRESSS));
+                                loadingLocation.setVisibility(View.GONE);
+                                achorDownIcon.setVisibility(View.VISIBLE);
+                                locationTxt.setVisibility(View.VISIBLE);
+                                loadData();
+                            }catch (Exception e){
+                                appFunctions.showMessage(e.toString());
+                            }
                         }
+                    });
+
+                    try{
+                        locationTxt.setText(appFunctions.retrieveValue(Utils.CURRENT_ADDRESSS));
+                        loadingLocation.setVisibility(View.GONE);
+                        achorDownIcon.setVisibility(View.VISIBLE);
+                        locationTxt.setVisibility(View.VISIBLE);
+                    }catch (Exception e){
+
                     }
-                });
 
-                try{
-                    locationTxt.setText(appFunctions.retrieveValue(Utils.CURRENT_ADDRESSS));
-                    loadingLocation.setVisibility(View.GONE);
-                    achorDownIcon.setVisibility(View.VISIBLE);
-                    locationTxt.setVisibility(View.VISIBLE);
-                }catch (Exception e){
+                    loadData();
 
+                    mainScollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+                        @Override
+                        public void onScrollChanged() {
+                            View view = (View) mainScollView.getChildAt(mainScollView.getChildCount() - 1);
+
+                            int diff = (view.getBottom() - (mainScollView.getHeight() + mainScollView.getScrollY()));
+
+                            if(mainScollView.getScrollY() == 0){
+                                ///  dropShadow.setVisibility(View.GONE);
+                            }else{
+                                // dropShadow.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    });
                 }
+            });
 
-                loadData();
 
-                mainScollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-                    @Override
-                    public void onScrollChanged() {
-                        View view = (View) mainScollView.getChildAt(mainScollView.getChildCount() - 1);
-
-                        int diff = (view.getBottom() - (mainScollView.getHeight() + mainScollView.getScrollY()));
-
-                        if(mainScollView.getScrollY() == 0){
-                          ///  dropShadow.setVisibility(View.GONE);
-                        }else{
-                           // dropShadow.setVisibility(View.VISIBLE);
-                        }
-                    }
-                });
-            }
-        });
-
+        }
 
 
     }
@@ -224,7 +205,12 @@ public class HomeFragment extends Fragment implements GridCategoryAdapter.ItemOn
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        greetingsTxt.setText("Hi "+appFunctions.getJsonValue("vName", profileData)+"!");
+        if(getActivity() !=null){
+            //do stuff
+            greetingsTxt.setText("Hi "+appFunctions.getJsonValue("vName", profileData)+"!");
+        }
+
+
 
     }
 

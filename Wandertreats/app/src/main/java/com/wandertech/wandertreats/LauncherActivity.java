@@ -14,6 +14,8 @@ import android.os.Looper;
 import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -89,6 +91,16 @@ public class LauncherActivity extends AppCompatActivity {
         if (appFunctions.isFirstTimeLaunch()) {
             appFunctions.initDedaultData();
         }
+        handler.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+
+                Animation shake = AnimationUtils.loadAnimation(LauncherActivity.this, R.anim.shake_anim);
+                binding.imageView.startAnimation(shake);
+            }
+        }, 1000);
+
 
         initLocation();
         loadGeneralData();
