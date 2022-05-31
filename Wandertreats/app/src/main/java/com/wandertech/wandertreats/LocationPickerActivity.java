@@ -21,6 +21,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.wandertech.wandertreats.databinding.ActivityLocationPickerBinding;
@@ -89,7 +90,7 @@ public class LocationPickerActivity extends AppCompatActivity implements GetAddr
     private AppCompatTextView searchTextView;
     private LinearLayout searchCardArea;
     private GetAddressFromLocation  getAddressFromLocation;
-
+    private MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,20 +101,25 @@ public class LocationPickerActivity extends AppCompatActivity implements GetAddr
         setContentView(binding.getRoot());
 
         map = binding.map;
-        titleTxt = binding.header.titleTxt;
+        toolbar = binding.mainToolbar.toolbar;
+        titleTxt = binding.mainToolbar.titleTxt;
         pinlocation = binding.pinlocation;
         searchArea = binding.searchArea;
         searchCardArea = binding.searchCardArea;
         confirmBtn = binding.confirmBtn;
         searchTextView = binding.searchTextView;
-        backImgView = binding.header.backImgView;
+
 
         titleTxt.setText("Set Location");
-
-        backImgView.setOnClickListener(new setOnClickAct());
         searchArea.setOnClickListener(new setOnClickAct());
         searchCardArea.setOnClickListener(new setOnClickAct());
         confirmBtn.setOnClickListener(new setOnClickAct());
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         getAddressFromLocation = new GetAddressFromLocation(getActContext(), appFunctions);
         getAddressFromLocation.setAddressList(this);

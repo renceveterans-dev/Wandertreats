@@ -74,40 +74,34 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
                                 android:layout_marginBottom="15dp"
                                 android:orientation="vertical">
 
 
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/storeNameTxt"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/logoImage"
-                                    android:layout_gravity="center|center_vertical"
-                                    android:layout_marginBottom="20dp"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center_horizontal"
-                                    android:text="Prroduct Name"
-                                    android:textColor="@color/white"
-                                    android:textSize="@dimen/txt_size_16"
-                                    android:visibility="visible"
-                                    tools:ignore="VectorDrawableCompat" />
+
 
                                 <de.hdodenhof.circleimageview.CircleImageView
                                     android:id="@+id/logoImage"
                                     android:layout_width="96dp"
                                     android:layout_height="96dp"
-
                                     android:layout_gravity="center_horizontal"
                                     android:layout_marginBottom="10dp"
                                     android:src="@drawable/user"
+                                    android:visibility="gone"
                                     app:civ_border_color="#FF000000"
                                     app:civ_border_width="2dp" />
+
+                                <ImageView
+                                    android:layout_width="220dp"
+                                    android:layout_height="140dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="10dp"
+                                    android:background="@drawable/rewardpoints"
+                                    android:scaleType="fitCenter"
+                                    android:visibility="visible" />
+
+
                             </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
 
 
                         </RelativeLayout>
@@ -122,21 +116,40 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/headingTxt"
-                            android:layout_width="match_parent"
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center|center_vertical"
-                            android:fontFamily="@font/poppins_medium"
                             android:layout_marginTop="20dp"
-                            android:gravity="center_horizontal"
-                            android:padding="5dp"
-                            android:textSize="@dimen/txt_size_20"
-                            android:text="Successfuly Claimed!"
-                            android:textColor="@color/appThemeFontColor"
-                            android:visibility="visible"
-                            tools:ignore="VectorDrawableCompat" />
+                            android:layout_gravity="center"
+                            android:orientation="horizontal">
 
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/headingTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|center_vertical"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:gravity="center_horizontal"
+                                android:includeFontPadding="false"
+                                android:padding="5dp"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/txt_size_20"
+                                android:text="Successfuly Claimed!"
+                                android:textColor="@color/appThemeFontColor"
+                                android:visibility="visible"
+                                tools:ignore="VectorDrawableCompat" />
+
+                            <ImageView
+                                android:id="@+id/successImg"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="@dimen/space_5"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:src="@drawable/check"
+                                android:visibility="visible" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -145,12 +158,29 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|center_vertical"
                             android:fontFamily="@font/poppins_regular"
+                            android:layout_marginTop="@dimen/space_10"
                             android:gravity="center_horizontal"
-                            android:padding="5dp"
                             android:text="hHhahaha"
+                            android:textSize="@dimen/txt_size_18"
                             android:textColor="@color/appThemeFontColor"
                             android:visibility="visible"
                             tools:ignore="VectorDrawableCompat" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/storeNameTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/logoImage"
+                            android:layout_gravity="center|center_vertical"
+                            android:layout_marginTop="@dimen/space_10"
+                            android:fontFamily="@font/poppins_medium"
+                            android:gravity="center_horizontal"
+                            android:text="Prroduct Name"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/txt_size_14"
+                            android:visibility="visible"
+                            tools:ignore="VectorDrawableCompat" />
+
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/productNameTxt"
@@ -160,7 +190,7 @@
                             android:layout_marginBottom="30dp"
                             android:fontFamily="@font/poppins_regular"
                             android:gravity="center_horizontal"
-                            android:padding="5dp"
+
                             android:textSize="@dimen/txt_size_16"
                             android:text="hHhahaha"
                             android:textColor="@color/appThemeFontColor"
@@ -179,7 +209,6 @@
                     android:layout_height="?attr/actionBarSize"
                     app:layout_scrollFlags="scroll|enterAlways"
                     app:layout_collapseMode="pin"
-                    android:layout_marginTop="@dimen/space_25"
                     android:contentInsetEnd="0dp"
                     android:contentInsetRight="0dp"
                     android:background="@color/white"
@@ -208,11 +237,10 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:paddingStart="10dp"
                                 android:singleLine="true"
                                 android:fontFamily="@font/poppins_medium"
-                                android:gravity="center|center_horizontal"
-                                android:textAlignment="center"
+                                android:gravity="start|center_vertical"
+                                android:textAlignment="textStart"
                                 android:text="ahah"
                                 android:textColor="@color/white"
                                 android:includeFontPadding="false"

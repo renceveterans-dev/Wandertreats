@@ -39,4 +39,6 @@ public class CenterLayoutManager extends LinearLayoutManager {
             return (boxStart + (boxEnd - boxStart) / 2) - (viewStart + (viewEnd - viewStart) / 2);
         }
     }
+
+
 }

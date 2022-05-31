@@ -99,7 +99,8 @@ public class ProfileActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(getActContext().getResources().getColor(R.color.black));
         titleTxt.setText("Profile");
 
-        profileNameTxt.setText(appFunctions.getJsonValue("vName", profileData)+" "+appFunctions.getJsonValue("vLastName", profileData));
+        profileNameTxt.setText(appFunctions.getFullName());
+        profileDescTxt.setText(appFunctions.getUserName());
         fNameTxt.setText(appFunctions.getJsonValue("vName",  profileData));
         lNameTxt.setText(appFunctions.getJsonValue("vLastName",  profileData));
         emailTxt.setText(appFunctions.getJsonValue("vEmail",  profileData));

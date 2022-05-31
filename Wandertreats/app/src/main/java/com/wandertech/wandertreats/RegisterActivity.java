@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     private GeneralFunctions appFunctions;
     private final Handler handler = new Handler();
     private AppCompatTextView titleTxt;
-    private AppCompatButton registerBtn;
+    private AppCompatButton registerBtn, loginBtn;
     private TextInputLayout fNameTxtLayout, lNameTxtLayout, emailTxtLayout, mobileTxtLayout, passwordTxtLayout, rePasswordTxtLayout;
     private TextInputEditText fNameTxt, lNameTxt, emailTxt, mobileTxt, passwordTxt, rePasswordTxt;
     private MaterialToolbar toolbar;
@@ -91,6 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
         rePasswordTxtLayout = binding.rePasswordTxtLayout;
 
         registerBtn = binding.registerBtn;
+        loginBtn = binding.loginBtn;
 
         fNameTxt.addTextChangedListener(new setOnTextChangeAct(fNameTxt));
         lNameTxt.addTextChangedListener(new setOnTextChangeAct(lNameTxt));
@@ -100,6 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
         rePasswordTxt.addTextChangedListener(new setOnTextChangeAct(rePasswordTxt));
 
         registerBtn.setOnClickListener(new setOnClickAct());
+        loginBtn.setOnClickListener(new setOnClickAct());
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,7 +152,11 @@ public class RegisterActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+
+
             switch (editText.getId()) {
+
+
 
                 case R.id.fNameTxt:
 
@@ -398,6 +404,10 @@ public class RegisterActivity extends AppCompatActivity {
                 case R.id.closeImgView:
                     onBackPressed();
 
+                    break;
+
+                case R.id.loginBtn:
+                    onBackPressed();
                     break;
 
                 case R.id.registerBtn:

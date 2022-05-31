@@ -12,6 +12,8 @@ public class Constants {
     public static String SERVER_1 = "https://wanderlustphtravel.com/beta/";
     public static String SERVER_2 = "https://wanderlustphtravel.com/beta/"; //http://wanderlustphtravel.com/beta/
     public static String SERVER = "https://wanderlustphtravel.com/wandertreats/";
+//     public static String SERVER = "https://192.168.1.2/Wandertreats-Admin/";
+    // public static String SERVER = "https://demo.imgettingmarried.me/";
 
     public static String SERVER1 = SERVER_1+""; //trikaroo_bsd
     public static String SERVER_URL = SERVER_1+"trikaroo_webservice.php";
@@ -20,6 +22,6 @@ public class Constants {
     public static String WEBSERVICE_1 = SERVER_1+"trikaroo_webservice.php";
     public static String WEBSERVICE_2 = SERVER_1+"trikaroo_webservice.php";
 
-    public static final String MAPS_SERVER = "https://wanderlustphtravel.com/wandertreats/api_location.php";
+    public static final String MAPS_SERVER = SERVER+"/api_location.php";
 
 }

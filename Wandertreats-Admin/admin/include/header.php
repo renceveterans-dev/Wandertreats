@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="plugins/jquery-toast-plugin/dist/jquery.toast.min.css">
 	<link rel="stylesheet" href="plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" href="plugins/select2/dist/css/select2.min.css">
-  
+    <link rel="stylesheet" href="plugins/summernote/dist/summernote-bs4.css">
 	<link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap.css">
 	<link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
 	<link rel="stylesheet" href="plugins/weather-icons/css/weather-icons.min.css">
@@ -27,6 +27,7 @@
 	<link rel="stylesheet" href="plugins/owl.carousel/dist/assets/owl.carousel.min.css">
 	<link rel="stylesheet" href="plugins/owl.carousel/dist/assets/owl.theme.default.min.css">
 	<link rel="stylesheet" href="dist/css/theme.min.css">
+    <link rel="stylesheet" href="plugins/mohithg-switchery/dist/switchery.min.css">
 	<link rel="icon" href="../uploads/logo.png">
 <!-- <link rel="stylesheet" href="plugins/leaflet/leaflet.css" /> -->
 

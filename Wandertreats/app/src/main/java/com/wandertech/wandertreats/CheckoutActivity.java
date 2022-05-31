@@ -18,13 +18,16 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.wandertech.wandertreats.adapter.RadioSelctionAdapter;
 import com.wandertech.wandertreats.databinding.ActivityCheckoutBinding;
 import com.wandertech.wandertreats.databinding.ActivityPurchasePreviewBinding;
+import com.wandertech.wandertreats.general.Data;
 import com.wandertech.wandertreats.general.ExecuteWebServiceApi;
 import com.wandertech.wandertreats.general.GeneralFunctions;
 import com.wandertech.wandertreats.general.StartActProcess;
 import com.wandertech.wandertreats.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,8 +35,12 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class CheckoutActivity extends AppCompatActivity implements  AppBarLayout.OnOffsetChangedListener{
+import org.json.JSONArray;
+
+public class CheckoutActivity extends AppCompatActivity implements  AppBarLayout.OnOffsetChangedListener, RadioSelctionAdapter.ItemOnClickListener{
 
     private ActivityCheckoutBinding binding;
     private View contentView;
@@ -49,12 +56,22 @@ public class CheckoutActivity extends AppCompatActivity implements  AppBarLayout
     private String productData;
     private AppCompatTextView productName, productDesc, productPrice;
     private TextInputLayout fNameTxtLayout, lNameTxtLayout, emailTxtLayout, mobileTxtLayout;
+    private RecyclerView paymentRecyclerView;
     private TextInputEditText fNameTxt, lNameTxt, emailTxt, mobileTxt;
     private AppCompatButton payAtStoreBtn;
     private AppCompatButton payBtn;
     private AppCompatTextView totalAmountTxt;
     private String previewProductData;
     private double totalAmount = 0.0;
+
+    public RadioSelctionAdapter radioSelctionAdapter;
+    public ArrayList<HashMap<String, String>> dataList;
+    public JSONArray paymentMethodArr = new JSONArray();
+    public String paymentData = "";
+
+    public int selected = 111;
+    public boolean hasSelected = false;
+    public HashMap<String, String> parameters = new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +94,18 @@ public class CheckoutActivity extends AppCompatActivity implements  AppBarLayout
         setLabel();
 
         productData = getIntent().getStringExtra("data");
+
+
+        paymentData = appFunctions.retrieveValue(Utils.APP_GENERAL_DATA);
+        paymentMethodArr = appFunctions.getJsonArray("paymentMethods", paymentData);
+
+        dataList = Data.getPaymentData(paymentMethodArr, appFunctions);
+        // appFunctions.showMessage( dataList.toString());
+        radioSelctionAdapter = new RadioSelctionAdapter(getActContext(), dataList);
+        paymentRecyclerView.setLayoutManager(new LinearLayoutManager(getActContext()));
+        paymentRecyclerView.setAdapter(radioSelctionAdapter);
+        radioSelctionAdapter.setOnItemClick(this::setOnItemClick);
+
         loadPurchasePreview();
 
     }
@@ -156,6 +185,9 @@ public class CheckoutActivity extends AppCompatActivity implements  AppBarLayout
         qtyText = binding.qtyText;
         totalAmountTxt = binding.totalAmountTxt;
 
+
+        paymentRecyclerView = binding.paymentRecyclerView;
+
         payBtn = binding.payBtn;
         payAtStoreBtn = binding.payAtStoreBtn;
 
@@ -176,6 +208,51 @@ public class CheckoutActivity extends AppCompatActivity implements  AppBarLayout
         titleTxt.setText("Checkout");
         qtyText.setText("1");
     }
+
+    @Override
+    public void setOnItemClick(int position) {
+
+        if(selected != position){
+            selected = position;
+            hasSelected = true;
+        }else{
+            selected = 111;
+            hasSelected = false;
+        }
+
+        ArrayList<HashMap<String, String>> tempData = new ArrayList<>();
+        for(int i = 0;i<dataList.size();i++){
+
+            if(i != selected ){
+                HashMap<String, String> map = new HashMap<>();
+                map.put("title",  dataList.get(i).get("title"));
+                map.put("message", dataList.get(i).get("message"));
+                map.put("selected", "No");
+                map.put("data",  dataList.get(i).get("data"));
+                tempData.add(map);
+            }else{
+                HashMap<String, String> map = new HashMap<>();
+                map.put("title",  dataList.get(i).get("title"));
+                map.put("message", dataList.get(i).get("message"));
+                map.put("selected", "Yes");
+                map.put("data", dataList.get(i).get("data"));
+                tempData.add(map);
+            }
+
+        }
+
+        dataList.clear();
+        dataList = tempData;
+
+        //radioSelctionAdapter.notifyDataSetChanged();
+
+        radioSelctionAdapter = new RadioSelctionAdapter(getActContext(), tempData);
+        paymentRecyclerView.setLayoutManager(new LinearLayoutManager(getActContext()));
+        paymentRecyclerView.setAdapter(radioSelctionAdapter);
+        radioSelctionAdapter.setOnItemClick(this::setOnItemClick);
+
+    }
+
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {

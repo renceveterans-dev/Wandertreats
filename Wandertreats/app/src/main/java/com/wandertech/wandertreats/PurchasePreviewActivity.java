@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -23,6 +24,8 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -31,8 +34,10 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.common.cache.CacheBuilderSpec;
+import com.wandertech.wandertreats.adapter.RadioSelctionAdapter;
 import com.wandertech.wandertreats.databinding.ActivityForgotPasswordBinding;
 import com.wandertech.wandertreats.databinding.ActivityPurchasePreviewBinding;
+import com.wandertech.wandertreats.general.Data;
 import com.wandertech.wandertreats.general.ExecuteWebServiceApi;
 import com.wandertech.wandertreats.general.GeneralFunctions;
 import com.wandertech.wandertreats.general.PaymentBottomSheetFragment;
@@ -40,9 +45,12 @@ import com.wandertech.wandertreats.general.PopUpDialog;
 import com.wandertech.wandertreats.general.StartActProcess;
 import com.wandertech.wandertreats.utils.Utils;
 
+import org.json.JSONArray;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PurchasePreviewActivity extends AppCompatActivity implements  AppBarLayout.OnOffsetChangedListener{
+public class PurchasePreviewActivity extends AppCompatActivity implements  AppBarLayout.OnOffsetChangedListener,  RadioSelctionAdapter.ItemOnClickListener{
 
     private ActivityPurchasePreviewBinding binding;
     private View contentView;
@@ -53,6 +61,7 @@ public class PurchasePreviewActivity extends AppCompatActivity implements  AppBa
     private AppBarLayout appBarLayout;
     private ImageView backImgView;
     private LinearLayoutCompat productArea;
+    private RecyclerView paymentRecyclerView;
     private AppCompatTextView add, minus, qtyText;
     private CardView addImgView, minusImgView;
     private String productData;
@@ -64,6 +73,16 @@ public class PurchasePreviewActivity extends AppCompatActivity implements  AppBa
     private AppCompatTextView totalAmountTxt;
     private String previewProductData;
     private double totalAmount = 0.0;
+
+
+    public RadioSelctionAdapter radioSelctionAdapter;
+    public ArrayList<HashMap<String, String>> dataList;
+    public JSONArray paymentMethodArr = new JSONArray();
+    public String paymentData = "";
+
+    public int selected = 111;
+    public boolean hasSelected = false;
+    public HashMap<String, String> parameters = new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,10 +101,23 @@ public class PurchasePreviewActivity extends AppCompatActivity implements  AppBa
             getWindow().setStatusBarColor(getResources().getColor(R.color.transparent));
         }
 
+
         initView();
         setLabel();
 
         productData = getIntent().getStringExtra("data");
+
+
+        paymentData = appFunctions.retrieveValue(Utils.APP_GENERAL_DATA);
+        paymentMethodArr = appFunctions.getJsonArray("paymentMethods", paymentData);
+
+        dataList = Data.getPaymentData(paymentMethodArr, appFunctions);
+        // appFunctions.showMessage( dataList.toString());
+        radioSelctionAdapter = new RadioSelctionAdapter(getActContext(), dataList);
+        paymentRecyclerView.setLayoutManager(new LinearLayoutManager(getActContext()));
+        paymentRecyclerView.setAdapter(radioSelctionAdapter);
+        radioSelctionAdapter.setOnItemClick(this::setOnItemClick);
+
         loadPurchasePreview();
 
     }
@@ -144,6 +176,11 @@ public class PurchasePreviewActivity extends AppCompatActivity implements  AppBa
         materialToolbar = binding.toolbar;
         backImgView = binding.backImgView;
 
+
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) materialToolbar.getLayoutParams();
+        params.topMargin = getStatusBarHeight();
+        materialToolbar.setLayoutParams(params);
+
         productName = binding.productName;
         productDesc = binding.productDesc;
         productPrice = binding.productPrice;
@@ -165,6 +202,8 @@ public class PurchasePreviewActivity extends AppCompatActivity implements  AppBa
         qtyText = binding.qtyText;
         totalAmountTxt = binding.totalAmountTxt;
 
+        paymentRecyclerView = binding.paymentRecyclerView;
+
         payBtn = binding.payBtn;
         payAtStoreBtn = binding.payAtStoreBtn;
 
@@ -184,51 +223,90 @@ public class PurchasePreviewActivity extends AppCompatActivity implements  AppBa
         });
     }
 
+    public int getStatusBarHeight(){
+        int statusBarHeight = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+        }
+
+        return statusBarHeight;
+    }
+
     private void setLabel() {
 
-        titleTxt.setText("Purchase Preview");
+        titleTxt.setText("Checkout");
         qtyText.setText("1");
     }
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
         if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0) {
             //  Collapsed
 
-            backImgView.setBackgroundTintList(getActContext().getResources().getColorStateList(R.color.black));
             materialToolbar.setBackgroundColor(getActContext().getResources().getColor(R.color.white));
-            titleTxt.setText("Puchase Preview");
+            materialToolbar.setNavigationIconTint(getActContext().getResources().getColor(R.color.black));
+            titleTxt.setText("Checkout");
             titleTxt.setTextColor(getActContext().getResources().getColor(R.color.black));
 
-            getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            appFunctions.setWindowFlag((Activity) getActContext(), WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS ,false);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                getWindow().setStatusBarColor(getResources().getColor(R.color.transparent, this.getTheme()));
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                getWindow().setStatusBarColor(getResources().getColor(R.color.transparent));
-            }
 
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
-            getWindow().setStatusBarColor(ContextCompat.getColor(PurchasePreviewActivity.this,R.color.white));// set status background white
+            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.appThemeColor));
 
         } else {
             //Expanded
-            backImgView.setBackgroundTintList(getActContext().getResources().getColorStateList(R.color.white));
+
             materialToolbar.setBackgroundColor(getActContext().getResources().getColor(R.color.fui_transparent));
+            materialToolbar.setNavigationIconTint(getActContext().getResources().getColor(R.color.white));
             titleTxt.setText("");
             titleTxt.setTextColor(getActContext().getResources().getColor(R.color.white));
 
-            getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            appFunctions.setWindowFlag((Activity) getActContext(), WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS ,false);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                getWindow().setStatusBarColor(getResources().getColor(R.color.transparent, this.getTheme()));
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                getWindow().setStatusBarColor(getResources().getColor(R.color.transparent));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.transparent));
+        }
+    }
+
+    @Override
+    public void setOnItemClick(int position) {
+
+        if(selected != position){
+            selected = position;
+            hasSelected = true;
+        }else{
+            selected = 111;
+            hasSelected = false;
+        }
+
+        ArrayList<HashMap<String, String>> tempData = new ArrayList<>();
+        for(int i = 0;i<dataList.size();i++){
+
+            if(i != selected ){
+                HashMap<String, String> map = new HashMap<>();
+                map.put("title",  dataList.get(i).get("title"));
+                map.put("message", dataList.get(i).get("message"));
+                map.put("selected", "No");
+                map.put("data",  dataList.get(i).get("data"));
+                tempData.add(map);
+            }else{
+                HashMap<String, String> map = new HashMap<>();
+                map.put("title",  dataList.get(i).get("title"));
+                map.put("message", dataList.get(i).get("message"));
+                map.put("selected", "Yes");
+                map.put("data", dataList.get(i).get("data"));
+                tempData.add(map);
             }
-            View decorView = getWindow().getDecorView(); //set status background black
-            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR); //set status text  light
 
         }
+
+        dataList.clear();
+        dataList = tempData;
+
+        //radioSelctionAdapter.notifyDataSetChanged();
+
+        radioSelctionAdapter = new RadioSelctionAdapter(getActContext(), tempData);
+        paymentRecyclerView.setLayoutManager(new LinearLayoutManager(getActContext()));
+        paymentRecyclerView.setAdapter(radioSelctionAdapter);
+        radioSelctionAdapter.setOnItemClick(this::setOnItemClick);
+
     }
 
     public class setOnTextChangeAct implements TextWatcher {
@@ -259,35 +337,88 @@ public class PurchasePreviewActivity extends AppCompatActivity implements  AppBa
 
     public void payNow() {
 
-        HashMap<String, String> parameters = new HashMap<String, String>();
-        parameters.put("type", "PAY_NOW");
-        parameters.put("userId", appFunctions.getMemberId());
-        parameters.put("firstName", fNameTxt.getText().toString() == null ? "" : fNameTxt.getText().toString());;
-        parameters.put("lastName", lNameTxt.getText().toString() == null ? "" : lNameTxt.getText().toString() );
-        parameters.put("email", emailTxt.getText().toString() == null ? "" : emailTxt.getText().toString() );
-        parameters.put("mobileNumber", mobileTxt.getText().toString() == null ? "" : mobileTxt.getText().toString() );
-        parameters.put("totalAmount", totalAmount +"");
-        parameters.put("qty", qtyText.getText().toString().trim()+"");
-        parameters.put("productId", appFunctions.getJsonValue("iProductId", previewProductData));
-        parameters.put("userType", Utils.app_type);
+        try{
 
-        ExecuteWebServiceApi exeWebServer = new ExecuteWebServiceApi(getActContext(), parameters, "api_purchase_now.php", true);
-        exeWebServer.setLoaderConfig(getActContext(), true,appFunctions);
-        exeWebServer.setDataResponseListener(new ExecuteWebServiceApi.SetDataResponse() {
-            @Override
-            public void setResponse(String responseString) {
-                if(responseString != null){
+            HashMap<String, String> parameters = new HashMap<String, String>();
+            parameters.put("type", "PAY_AT THE_STORE");
+            parameters.put("userId", appFunctions.getMemberId());
+            parameters.put("firstName", fNameTxt.getText().toString() == null ? "" : fNameTxt.getText().toString());;
+            parameters.put("lastName", lNameTxt.getText().toString() == null ? "" : lNameTxt.getText().toString() );
+            parameters.put("email", emailTxt.getText().toString() == null ? "" : emailTxt.getText().toString() );
+            parameters.put("mobileNumber", mobileTxt.getText().toString() == null ? "" : mobileTxt.getText().toString() );
+            parameters.put("totalAmount", totalAmount +"");
+            parameters.put("qty", qtyText.getText().toString().trim()+"");
+            parameters.put("productId", appFunctions.getJsonValue("iProductId", previewProductData));
+            parameters.put("userType", Utils.app_type);
 
-                    Bundle bn =  new Bundle();
-                    bn.putString("data", responseString);
-                    new StartActProcess(getActContext()).startActWithData(GCashPaymentActivity.class,bn);
-                    finish();
+            ExecuteWebServiceApi exeWebServer = new ExecuteWebServiceApi(getActContext(), parameters, "api_purchase_now.php", true);
+            exeWebServer.setLoaderConfig(getActContext(), true,appFunctions);
+            exeWebServer.setDataResponseListener(new ExecuteWebServiceApi.SetDataResponse() {
+                @Override
+                public void setResponse(String responseString) {
+                    if(responseString != null){
+
+                        if(appFunctions.checkDataAvail(Utils.action_str, responseString)){
+
+                            Bundle bn =  new Bundle();
+                            bn.putString("purchasedId", appFunctions.getJsonValue("purchaseId",responseString));
+                            bn.putString("purchasedId", appFunctions.getJsonValue("purchaseNo",responseString));
+                            bn.putString("data",  appFunctions.getJsonValue("data",responseString));
+                            bn.putString("isStart",  "checkout");
+                            new StartActProcess(getActContext()).startActWithData(GCashPaymentActivity.class,bn);
+
+                        }else{
+                            appFunctions.showMessage(appFunctions.getJsonValue("error",responseString));
+
+                        }
+
+
+
+                    }
+
                 }
-            }
+            });
+            exeWebServer.execute();
+        }catch (Exception e){
+            appFunctions.showMessage(e.toString());
+        }
 
-        });
-        exeWebServer.execute();
+
+
     }
+
+//
+//    public void payNow() {
+//
+//        HashMap<String, String> parameters = new HashMap<String, String>();
+//        parameters.put("type", "PAY_NOW");
+//        parameters.put("userId", appFunctions.getMemberId());
+//        parameters.put("firstName", fNameTxt.getText().toString() == null ? "" : fNameTxt.getText().toString());;
+//        parameters.put("lastName", lNameTxt.getText().toString() == null ? "" : lNameTxt.getText().toString() );
+//        parameters.put("email", emailTxt.getText().toString() == null ? "" : emailTxt.getText().toString() );
+//        parameters.put("mobileNumber", mobileTxt.getText().toString() == null ? "" : mobileTxt.getText().toString() );
+//        parameters.put("totalAmount", totalAmount +"");
+//        parameters.put("qty", qtyText.getText().toString().trim()+"");
+//        parameters.put("productId", appFunctions.getJsonValue("iProductId", previewProductData));
+//        parameters.put("userType", Utils.app_type);
+//
+//        ExecuteWebServiceApi exeWebServer = new ExecuteWebServiceApi(getActContext(), parameters, "api_purchase_now.php", true);
+//        exeWebServer.setLoaderConfig(getActContext(), true,appFunctions);
+//        exeWebServer.setDataResponseListener(new ExecuteWebServiceApi.SetDataResponse() {
+//            @Override
+//            public void setResponse(String responseString) {
+//                if(responseString != null){
+//
+//                    Bundle bn =  new Bundle();
+//                    bn.putString("data", responseString);
+//                    new StartActProcess(getActContext()).startActWithData(GCashPaymentActivity.class,bn);
+//                    finish();
+//                }
+//            }
+//
+//        });
+//        exeWebServer.execute();
+//    }
 
 
     public void payAtTheStore() {
@@ -350,22 +481,28 @@ public class PurchasePreviewActivity extends AppCompatActivity implements  AppBa
 
                 case R.id. payBtn:
 
+                    if(hasSelected){
+                        payNow();
+                    }else{
+                        appFunctions.showMessage("Please select payment method.");
+                    }
 
-                    HashMap<String, String> parameters = new HashMap<String, String>();
-                    parameters.put("type", "PAY_AT THE_STORE");
-                    parameters.put("userId", appFunctions.getMemberId());
-                    parameters.put("firstName", fNameTxt.getText().toString() == null ? "" : fNameTxt.getText().toString());;
-                    parameters.put("lastName", lNameTxt.getText().toString() == null ? "" : lNameTxt.getText().toString() );
-                    parameters.put("email", emailTxt.getText().toString() == null ? "" : emailTxt.getText().toString() );
-                    parameters.put("mobileNumber", mobileTxt.getText().toString() == null ? "" : mobileTxt.getText().toString() );
-                    parameters.put("totalAmount", totalAmount +"");
-                    parameters.put("qty", qtyText.getText().toString().trim()+"");
-                    parameters.put("productId", appFunctions.getJsonValue("iProductId", previewProductData));
-                    parameters.put("userType", Utils.app_type);
 
-                    PaymentBottomSheetFragment paymentDialogFragment = new PaymentBottomSheetFragment(getActContext(), parameters, appFunctions);
-                    paymentDialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.AppBottomSheetDialogTheme);
-                    paymentDialogFragment.show(getSupportFragmentManager(), "");
+//                    HashMap<String, String> parameters = new HashMap<String, String>();
+//                    parameters.put("type", "PAY_AT THE_STORE");
+//                    parameters.put("userId", appFunctions.getMemberId());
+//                    parameters.put("firstName", fNameTxt.getText().toString() == null ? "" : fNameTxt.getText().toString());;
+//                    parameters.put("lastName", lNameTxt.getText().toString() == null ? "" : lNameTxt.getText().toString() );
+//                    parameters.put("email", emailTxt.getText().toString() == null ? "" : emailTxt.getText().toString() );
+//                    parameters.put("mobileNumber", mobileTxt.getText().toString() == null ? "" : mobileTxt.getText().toString() );
+//                    parameters.put("totalAmount", totalAmount +"");
+//                    parameters.put("qty", qtyText.getText().toString().trim()+"");
+//                    parameters.put("productId", appFunctions.getJsonValue("iProductId", previewProductData));
+//                    parameters.put("userType", Utils.app_type);
+//
+//                    PaymentBottomSheetFragment paymentDialogFragment = new PaymentBottomSheetFragment(getActContext(), parameters, appFunctions);
+//                    paymentDialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.AppBottomSheetDialogTheme);
+//                    paymentDialogFragment.show(getSupportFragmentManager(), "");
 
                     break;
 

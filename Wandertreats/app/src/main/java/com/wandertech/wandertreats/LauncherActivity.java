@@ -166,6 +166,8 @@ public class LauncherActivity extends AppCompatActivity {
             @Override
             public void setResponse(String responseString) {
 
+                //appFunctions.showMessage( responseString);
+
                 if(responseString != null){
 
                     if(appFunctions.checkDataAvail(Utils.action_str, responseString)){

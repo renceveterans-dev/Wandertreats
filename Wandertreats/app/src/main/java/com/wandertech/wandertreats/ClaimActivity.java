@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
@@ -130,6 +132,11 @@ public class ClaimActivity extends AppCompatActivity implements  AppBarLayout.On
         titleTxt = binding.  titleTxt;
         appBarLayout = binding.appBarLayout;
         materialToolbar = binding.toolbar;
+
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) materialToolbar.getLayoutParams();
+        params.topMargin = appFunctions.getStatusBarHeight();
+        materialToolbar.setLayoutParams(params);
+
         productArea = binding.productArea;
         shareBtn = binding.shareBtn;
         timerTxt = binding.TimeCount;
@@ -144,7 +151,42 @@ public class ClaimActivity extends AppCompatActivity implements  AppBarLayout.On
 
         circularProgressBar = binding.circularProgressBar;
 
+        materialToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
     }
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+        if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0) {
+
+
+            productArea.setVisibility(View.INVISIBLE);
+            materialToolbar.setBackgroundColor(getActContext().getResources().getColor(R.color.white));
+            materialToolbar.setNavigationIconTint(getActContext().getResources().getColor(R.color.black));
+            titleTxt.setText("Claim");
+            titleTxt.setTextColor(getActContext().getResources().getColor(R.color.black));
+
+            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.appThemeColor));
+
+        } else {
+            //Expanded
+            productArea.setVisibility(View.VISIBLE);
+            materialToolbar.setBackgroundColor(getActContext().getResources().getColor(R.color.fui_transparent));
+            materialToolbar.setNavigationIconTint(getActContext().getResources().getColor(R.color.white));
+            titleTxt.setText("");
+            titleTxt.setTextColor(getActContext().getResources().getColor(R.color.white));
+
+            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.transparent));
+
+        }
+    }
+
 
     public void setLabels(){
 
@@ -281,26 +323,26 @@ public class ClaimActivity extends AppCompatActivity implements  AppBarLayout.On
     public Context getActContext() {
         return ClaimActivity.this;
     }
-
-    @Override
-    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0) {
-            //  Collapsed
-
-            productArea.setVisibility(View.INVISIBLE);
-            materialToolbar.setBackgroundColor(getActContext().getResources().getColor(R.color.white));
-            titleTxt.setText("STORE");
-            //titleTxt.setText(appFunctions.getJsonValue("vProductName", productData));
-            titleTxt.setTextColor(getActContext().getResources().getColor(R.color.black));
-        } else {
-            //Expanded
-            productArea.setVisibility(View.VISIBLE);
-            materialToolbar.setBackgroundColor(getActContext().getResources().getColor(R.color.fui_transparent));
-            titleTxt.setText("");
-            titleTxt.setTextColor(getActContext().getResources().getColor(R.color.white));
-
-        }
-    }
+//
+//    @Override
+//    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+//        if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0) {
+//            //  Collapsed
+//
+//            productArea.setVisibility(View.INVISIBLE);
+//            materialToolbar.setBackgroundColor(getActContext().getResources().getColor(R.color.white));
+//            titleTxt.setText("STORE");
+//            //titleTxt.setText(appFunctions.getJsonValue("vProductName", productData));
+//            titleTxt.setTextColor(getActContext().getResources().getColor(R.color.black));
+//        } else {
+//            //Expanded
+//            productArea.setVisibility(View.VISIBLE);
+//            materialToolbar.setBackgroundColor(getActContext().getResources().getColor(R.color.fui_transparent));
+//            titleTxt.setText("");
+//            titleTxt.setTextColor(getActContext().getResources().getColor(R.color.white));
+//
+//        }
+//    }
 
     @Override
     public void onBackPressed() {

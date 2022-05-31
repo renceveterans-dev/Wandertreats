@@ -97,7 +97,6 @@ public class MerchantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             itemHolder.itemCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    appFunctions.showMessage("click");
 
                     Bundle bn =  new Bundle();
                     bn.putString("data", resArrList.get(position).get("data"));

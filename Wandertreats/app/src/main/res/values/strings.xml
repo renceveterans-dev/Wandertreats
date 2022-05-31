@@ -14,7 +14,9 @@
     <string name="icon_smiley">&#xf5b8;</string>
     <string name="scanner_error">Error</string>
 
+<!--    <string name="facebook_app_id">336068101395105</string>-->
     <string name="facebook_app_id">336068101395105</string>
+    <string name="facebook_client_token">5b6a24081304ff5800f38929aa133053</string>
     <string name="fb_login_protocol_scheme">fb336068101395105</string>
     <string name="very_mail">Confirm your email address to verry your account. <font fgcolor='#402E32'>Verify Now</font></string>
 

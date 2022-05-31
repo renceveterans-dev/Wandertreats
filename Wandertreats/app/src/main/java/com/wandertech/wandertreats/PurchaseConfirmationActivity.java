@@ -114,6 +114,8 @@ public class PurchaseConfirmationActivity extends BaseActivity {
 
     }
 
+
+
     public class setOnClickAct implements View.OnClickListener {
 
         @Override
@@ -140,8 +142,6 @@ public class PurchaseConfirmationActivity extends BaseActivity {
 
                 default:
                     break;
-
-
 
             }
 

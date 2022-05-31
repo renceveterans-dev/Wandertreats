@@ -361,16 +361,10 @@
                     android:layout_height="wrap_content">
 
 
-
-
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-
-
-
-
 
 
                         <androidx.cardview.widget.CardView
@@ -400,29 +394,28 @@
                                         android:id="@+id/productName"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:textSize="@dimen/txt_size_16"
                                         android:fontFamily="@font/poppins_medium"
+                                        android:text="Name"
                                         android:textColor="@color/black"
-                                        android:text="Name"/>
+                                        android:textSize="@dimen/txt_size_16" />
 
                                     <androidx.appcompat.widget.AppCompatTextView
                                         android:id="@+id/productDesc"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:textSize="@dimen/txt_size_16"
                                         android:fontFamily="@font/poppins_regular"
+                                        android:text="Name"
                                         android:textColor="@color/black"
-                                        android:text="Name"/>
+                                        android:textSize="@dimen/txt_size_16" />
 
                                     <androidx.appcompat.widget.AppCompatTextView
                                         android:id="@+id/productPrice"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:textSize="@dimen/txt_size_16"
                                         android:fontFamily="@font/poppins_medium"
+                                        android:text="Name"
                                         android:textColor="@color/black"
-                                        android:text="Name"/>
-
+                                        android:textSize="@dimen/txt_size_16" />
 
 
                                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -432,22 +425,20 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:gravity="center"
                                     android:layout_marginTop="5dp"
+                                    android:gravity="center"
                                     android:orientation="horizontal">
-
 
 
                                     <androidx.cardview.widget.CardView
                                         android:id="@+id/minusImgView"
                                         android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
                                         android:layout_margin="15dp"
-                                        app:cardElevation="1dp"
-                                        android:foreground="?android:attr/selectableItemBackground"
                                         android:clickable="true"
-                                        app:contentPadding="5dp"
-                                        android:layout_height="wrap_content">
-
+                                        android:foreground="?android:attr/selectableItemBackground"
+                                        app:cardElevation="1dp"
+                                        app:contentPadding="5dp">
 
 
                                         <LinearLayout
@@ -470,7 +461,6 @@
                                                 android:textSize="22sp" />
 
 
-
                                         </LinearLayout>
 
                                     </androidx.cardview.widget.CardView>
@@ -481,22 +471,21 @@
                                         android:layout_height="20dp"
                                         android:layout_gravity="center_vertical"
                                         android:clickable="true"
-                                        android:text="1"
                                         android:fontFamily="@font/poppins_regular"
                                         android:gravity="center"
+                                        android:text="1"
                                         android:textColor="@color/black"
                                         android:textSize="16sp" />
 
                                     <androidx.cardview.widget.CardView
                                         android:id="@+id/addImgView"
                                         android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
                                         android:layout_margin="15dp"
-                                        app:cardElevation="1dp"
-                                        app:contentPadding="5dp"
-                                        android:foreground="?android:attr/selectableItemBackground"
                                         android:clickable="true"
-                                        android:layout_height="wrap_content">
-
+                                        android:foreground="?android:attr/selectableItemBackground"
+                                        app:cardElevation="1dp"
+                                        app:contentPadding="5dp">
 
 
                                         <LinearLayout
@@ -519,7 +508,6 @@
                                                 android:textSize="22sp" />
 
 
-
                                         </LinearLayout>
 
                                     </androidx.cardview.widget.CardView>
@@ -529,7 +517,7 @@
 
                             </androidx.appcompat.widget.LinearLayoutCompat>
 
-                            x
+
                         </androidx.cardview.widget.CardView>
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -540,15 +528,11 @@
                 </RelativeLayout>
 
 
-
-
-
-
-
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:visibility="gone"
                     android:padding="20dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -694,6 +678,69 @@
                         android:gravity="center_horizontal"
                         android:text="Forgot you Password ?"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_marginStart="@dimen/space_20"
+                    android:layout_marginEnd="@dimen/space_20"
+                    android:layout_marginBottom="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:text="Select Payment Method"
+                    android:includeFontPadding="false"
+                    android:clickable="false"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appThemeFontColor"
+                    android:textSize="@dimen/txt_size_16" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_below="@+id/header">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:paddingBottom="0dp"
+                            android:paddingRight="8dp"
+                            android:orientation="vertical">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/paymentRecyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="5dp"
+                                android:scrollbars="none"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp" />
+
+                        </LinearLayout>
+
+
+
+                    </ScrollView>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/prodeedBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_50"
+                        android:layout_gravity="bottom"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/button_style"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="PROCEED"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white" />
+
+
+                </LinearLayout>
 
 
 

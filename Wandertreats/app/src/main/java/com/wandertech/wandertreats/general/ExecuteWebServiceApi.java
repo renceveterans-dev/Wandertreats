@@ -31,6 +31,7 @@ import com.wandertech.wandertreats.utils.Utils;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class ExecuteWebServiceApi {
     
@@ -180,13 +181,14 @@ public class ExecuteWebServiceApi {
 
     public void performGetCall(String directUrl) {
 
+        //generalFunc.showMessage(Constants.SERVER+directUrl);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.SERVER+directUrl,
                 new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        responseString = response;
 
+                        responseString = response;
                         fireResponse();
 
                     }
@@ -195,8 +197,11 @@ public class ExecuteWebServiceApi {
                 new com.android.volley.Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.d("REST :", error.toString());
+                        Toast.makeText(mContext,  "ERROR "+error.toString(), Toast.LENGTH_SHORT).show();
                         responseString = error.toString();
                         fireResponse();
+
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                             // Toast.makeText(mContext, "ADL : No Internet Connection", Toast.LENGTH_SHORT).show();
                         } else if (error instanceof AuthFailureError) {
@@ -219,11 +224,11 @@ public class ExecuteWebServiceApi {
 
         };
 
-        int MY_SOCKET_TIMEOUT_MS=50000;
+        int MY_SOCKET_TIMEOUT_MS=500000;
 
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(
                 MY_SOCKET_TIMEOUT_MS,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                5,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         RequestQueue requestQueue = Volley.newRequestQueue(mContext);

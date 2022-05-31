@@ -188,7 +188,7 @@ public class TreatsFragment  extends Fragment implements MyTreatsAdapter.ItemOnC
     }
 
     public Context getActContext(){
-        return   getActivity().getApplicationContext();
+        return   getActivity();
     }
 
     @Override

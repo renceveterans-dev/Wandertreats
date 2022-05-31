@@ -207,6 +207,14 @@
 
   	$('#Submit').click(function(){
   		 validateForms();
+
+  		 console.log(
+			$("#target").val()+"\n"+
+			$("#title").val()+"\n"+
+			$("#message").val()+"\n"+
+			$("#data").val()
+  		 	);
+
     	$.ajax({
 	      url: "ajax/ajax_send_inapp_notification.php",
 	      cache: true,
@@ -216,7 +224,7 @@
 	          userType : "targt",
 	          target :  $("#target").val(),
 	          title : $("#title").val(),
-	          mesage : $("#mesage").val(),
+	          message : $("#message").val(),
 	          data : $("#data").val(),
 	          image : "image",
 	        

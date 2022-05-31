@@ -23,7 +23,6 @@ public class LocationService extends Service {
     public Location previousBestLocation = null;
 
     Context context;
-
     Intent intent;
     int counter = 0;
 

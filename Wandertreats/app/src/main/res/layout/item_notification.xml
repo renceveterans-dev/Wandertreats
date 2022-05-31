@@ -68,11 +68,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/poppins_semibold"
                         android:gravity="start"
                         android:text="Notification Title"
                         android:textColor="@color/appThemeFontColor"
-                        android:textSize="@dimen/txt_size_16" />
+                        android:textSize="@dimen/txt_size_14" />
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -82,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_regular"
                     android:gravity="start"
                     android:text="Order Details Treats"
                     android:textColor="@color/appThemeFontColor"
@@ -93,7 +93,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins_regular"
+                    android:fontFamily="@font/poppins_medium"
                     android:gravity="start"
                     android:text="5 mins ago"
                     android:textColor="@color/gray"

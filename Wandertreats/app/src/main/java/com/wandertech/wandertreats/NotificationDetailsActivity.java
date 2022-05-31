@@ -46,8 +46,8 @@ public class NotificationDetailsActivity extends BaseActivity {
 
         notifMap = (HashMap<String, String>) getIntent().getSerializableExtra("data");
 
-        titleText.setText(notifMap.get("vTitle"));
-        messageText.setText(notifMap.get("vDescription"));
+        titleText.setText(appFunctions.capitalize(notifMap.get("vTitle")));
+        messageText.setText(appFunctions.capitalize(notifMap.get("vDescription")));
 
         closeBtn.setOnClickListener(new setOnClickAct());
 

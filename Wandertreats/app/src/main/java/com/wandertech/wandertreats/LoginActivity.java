@@ -75,12 +75,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.white, this.getTheme()));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.appThemeColor, this.getTheme()));
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.white));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.appThemeColor));
         }
 
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
+       // getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
+        getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
 
         appFunctions = MyApp.getInstance().getGeneralFun(getActContext());
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
@@ -146,6 +147,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
 
     private void initView() {
         contentView = binding.contentView;
@@ -171,6 +177,9 @@ public class LoginActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        toolbar.setBackgroundColor(getActContext().getResources().getColor(R.color.appThemeColor));
+        toolbar.setNavigationIconTint(getActContext().getResources().getColor(R.color.white));
 
     }
 
@@ -251,6 +260,9 @@ public class LoginActivity extends AppCompatActivity {
         exeWebServer.setDataResponseListener(new ExecuteWebServiceApi.SetDataResponse() {
             @Override
             public void setResponse(String responseString) {
+
+                appFunctions.displayLog(responseString);
+                appFunctions.showMessage(responseString);
 
                 if(responseString != null){
 
@@ -378,7 +390,7 @@ public class LoginActivity extends AppCompatActivity {
 
         hideKeyboard((Activity) getActContext());
 
-        appFunctions.showMessage(data);
+       // appFunctions.showMessage(data);
 
         HashMap<String, String> parameters = new HashMap<String, String>();
         parameters.put("type", "LOGIN_WITH_FACEBOOK");

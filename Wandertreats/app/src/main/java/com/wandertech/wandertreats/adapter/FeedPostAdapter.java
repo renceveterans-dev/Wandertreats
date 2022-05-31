@@ -66,6 +66,8 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.ViewHo
                 }
             });
 
+
+
         }else{
 
             Glide

@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appThemeColor_bg"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <include
-        android:id="@+id/toolbar"
+        android:id="@+id/mainToolbar"
         layout="@layout/toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -21,14 +21,14 @@
         android:layout_marginTop="5dp"
         android:textColor="@color/appThemeFontColor"
         android:textSize="@dimen/txt_size_22"
-        android:fontFamily="@font/poppins_medium"/>
+        android:fontFamily="@font/poppins_semibold"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_45"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="20dp"
         app:cardElevation="4dp"
         app:cardCornerRadius="8dp">
 
@@ -40,18 +40,19 @@
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/searchTxt"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/space_45"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:gravity="center_vertical"
                 android:ellipsize="end"
                 android:lines="1"
                 android:layout_weight="1"
+                android:includeFontPadding="false"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Search Store, Products and Location"
                 android:textColor="@color/appThemeFontColor"
-                android:textSize="@dimen/txt_size_16" />
+                android:textSize="@dimen/txt_size_14" />
 
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -61,6 +62,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="15dp"
                 android:clickable="true"
+                android:visibility="gone"
                 android:foreground="?selectableItemBackground"
                 android:fontFamily="@font/poppins_regular"
                 android:src="@drawable/icon_close" />
@@ -76,8 +78,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/resultsRecyclerList"
             android:layout_width="match_parent"
-            android:padding="5dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:padding="5dp" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/loadingLocationArea"
@@ -94,7 +96,7 @@
                 android:paddingStart="30dp"
                 android:layout_marginTop="20dp"
                 android:paddingEnd="20dp"
-                app:indicatorColor="@color/gray"
+                app:indicatorColor="@color/black"
                 app:indicatorName="BallPulseSyncIndicator" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -104,20 +106,34 @@
             android:id="@+id/noDataArea"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:visibility="gone"
-            android:padding="25dp">
+            android:paddingEnd="25dp"
+            android:paddingStart="25dp">
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:src="@drawable/no_result"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/nodata"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_size_18"
                 android:textColor="@color/black"
                 android:gravity="center"
-                android:textSize="@dimen/txt_size_20"
                 android:fontFamily="@font/poppins_medium"
-                android:text="No Result."
-                android:orientation="vertical"/>
+                android:text="No results found."/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_size_14"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/gray"
+                android:gravity="center"
+                android:text="Looks like there's no results matched on your query."/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

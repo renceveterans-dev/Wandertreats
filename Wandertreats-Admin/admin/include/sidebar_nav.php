@@ -189,10 +189,20 @@
 				</div>
 			
 			
-				<div class="nav-lavel">Settings</div>
-				<div class="nav-item">
-					<a href="configuration_general.php"><i class="ik ik-monitor"></i><span>Configuration</span></a>
+				<div class="nav-lavel">Configuration</div>
+				<div class="nav-item has-sub">
+					<a href="javascript:void(0)"><i class="ik ik-list"></i><span>Settings</span></a>
+					<div class="submenu-content">
+						<a href="configuration_general.php" class="menu-item">General</a>
+						<a href="configuration_about.php" class="menu-item">About</a>
+						<a href="location_heatview.php" class="menu-item">Heat View</a>
+					</div>
+
 				</div>
+			
+				<!-- <div class="nav-item">
+					<a href="configuration_general.php"><i class="ik ik-monitor"></i><span>Configuration</span></a>
+				</div> -->
 				<div class="nav-item">
 					<a href="javascript:void(0)"><i class="ik ik-help-circle"></i><span>Settings</span></a>
 				</div>

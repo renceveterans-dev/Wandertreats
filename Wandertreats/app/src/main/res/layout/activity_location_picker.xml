@@ -93,7 +93,7 @@
 
 
     <include
-        android:id="@+id/header"
+        android:id="@+id/mainToolbar"
         layout="@layout/toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -105,7 +105,7 @@
         android:id="@+id/searchArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/header"
+        android:layout_below="@id/mainToolbar"
         android:orientation="vertical"
         android:background="@color/white"
         android:clickable="true"
@@ -132,7 +132,7 @@
                     android:id="@+id/searchIcon"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="15dp"
                     android:backgroundTint="@color/appThemeFontColor"
                     android:background="@drawable/search" />
 
@@ -152,7 +152,7 @@
                     android:hint="Search Location or places."
                     android:paddingStart="0dp"
                     android:paddingLeft="0dp"
-                    android:textSize="@dimen/txt_size_16" />
+                    android:textSize="@dimen/txt_size_14"  />
 
                 <ImageView
                     android:id="@+id/closeIcon"
@@ -262,6 +262,12 @@
 
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_below="@id/searchArea"
+        android:background="@drawable/dropshadow"/>
 
 
 </RelativeLayout>

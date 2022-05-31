@@ -131,11 +131,11 @@
                                 android:gravity="start"
                                 android:text="About Us"
                                 android:textColor="@color/appThemeFontColor"
-                                android:textSize="@dimen/txt_size_16" />
+                                android:textSize="@dimen/txt_size_14" />
 
                             <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="15dp"
                                 android:gravity="center_vertical"
@@ -147,6 +147,8 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
                             android:background="@color/seperator" />
 
 
@@ -178,12 +180,12 @@
                                 android:gravity="start"
                                 android:text="Terms &amp; Condition"
                                 android:textColor="@color/appThemeFontColor"
-                                android:textSize="@dimen/txt_size_16" />
+                                android:textSize="@dimen/txt_size_14"/>
 
 
                             <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="15dp"
                                 android:gravity="center_vertical"
@@ -196,6 +198,8 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
                             android:background="@color/seperator" />
 
 
@@ -231,8 +235,8 @@
                                 android:textSize="@dimen/txt_size_16" />
 
                             <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="15dp"
                                 android:gravity="center_vertical"
@@ -275,11 +279,11 @@
                                 android:gravity="start"
                                 android:text="Privacy Policy"
                                 android:textColor="@color/appThemeFontColor"
-                                android:textSize="@dimen/txt_size_16" />
+                                android:textSize="@dimen/txt_size_14"/>
 
                             <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="15dp"
                                 android:gravity="center_vertical"

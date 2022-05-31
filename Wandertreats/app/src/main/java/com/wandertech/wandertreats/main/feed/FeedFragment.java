@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -31,6 +33,7 @@ import com.wandertech.wandertreats.databinding.FragmentFeedBinding;
 import com.wandertech.wandertreats.general.Data;
 import com.wandertech.wandertreats.general.ExecuteWebServiceApi;
 import com.wandertech.wandertreats.general.GeneralFunctions;
+import com.wandertech.wandertreats.general.ImagePreviewDialog;
 import com.wandertech.wandertreats.utils.Utils;
 
 import java.util.ArrayList;
@@ -46,6 +49,7 @@ public class FeedFragment extends Fragment implements FeedPostAdapter.setOnClick
     private GeneralFunctions appFunctions;
     private FeedPostAdapter feedPostAdapter;
     private LinearLayoutCompat feedRRecyclerListArea, noDataArea;
+    private AppCompatImageView notificationBtn;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -86,7 +90,7 @@ public class FeedFragment extends Fragment implements FeedPostAdapter.setOnClick
 
 
     public Context getActContext(){
-        return  getActivity().getApplicationContext();
+        return  getActivity();
     }
 
 
@@ -154,6 +158,8 @@ public class FeedFragment extends Fragment implements FeedPostAdapter.setOnClick
     @Override
     public void itemOnClick(int position) {
 
+        //appFunctions.showMessage("sasas");
+
         if(feedsArr.get(position).get("eUrlType").equalsIgnoreCase("External")){
             try{
                 String url = feedsArr.get(position).get("vUrl");
@@ -164,6 +170,15 @@ public class FeedFragment extends Fragment implements FeedPostAdapter.setOnClick
                 Toast.makeText(getActContext(), ""+e.toString(), Toast.LENGTH_SHORT).show();
             }
         }else{
+
+            try{
+                ImagePreviewDialog imagePreviewDialog = new ImagePreviewDialog(getActivity());
+                imagePreviewDialog .createPreview(feedsArr.get(position).get("vImage"));
+                imagePreviewDialog.show();
+
+            }catch (Exception e){
+                appFunctions.showMessage(e.toString());
+            }
 
         }
 

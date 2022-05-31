@@ -304,7 +304,7 @@ public class HomeFragment extends Fragment implements GridCategoryAdapter.ItemOn
     }
 
     public Context getActContext(){
-        return  mContainer.getContext();
+        return  getActivity();
     }
 
     @Override

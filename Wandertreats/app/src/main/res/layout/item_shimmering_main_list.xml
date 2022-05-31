@@ -22,7 +22,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="3dp"
                 android:layout_marginBottom="5dp"
-                android:elevation="1dp"
+                android:elevation="0dp"
+                aap:cardElevation="0dp"
                 aap:cardCornerRadius="6dp"
                 aap:cardBackgroundColor="#ffffff">
 

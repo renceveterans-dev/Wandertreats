@@ -28,7 +28,7 @@
         <script src="plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
         <script src="plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
-        <script src="plugins/leaflets/leaflet.js"></script>
+      <!--   <script src="plugins/leaflets/leaflet.js"></script> -->
 
 
         <script src="plugins/select2/dist/js/select2.min.js"></script>
@@ -36,7 +36,7 @@
         <script src="plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
         <script src="plugins/jquery.repeater/jquery.repeater.min.js"></script>
         <script src="plugins/mohithg-switchery/dist/switchery.min.js"></script>
-
+        <script src="plugins/summernote/dist/summernote-bs4.min.js"></script>
 
 <!--
         <script src="plugins/jvectormap/jquery-jvectormap.min.js"></script>

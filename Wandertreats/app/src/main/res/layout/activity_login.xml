@@ -2,8 +2,7 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -13,6 +12,7 @@
             android:id="@+id/contentView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/appThemeColor"
             android:orientation="vertical">
 
             <include
@@ -25,6 +25,7 @@
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
+                    android:background="@drawable/background_round_top_light"
                     android:orientation="vertical">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -79,6 +80,7 @@
                             android:layout_height="@dimen/space_90"
                             android:layout_marginTop="10dp"
                             app:boxCornerRadiusBottomEnd="8dp"
+                            app:passwordToggleEnabled="true"
                             android:outlineAmbientShadowColor="@color/ThemeColorPrimary"
                             app:boxCornerRadiusTopEnd="8dp"
                             app:boxCornerRadiusBottomStart="8dp"

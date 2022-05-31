@@ -9,7 +9,6 @@
      // use PHPMailer\PHPMailer\SMTP;
     
     require 'vendor/autoload.php';
-    require_once 'vendor/twilio/Services/Twilio.php';
     include_once('db_info.php');
     include_once('config.php');
     

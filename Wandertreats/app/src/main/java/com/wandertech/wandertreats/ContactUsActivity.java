@@ -1,16 +1,22 @@
 package com.wandertech.wandertreats;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -32,11 +38,11 @@ public class ContactUsActivity extends BaseActivity {
     private RelativeLayout loader;
     private GeneralFunctions appFunctions;
     private AppCompatTextView title;
-    private AppCompatImageView backImgView;
     private ActivityContactUsBinding binding;
     private TextInputLayout emailTxtLayout,subjectTxtLayout, messageTxtLayout;
     private TextInputEditText  emailTxt, subjectTxt, messageTxt;
     private AppCompatButton submitBtn;
+    private MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +52,7 @@ public class ContactUsActivity extends BaseActivity {
         binding = ActivityContactUsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        backImgView = binding.toolbar.backImgView;
-
+        toolbar = binding.mainToolbar.toolbar;
         emailTxt = binding.emailTxt;
         subjectTxt = binding.subjectTxt;
         messageTxt = binding.messageTxt;
@@ -55,7 +60,7 @@ public class ContactUsActivity extends BaseActivity {
         submitBtn = binding.submitBtn;
 
         emailTxtLayout = binding.emailTxtLayout;
-        subjectTxtLayout = binding.emailTxtLayout;
+        subjectTxtLayout = binding.subjectTxtLayout;
         messageTxtLayout = binding.messageTxtLayout;
 
         emailTxt.addTextChangedListener(new setOnTextChangeAct(emailTxt));
@@ -63,7 +68,12 @@ public class ContactUsActivity extends BaseActivity {
         messageTxt.addTextChangedListener(new setOnTextChangeAct( messageTxt));
 
         submitBtn.setOnClickListener(new setOnClickAct());
-        backImgView.setOnClickListener(new setOnClickAct());
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 
@@ -123,6 +133,16 @@ public class ContactUsActivity extends BaseActivity {
                         return;
                     }
 
+                    if(emailTxt.getText().length() > 0  && !Patterns.EMAIL_ADDRESS.matcher(emailTxt.getText().toString().trim()).matches() ){
+                        if(!emailTxtLayout.isErrorEnabled()){
+                            emailTxtLayout.setErrorEnabled(true);
+                            emailTxtLayout.setHelperTextEnabled(true);
+                            emailTxtLayout.setHelperText("Invalid email.");
+                        }
+                        return;
+                    }
+
+
                     try{
                         submitTicket();
                     }catch (Exception e){
@@ -161,9 +181,14 @@ public class ContactUsActivity extends BaseActivity {
 
         HashMap<String, String> parameters = new HashMap<String, String>();
         parameters.put("type", "SUBMIT_TICKET");
+        parameters.put("userId", appFunctions.getMemberId());
+        parameters.put("token", "");
         parameters.put("email", emailTxt.getText().toString() == null ? "" : emailTxt.getText().toString());
         parameters.put("subject", subjectTxt.getText().toString() == null ? "" : subjectTxt.getText().toString() );
         parameters.put("message", messageTxt.getText().toString() == null ? "" : messageTxt.getText().toString() );
+        parameters.put("fullname", appFunctions.getFullName());
+        parameters.put("name", appFunctions.getFirstName());
+
         parameters.put("userType", Utils.app_type);
 
         ExecuteWebServiceApi exeWebServer = new ExecuteWebServiceApi(getActContext(), parameters, "api_submit_ticket.php", true);
@@ -172,18 +197,43 @@ public class ContactUsActivity extends BaseActivity {
             @Override
             public void setResponse(String responseString) {
 
-                // Toast.makeText(getActContext(),responseString, Toast.LENGTH_SHORT).show();
+                //appFunctions.showMessage(responseString);
 
                 if(responseString != null){
 
-                    if(appFunctions.checkDataAvail(Utils.action_str, responseString)){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActContext());
+                    LayoutInflater inflater = (LayoutInflater) getActContext().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+                    View dialog = inflater.inflate( R.layout.dialog_alert_2, null );
 
+                    AppCompatTextView title = dialog.findViewById(R.id.title);
+                    AppCompatTextView message = dialog.findViewById( R.id.message );
+                    MaterialButton positive_btn = dialog.findViewById( R.id.positive_btn);
+                    MaterialButton negtive_btn = dialog.findViewById( R.id.negative_btn);
+                    ImageView dialog_image = dialog.findViewById(R.id.dialog_image);
+                    dialog_image.setImageResource(R.drawable.chat_support);
+                    View seperator4 = dialog.findViewById(R.id.seperator4);
+                    builder.setView(dialog);
 
+                    title.setVisibility(View.GONE);
+                    message.setText("You ticket has been submitted. Please monitor your email and chat support representative will respond to you short. ");
+                    positive_btn.setText("Okay");
 
-                    }else{
+                    AlertDialog alert = builder.create();
+                    alert.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                    alert.show();
 
+                    positive_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
-                    }
+                            alert.dismiss();
+
+                            emailTxt.setText("");
+                            subjectTxt.setText("");
+                            messageTxt.setText("");
+                        }
+                    });
+
 
                 }
 
@@ -230,6 +280,15 @@ public class ContactUsActivity extends BaseActivity {
                         emailTxtLayout.setHelperText("This field is required.");
 
                         return;
+                    }
+
+                    if(emailTxt.getText().length() > 0  && !Patterns.EMAIL_ADDRESS.matcher(emailTxt.getText().toString().trim()).matches() ){
+                        if(!emailTxtLayout.isErrorEnabled()){
+                            emailTxtLayout.setErrorEnabled(true);
+                            emailTxtLayout.setHelperTextEnabled(true);
+                            emailTxtLayout.setHelperText("Invalid email.");
+                        }
+
                     }
 
                     break;

@@ -101,9 +101,9 @@
                         android:lines="1"
                         android:ellipsize="end"
                         android:text="Title"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/poppins_semibold"
                         android:textColor="#030303"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/txt_size_14" />
 
 
 
@@ -129,6 +129,7 @@
                             android:maxLines="2"
                             android:ellipsize="end"
                             android:text="title"
+                            android:textColor="@color/gray"
                             android:fontFamily="@font/poppins_regular"
                             android:textSize="14sp" />
 

@@ -65,7 +65,7 @@ public class StoreActivity extends AppCompatActivity implements  AppBarLayout.On
     private View contentView;
     private final Handler handler = new Handler();
     private AppCompatTextView titleTxt;
-    private AppCompatTextView getDirectionsBtn;
+    private LinearLayoutCompat getDirectionsBtn;
     private GeneralFunctions appFunctions;
     private TextInputLayout usernameTxtLayout, passwordTxtLayout;
     private TextInputEditText usernameTxt, passwordTxt;

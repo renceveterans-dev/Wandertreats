@@ -35,6 +35,7 @@ import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.text.method.LinkMovementMethod;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
@@ -562,7 +563,7 @@ public class GeneralFunctions {
     }
 
     public Typeface getDefaultFont(Context context) {
-        return Typeface.createFromAsset(context.getAssets(), "fonts/poppins_light.ttf");
+        return Typeface.createFromAsset(context.getAssets(), "fonts/poppins_regular.ttf");
     }
 
     public boolean isPermisionGranted() {
@@ -893,6 +894,24 @@ public class GeneralFunctions {
 
     public String getMemberId() {
         return this.isUserLoggedIn() ? this.retrieveValue(Utils.iMemberId) : "";
+    }
+
+    public String getFirstName() {
+
+        String profileData = this.retrieveValue(Utils.USER_PROFILE_JSON);
+        return this.getJsonValue("vName", profileData);
+    }
+
+    public String getFullName() {
+
+        String profileData = this.retrieveValue(Utils.USER_PROFILE_JSON);
+        return this.getJsonValue("vName", profileData)+" "+this.getJsonValue("vLastName", profileData);
+    }
+
+    public String getUserName() {
+
+        String profileData = this.retrieveValue(Utils.USER_PROFILE_JSON);
+        return ("@"+this.getJsonValue("vName", profileData)+""+this.getJsonValue("vLastName", profileData)).toLowerCase(Locale.ROOT).replace(" ", "");
     }
 
     public boolean isReferralSchemeEnable() {
@@ -1455,6 +1474,13 @@ public class GeneralFunctions {
         Toast.makeText(a,message, Toast.LENGTH_SHORT).show();
     }
 
+    public void displayLog( String message) {
+        Log.d(a.getClass().getSimpleName(), message);
+    }
+    public void displayLog(String tag, String message) {
+        Log.d(tag, message);
+    }
+
     public String getSelectedCarTypeData(String selectedCarTypeId, String jsonArrKey, String dataKey, String json) {
         JSONArray var5 = this.getJsonArray(jsonArrKey, json);
 
@@ -2000,6 +2026,29 @@ public class GeneralFunctions {
 
     }
 
+    public String formatDateTime(String stringDate){
+
+
+        String pattern1 = "yyyy-MM-dd HH:mm:ss";
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat(pattern1);
+
+        Date date = null;
+        try {
+            date = simpleDateFormat1.parse(stringDate);
+
+            String pattern2 = "MMM dd, hh:mm aaa";
+            SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat(pattern2);
+
+            String newdate = simpleDateFormat2.format(date);
+
+            return  newdate ;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
     public String getDecimalWithSymbol(Double value){
         Locale locale = new Locale("en","PH");
         DecimalFormat decimalFormat = (DecimalFormat) DecimalFormat.getCurrencyInstance(locale);
@@ -2080,5 +2129,13 @@ public class GeneralFunctions {
             } catch (Exception var4) {
             }
         }
+    }
+
+    public String capitalize(String str) {
+        if(str == null || str.isEmpty()) {
+            return str;
+        }
+
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 }

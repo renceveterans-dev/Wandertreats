@@ -4,6 +4,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -67,8 +68,10 @@ public class NotificationService extends com.google.firebase.messaging.FirebaseM
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, ADMIN_CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)  //a resource for your custom small icon
+
                 .setContentTitle(remoteMessage.getData().get("title")) //the "title" value you sent in your notification
                 .setContentText(remoteMessage.getData().get("message")) //ditto
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                 .setAutoCancel(true)  //dismisses the notification on click
                 .setSound(defaultSoundUri);
 

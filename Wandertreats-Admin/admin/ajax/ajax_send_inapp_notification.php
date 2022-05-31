@@ -18,12 +18,12 @@
     $notifData = array();
 
 
-    $userId  = isset($_REQUEST['userId']) ? trim($_REQUEST['userId']) : '10';
+    $userId  = isset($_POST['userId']) ? trim($_POST['userId']) : '10';
     $title = isset($_POST['title']) ? trim($_POST['title']) : 'Admin';
-    $message  = isset($_REQUEST['message']) ? trim($_REQUEST['message']) : 'sasas';
-    $description  = isset($_REQUEST['description']) ? trim($_REQUEST['description']) : 'asasas';
-    $target = isset($_REQUEST['target']) ? trim($_REQUEST['target']) : 'User';
-    $image = isset($_REQUEST['image']) ? trim($_REQUEST['image']) : 'asasasas';
+    $message  = isset($_POST['message']) ? trim($_POST['message']) : 'sasas';
+    $description  = isset($_POST['description']) ? trim($_POST['description']) : 'asasas';
+    $target = isset($_POST['target']) ? trim($_POST['target']) : 'User';
+    $image = isset($_POST['image']) ? trim($_POST['image']) : 'asasasas';
 
 
     $sql = "SELECT * FROM register_user";

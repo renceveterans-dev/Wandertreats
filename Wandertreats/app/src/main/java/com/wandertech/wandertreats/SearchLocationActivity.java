@@ -7,9 +7,11 @@ import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.wandertech.wandertreats.adapter.PlacesAdapter;
 import com.wandertech.wandertreats.databinding.ActivitySearchBinding;
 import com.wandertech.wandertreats.databinding.ActivitySearchLocationBinding;
@@ -55,6 +57,7 @@ public class SearchLocationActivity extends AppCompatActivity implements PlacesA
     private ImageView imageCancel;
     private AppCompatImageView backImgView;
     private LinearLayoutCompat loadingLocationArea, noDataArea;
+    private MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,17 +70,19 @@ public class SearchLocationActivity extends AppCompatActivity implements PlacesA
         binding = ActivitySearchLocationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        backImgView = binding.toolbar.backImgView;
-        searchTxt = binding.searchTxt;
-        clearBtn = binding.clearBtn;
-        loadingLocationArea = binding.loadingLocationArea;
-        resultsRecyclerList = binding.resultsRecyclerList;
-        noDataArea = binding.noDataArea;
+        initView();
 
         placesAdapter = new PlacesAdapter(getActContext(), placelist);
         resultsRecyclerList.setLayoutManager(new LinearLayoutManager(getActContext()));
         resultsRecyclerList .setAdapter(placesAdapter);
         placesAdapter.itemRecentLocClick(this);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         searchTxt.addTextChangedListener(new TextWatcher() {
             @Override
@@ -96,17 +101,32 @@ public class SearchLocationActivity extends AppCompatActivity implements PlacesA
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() > 3) {
+                    clearBtn.setVisibility(View.VISIBLE);
                     last_search = System.currentTimeMillis();
                     searchhandler.postDelayed(search_checker, delay);
                 }else{
+                    clearBtn.setVisibility(View.GONE);
                     placelist.clear();
                 }
             }
         });
 
         clearBtn.setOnClickListener(new setOnClickAct());
-        backImgView.setOnClickListener(new setOnClickAct());
 
+    }
+
+    private void initView() {
+
+        toolbar = binding.mainToolbar.toolbar;
+        searchTxt = binding.searchTxt;
+        clearBtn = binding.clearBtn;
+        loadingLocationArea = binding.loadingLocationArea;
+        resultsRecyclerList = binding.resultsRecyclerList;
+        noDataArea = binding.noDataArea;
+
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setElevation(3.0f);
     }
 
 
@@ -141,6 +161,7 @@ public class SearchLocationActivity extends AppCompatActivity implements PlacesA
             @Override
             public void setResponse(String responseString) {
                 loadingLocationArea.setVisibility(View.GONE);
+                hideKeyboard();
                 //appFunctions.showMessage(responseString);
                 if(responseString != null){
 
@@ -241,6 +262,7 @@ public class SearchLocationActivity extends AppCompatActivity implements PlacesA
 
                 case R.id.clearBtn:
                     searchTxt.setText("");
+                    loadingLocationArea.setVisibility(View.GONE);
                     break;
 
                 default:
@@ -249,6 +271,13 @@ public class SearchLocationActivity extends AppCompatActivity implements PlacesA
             }
 
         }
+
+    }
+
+    private void hideKeyboard(){
+
+        InputMethodManager inputManager = (InputMethodManager) getActContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
 
     }
 

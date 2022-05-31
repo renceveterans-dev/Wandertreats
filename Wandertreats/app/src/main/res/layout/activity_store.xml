@@ -30,7 +30,6 @@
             android:elevation="0dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -80,9 +79,6 @@
 
                     </RelativeLayout>
 
-
-
-
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -110,7 +106,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|center_vertical"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="5dp"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center_horizontal"
                         android:padding="5dp"
@@ -120,7 +116,6 @@
                         tools:ignore="VectorDrawableCompat" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
-
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -141,7 +136,6 @@
                 app:navigationIcon="?attr/homeAsUpIndicator"
                 android:elevation="0dp">
 
-
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -158,8 +152,8 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:singleLine="true"
-                            android:gravity="center|center_horizontal"
-                            android:textAlignment="center"
+                            android:gravity="start|center_vertical"
+                            android:textAlignment="textStart"
                             android:fontFamily="@font/poppins_medium"
                             android:text="ahah"
                             android:textColor="@color/white"
@@ -202,9 +196,7 @@
                             android:text="+"
                             android:textSize="40sp"
                             android:textStyle="bold"
-                            android:visibility="gone"
-                            />
-
+                            android:visibility="gone" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/logoutImageview"
@@ -239,14 +231,7 @@
                     </LinearLayout>
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-
             </com.google.android.material.appbar.MaterialToolbar>
-
-
-
-
-
-
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -289,8 +274,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/productsRecyclerList"
                     android:layout_width="match_parent"
-                    android:nestedScrollingEnabled="false"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:nestedScrollingEnabled="false" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -309,17 +294,17 @@
 
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
                         android:gravity="center"
-                        android:src="@drawable/store_line"
+                        android:src="@drawable/store"
                         android:textColor="@color/black"
                         android:tint="@color/appThemeFontColor" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="15dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Store Details"
                         android:textColor="@color/appThemeFontColor"
@@ -378,17 +363,17 @@
                     android:padding="20dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center"
-                        android:src="@drawable/direction"
+                        android:src="@drawable/signboard"
                         android:textColor="@color/appThemeFontColor" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="15dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Store Location"
                         android:textColor="@color/appThemeFontColor"
@@ -397,50 +382,87 @@
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <androidx.appcompat.widget.LinearLayoutCompat
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <org.osmdroid.views.MapView
-                        android:id="@+id/map"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginStart="20dp"
-                        android:background="?selectableItemBackground" />
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="8dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp"
+                    app:contentPadding="0dp">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/storeLocationValueTxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:text="Store Location"
-                            android:textColor="@color/appThemeFontColor"
-                            android:textSize="@dimen/txt_size_16" />
+                        <org.osmdroid.views.MapView
+                            android:id="@+id/map"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <androidx.appcompat.widget.LinearLayoutCompat
                             android:id="@+id/getDirectionsBtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:padding="@dimen/space_15"
                             android:background="?selectableItemBackground"
-                            android:fontFamily="@font/poppins_medium"
-                            android:text="Get Directions"
-                            android:textColor="@color/appThemeFontColor"
-                            android:textSize="@dimen/txt_size_16" />
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/storeLocationValueTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:text="Store Location"
+                                android:textColor="@color/appThemeFontColor"
+                                android:textSize="@dimen/txt_size_14" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text="Get Directions"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/appThemeFontColor"
+                                    android:textSize="@dimen/txt_size_16" />
+
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="23dp"
+                                    android:layout_height="23dp"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:gravity="center"
+                                    android:src="@drawable/icon_right_arrow"
+                                    android:textColor="@color/appThemeFontColor" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
+                </androidx.cardview.widget.CardView>
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -450,16 +472,16 @@
                     android:padding="20dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
                         android:gravity="center"
-                        android:src="@drawable/contact_us"
+                        android:src="@drawable/whatsapp"
                         android:textColor="@color/appThemeFontColor" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="15dp"
                         android:fontFamily="@font/poppins_regular"
                         android:text="Store Contact"
                         android:textColor="@color/appThemeFontColor"
@@ -517,8 +539,8 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingStart="20dp"
-                    android:visibility="gone"
-                    android:paddingEnd="20dp">
+                    android:paddingEnd="20dp"
+                    android:visibility="gone">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="30dp"
@@ -547,8 +569,8 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingStart="20dp"
-                    android:visibility="gone"
-                    android:paddingEnd="20dp">
+                    android:paddingEnd="20dp"
+                    android:visibility="gone">
 
                     <info.androidhive.fontawesome.FontTextView
                         android:layout_width="30dp"

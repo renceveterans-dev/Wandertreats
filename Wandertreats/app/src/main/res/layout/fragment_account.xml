@@ -59,8 +59,8 @@
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/profile_image"
-                                android:layout_width="96dp"
-                                android:layout_height="96dp"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
                                 android:layout_gravity="center_horizontal"
 
                                 android:src="@color/shimmer_placeholder"
@@ -69,8 +69,8 @@
 
                             <com.hbb20.GThumb
                                 android:id="@+id/profile_gthumb"
-                                android:layout_width="96dp"
-                                android:layout_height="96dp"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
                                 app:gtMonoBGColor="@color/app_alert"
                                 app:gtTextSize="28sp" />
 
@@ -86,9 +86,10 @@
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="center_horizontal"
+                        android:includeFontPadding="false"
                         android:text="Laurence Vegerano"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/txt_size_22" />
+                        android:textSize="@dimen/txt_size_20" />
 
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -105,9 +106,9 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="15dp"
                         android:layout_marginBottom="8dp"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="12dp"
@@ -131,13 +132,13 @@
                                 android:padding="15dp">
 
                                 <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
+                                    android:layout_width="23dp"
+                                    android:layout_height="23dp"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginEnd="15dp"
                                     android:gravity="center_vertical"
                                     android:src="@drawable/user_icon"
-                                    android:tint="@color/appThemeColor" />
+                                    android:tint="@color/black" />
 
 
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -147,13 +148,14 @@
                                     android:layout_weight="1"
                                     android:fontFamily="@font/poppins_medium"
                                     android:gravity="start"
+                                    android:includeFontPadding="false"
                                     android:text="Profile"
                                     android:textColor="@color/appThemeFontColor"
-                                    android:textSize="@dimen/txt_size_16" />
+                                    android:textSize="@dimen/txt_size_14" />
 
                                 <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="15dp"
                                     android:gravity="center_vertical"
@@ -165,6 +167,8 @@
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginEnd="15dp"
                                 android:background="@color/seperator" />
 
 
@@ -178,14 +182,14 @@
                                 android:visibility="gone">
 
                                 <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
+                                    android:layout_width="23dp"
+                                    android:layout_height="23dp"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginEnd="15dp"
                                     android:gravity="center_vertical"
                                     android:src="@drawable/address"
                                     android:tint="@color/appThemeColor"
-                                    app:tint="@color/appThemeColor" />
+                                    app:tint="@color/black" />
 
 
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -196,12 +200,12 @@
                                     android:gravity="start"
                                     android:text="Address"
                                     android:textColor="@color/appThemeFontColor"
-                                    android:textSize="@dimen/txt_size_16" />
+                                    android:textSize="@dimen/txt_size_14" />
 
 
                                 <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="15dp"
                                     android:gravity="center_vertical"
@@ -214,6 +218,8 @@
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginEnd="15dp"
                                 android:background="@color/seperator"
                                 android:visibility="gone" />
 
@@ -226,13 +232,13 @@
                                 android:padding="15dp">
 
                                 <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
+                                    android:layout_width="23dp"
+                                    android:layout_height="23dp"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginEnd="15dp"
                                     android:gravity="center_vertical"
-                                    android:src="@drawable/help_support"
-                                    app:tint="@color/appThemeColor" />
+                                    android:src="@drawable/help"
+                                    app:tint="@color/black" />
 
 
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -241,13 +247,14 @@
                                     android:layout_weight="1"
                                     android:fontFamily="@font/poppins_medium"
                                     android:gravity="start"
+                                    android:includeFontPadding="false"
                                     android:text="Support"
                                     android:textColor="@color/appThemeFontColor"
-                                    android:textSize="@dimen/txt_size_16" />
+                                    android:textSize="@dimen/txt_size_14" />
 
                                 <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="15dp"
                                     android:gravity="center_vertical"
@@ -260,6 +267,8 @@
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginEnd="15dp"
                                 android:background="@color/seperator" />
 
 
@@ -275,13 +284,14 @@
                                 android:visibility="visible">
 
                                 <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
+                                    android:layout_width="23dp"
+                                    android:layout_height="23dp"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginEnd="15dp"
                                     android:gravity="center_vertical"
-                                    android:src="@drawable/price_tag"
-                                    app:tint="@color/appThemeColor" />
+                                    android:padding="2dp"
+                                    android:src="@drawable/info"
+                                    app:tint="@color/black" />
 
 
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -290,13 +300,14 @@
                                     android:layout_weight="1"
                                     android:fontFamily="@font/poppins_medium"
                                     android:gravity="start"
+                                    android:includeFontPadding="false"
                                     android:text="About Us"
                                     android:textColor="@color/appThemeFontColor"
-                                    android:textSize="@dimen/txt_size_16" />
+                                    android:textSize="@dimen/txt_size_14" />
 
                                 <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="15dp"
                                     android:gravity="center_vertical"
@@ -315,9 +326,9 @@
                         android:id="@+id/verifyEmailArea"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="15dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="15dp"
                         android:layout_marginBottom="8dp"
                         app:cardBackgroundColor="@color/app_alert"
                         app:cardCornerRadius="12dp"
@@ -355,7 +366,7 @@
                                     android:fontFamily="@font/poppins_medium"
                                     android:text=""
                                     android:textColor="@color/black"
-                                    android:textSize="@dimen/txt_size_16"
+                                    android:textSize="@dimen/txt_size_14"
                                     android:visibility="gone" />
 
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -385,9 +396,9 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="15dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="15dp"
                         android:layout_marginBottom="8dp"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="12dp"
@@ -416,7 +427,7 @@
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="Share Joy &amp; get rewarded"
                                     android:textColor="@color/black"
-                                    android:textSize="@dimen/txt_size_16" />
+                                    android:textSize="@dimen/txt_size_14" />
 
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="match_parent"
@@ -424,7 +435,7 @@
                                     android:fontFamily="@font/poppins_regular"
                                     android:text="Share Joy &amp; get rewarded"
                                     android:textColor="@color/appThemeColor"
-                                    android:textSize="@dimen/txt_size_14" />
+                                    android:textSize="@dimen/txt_size_12" />
 
 
                             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -443,9 +454,9 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="15dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="15dp"
                         android:layout_marginBottom="8dp"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="12dp"
@@ -461,17 +472,17 @@
                             android:padding="15dp">
 
                             <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginEnd="15dp"
                                 android:gravity="center_vertical"
                                 android:src="@drawable/logout"
-                                app:tint="@color/appThemeColor" />
+                                app:tint="@color/black" />
 
                             <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="15dp"
                                 android:gravity="center_vertical"
@@ -484,9 +495,10 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/poppins_medium"
                                 android:gravity="start"
+                                android:includeFontPadding="false"
                                 android:text="Logout"
                                 android:textColor="@color/appThemeFontColor"
-                                android:textSize="@dimen/txt_size_16" />
+                                android:textSize="@dimen/txt_size_14" />
 
 
                         </androidx.appcompat.widget.LinearLayoutCompat>

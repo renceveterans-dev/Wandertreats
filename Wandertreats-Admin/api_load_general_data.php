@@ -31,11 +31,21 @@
         $configArray[$key] =  $value ;
     }
 
+    $sql = "SELECT * FROM configurations_about WHERE eStatus = 'Active'"; 
+    $statement = $obj->query($sql); 
+    $configurations2 = $statement ->fetchAll();
+
+     foreach($configurations2 as $name => $val) {
+        $key = $val['vConfigName'];
+        $value = $val['vConfigValue'];
+        $configArray[$key] =  $value ;
+    }
+
     $sql = "SELECT * FROM payment_methods WHERE eStatus = 'Enable' AND eDisplay = 'Yes'"; 
     $statement = $obj->query($sql); 
     $paymentMethods = $statement ->fetchAll(); 
 
-
+    $configArray['about'] = $configurations2;
     $configArray['paymentMethods'] = $paymentMethods;
 
 

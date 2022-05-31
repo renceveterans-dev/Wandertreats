@@ -59,6 +59,8 @@
     $messageArray['merchantsTypes'] = $merchantTypeData;
     $messageArray['featured'] = $searchData;//$featuredProducts;
     $messageArray['productList'] = $dataArr;//$featuredProducts;
+    $messageArray['productResultCount'] = count($dataArr);//$featuredProducts;
+
 
     
    // $messageArray['notificationCount'] = 6;//$featuredProducts;

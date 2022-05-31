@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.wandertech.wandertreats.databinding.ActivityForgotPasswordBinding;
@@ -37,6 +38,7 @@ public class ForgotPasswordActivity  extends AppCompatActivity {
     private TextInputEditText emailTxt, passwordTxt;
     private AppCompatButton submitBtn;
     private AppCompatImageView backImgView;
+    private MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +57,21 @@ public class ForgotPasswordActivity  extends AppCompatActivity {
     }
 
     private void initView() {
-        
-        
-        titleTxt = binding.toolbar.titleTxt;
+
+        toolbar = binding.mainToolbar.toolbar;
+        titleTxt = binding.mainToolbar.titleTxt;
         emailTxtLayout = binding.emailTxtLayout;
         emailTxt = binding.emailTxt;
         
         submitBtn = binding.submitBtn;
-        backImgView = binding.toolbar.backImgView;
+        backImgView = binding.mainToolbar.backImgView;
         forgotPasswordTxt = binding.forgotPasswordTxt;
-
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
        // backImgView.setImageDrawable(getDrawable(R.drawable.close));
 
         submitBtn.setOnClickListener(new setOnClickAct());
@@ -119,19 +126,19 @@ public class ForgotPasswordActivity  extends AppCompatActivity {
 
     public void checkEmail() {
 
-
         HashMap<String, String> parameters = new HashMap<String, String>();
         parameters.put("type", "CHECK_EMAIL");
         parameters.put("email", emailTxt.getText().toString() == null ? "" : emailTxt.getText().toString());
         parameters.put("userType", Utils.app_type);
 
-        ExecuteWebServiceApi exeWebServer = new ExecuteWebServiceApi(getActContext(), parameters, "api_request_for_reset_password.php", true);
+        ExecuteWebServiceApi exeWebServer = new ExecuteWebServiceApi(getActContext(), parameters, "api_reset_password.php", true);
         exeWebServer.setLoaderConfig(getActContext(), true,appFunctions);
         exeWebServer.setDataResponseListener(new ExecuteWebServiceApi.SetDataResponse() {
             @Override
             public void setResponse(String responseString) {
 
-
+                //appFunctions.showMessage(responseString);
+                appFunctions.displayLog(responseString);
 
                 if(responseString != null){
 
@@ -153,6 +160,8 @@ public class ForgotPasswordActivity  extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 dialog.dismiss();
+                                emailTxt.setText("");
+                                finish();
                             }
                         });
 

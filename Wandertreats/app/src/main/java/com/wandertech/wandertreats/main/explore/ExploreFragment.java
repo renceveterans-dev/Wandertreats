@@ -77,14 +77,14 @@ public class ExploreFragment extends Fragment implements MerchantItemAdapter.Ite
     private ArrayList<OverlayItem> markerArray = new ArrayList<>();
     private String profileData = "";
     private long last_scroll = 0;
-    private long delay = 1000;
+    private long delay = 500;
     private long searchdelay = 500;
     private ArrayList<ItemModel> merchantArrayList = new ArrayList<>();
     private Drawable storelocationDrawable;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        appFunctions = MyApp.getInstance().getGeneralFun(container.getContext());
+        appFunctions = MyApp.getInstance().getGeneralFun(getActContext());
 
         binding = FragmentExploreBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -141,102 +141,115 @@ public class ExploreFragment extends Fragment implements MerchantItemAdapter.Ite
 
                         try{
 
-
-
                             merchantArrayList = Data.getMerchantAllListData(appFunctions.getJsonArray("data", responseString), appFunctions);
-                            setStoreLocationMarker(false, 0);
+                            ArrayList<ItemModel> finalMerchantArrayList = merchantArrayList;
+
                             //appFunctions.showMessage(appFunctions.getJsonArray("productData", storeData).toString());
 
                             MerchantItemAdapter MerchantItemAdapter = new MerchantItemAdapter(merchantArrayList, getActivity());
                             CenterLayoutManager layoutManager = new CenterLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
                             mainRecyclerList.setLayoutManager(layoutManager);
+                           // mainRecyclerList.setLayoutManager(new CenterLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
                             mainRecyclerList.setAdapter(MerchantItemAdapter);
                             MerchantItemAdapter.setOnItemClick(ExploreFragment.this::setOnItemClick);
                             // Scroll to the position we want to snap to
-                            layoutManager.scrollToPosition(merchantArrayList.size() / 2);
+
+                            int defaultPosition = merchantArrayList.size() / 2;
+                            layoutManager.scrollToPosition(defaultPosition);
+
+                            GeoPoint centerPoint = new GeoPoint(Double.parseDouble(appFunctions.getJsonValue("vLatitude", finalMerchantArrayList.get(defaultPosition).getData())), Double.parseDouble(appFunctions.getJsonValue("vLongitude", finalMerchantArrayList.get(defaultPosition).getData())));
+                            mapView.getController().animateTo(centerPoint);
                             // Wait until the RecyclerView is laid out.
                             mainRecyclerList.post(new Runnable() {
                                 @Override
                                 public void run() {
                                     // Shift the view to snap  near the center of the screen.
                                     // This does not have to be precise.
-                                    int dx = (  mainRecyclerList.getWidth() -  mainRecyclerList.getChildAt(0).getWidth()) / 2;
-                                    mainRecyclerList.scrollBy(-dx, 0);
-                                    // Assign the LinearSnapHelper that will initially snap the near-center view.
-                                    LinearSnapHelper snapHelper = new LinearSnapHelper() {
-                                        @Override
-                                        public int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int velocityX, int velocityY) {
-                                            View centerView = findSnapView(layoutManager);
-                                            if (centerView == null)
-                                                return RecyclerView.NO_POSITION;
 
-                                            int position = layoutManager.getPosition(centerView);
-                                            int targetPosition = -1;
-                                            if (layoutManager.canScrollHorizontally()) {
-                                                if (velocityX < 0) {
-                                                    targetPosition = position - 1;
-                                                } else {
-                                                    targetPosition = position + 1;
+                                    try{
+                                        int dx = (  mainRecyclerList.getWidth() -  mainRecyclerList.getChildAt(0).getWidth()) / 2;
+                                        mainRecyclerList.scrollBy(-dx, 0);
+                                        // Assign the LinearSnapHelper that will initially snap the near-center view.
+                                        LinearSnapHelper snapHelper = new LinearSnapHelper() {
+                                            @Override
+                                            public int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int velocityX, int velocityY) {
+                                                View centerView = findSnapView(layoutManager);
+                                                if (centerView == null)
+                                                    return RecyclerView.NO_POSITION;
+
+                                                int position = layoutManager.getPosition(centerView);
+                                                int targetPosition = -1;
+                                                if (layoutManager.canScrollHorizontally()) {
+                                                    if (velocityX < 0) {
+                                                        targetPosition = position - 1;
+                                                    } else {
+                                                        targetPosition = position + 1;
+                                                    }
                                                 }
-                                            }
 
-                                            if (layoutManager.canScrollVertically()) {
-                                                if (velocityY < 0) {
-                                                    targetPosition = position - 1;
-                                                } else {
-                                                    targetPosition = position + 1;
+                                                if (layoutManager.canScrollVertically()) {
+                                                    if (velocityY < 0) {
+                                                        targetPosition = position - 1;
+                                                    } else {
+                                                        targetPosition = position + 1;
+                                                    }
                                                 }
-                                            }
 
-                                            final int firstItem = 0;
-                                            final int lastItem = layoutManager.getItemCount() - 1;
-                                            targetPosition = Math.min(lastItem, Math.max(targetPosition, firstItem));
-                                            return targetPosition;
-                                        }
-                                    };
-                                    snapHelper.attachToRecyclerView( mainRecyclerList);
+                                                final int firstItem = 0;
+                                                final int lastItem = layoutManager.getItemCount() - 1;
+                                                targetPosition = Math.min(lastItem, Math.max(targetPosition, firstItem));
+                                                return targetPosition;
+                                            }
+                                        };
+                                        snapHelper.attachToRecyclerView( mainRecyclerList);
+                                        setStoreLocationMarker(true, defaultPosition);
+
+                                    }catch (Exception e){
+                                        appFunctions.showMessage(e.getMessage().toString());
+                                    }
+
                                 }
                             });
                             mainRecyclerList.setVisibility(View.VISIBLE);
                             loaderShimmer.setVisibility(View.GONE);
 
-                            ArrayList<ItemModel> finalMerchantArrayList = merchantArrayList;
-                            mainRecyclerList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                            getActivity().runOnUiThread(new Runnable() {
                                 @Override
-                                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                                    super.onScrollStateChanged(recyclerView, newState);
-                                    int review_position = layoutManager.findFirstVisibleItemPosition();
-
-
-
-                                    last_scroll = System.currentTimeMillis();
-                                    new Handler().postDelayed(new Runnable() {
+                                public void run() {
+                                    mainRecyclerList.addOnScrollListener(new RecyclerView.OnScrollListener() {
                                         @Override
-                                        public void run() {
-                                            //Do something after 100ms
+                                        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                                            super.onScrollStateChanged(recyclerView, newState);
+                                            int review_position = layoutManager.findFirstVisibleItemPosition();
 
-                                            try {
+                                            last_scroll = System.currentTimeMillis();
+                                            new Handler().postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    //Do something after 100ms
 
-                                                if (System.currentTimeMillis() > (last_scroll + delay - 500)) {
-                                                    setStoreLocationMarker(true, review_position);
-                                                    GeoPoint centerPoint = new GeoPoint(Double.parseDouble(appFunctions.getJsonValue("vLatitude", finalMerchantArrayList.get(review_position).getData())), Double.parseDouble(appFunctions.getJsonValue("vLongitude", finalMerchantArrayList.get(review_position).getData())));
-                                                    mapView.getController().animateTo(centerPoint);
-                                                    //appFunctions.showMessage(finalMerchantArrayList.get(review_position).getTitle()+"");
+                                                    try {
+
+                                                        if (System.currentTimeMillis() > (last_scroll + delay - 500)) {
+                                                            setStoreLocationMarker(true, review_position);
+                                                            GeoPoint centerPoint = new GeoPoint(Double.parseDouble(appFunctions.getJsonValue("vLatitude", finalMerchantArrayList.get(review_position).getData())), Double.parseDouble(appFunctions.getJsonValue("vLongitude", finalMerchantArrayList.get(review_position).getData())));
+                                                            mapView.getController().animateTo(centerPoint);
+                                                            //appFunctions.showMessage(finalMerchantArrayList.get(review_position).getTitle()+"");
+
+                                                        }
+
+                                                    }catch (Exception e){
+
+                                                    }
 
                                                 }
+                                            }, delay);
 
-                                            }catch (Exception e){
-
-                                            }
 
                                         }
-                                    }, delay);
-
-
+                                    });
                                 }
                             });
-
-                            setStoreLocationMarker(true, 0);
 
 
                         }catch (Exception e){
@@ -246,7 +259,7 @@ public class ExploreFragment extends Fragment implements MerchantItemAdapter.Ite
 
 
 
-
+                        setStoreLocationMarker(true, 0);
                     }else{
                         Toast.makeText(getActContext(), "Error "+ responseString, Toast.LENGTH_SHORT).show();
                     }
@@ -363,7 +376,7 @@ public class ExploreFragment extends Fragment implements MerchantItemAdapter.Ite
     }
 
     public Context getActContext(){
-        return  getActivity().getApplicationContext();
+        return  getActivity();
     }
 
     @Override

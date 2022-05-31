@@ -87,13 +87,16 @@ public class AccountFragment  extends Fragment {
         if(getActivity() != null && isAdded()) {
 
             try {
+
                 ((MainActivity) getActivity()).  getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                 appFunctions.setWindowFlag((Activity) getActivity(), WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS ,false);
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     ((MainActivity) getActivity()).  getWindow().setStatusBarColor(getResources().getColor(R.color.transparent,  ((MainActivity) getActivity()).getTheme()));
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     ((MainActivity) getActivity()). getWindow().setStatusBarColor(getResources().getColor(R.color.transparent));
                 }
+
             }catch (Exception e){
                 appFunctions.showMessage(e.toString());
             }
@@ -125,8 +128,8 @@ public class AccountFragment  extends Fragment {
             verifyEmailBtn.setOnClickListener(new setOnClickAct());
             closeVerifyEmailBtn.setOnClickListener(new setOnClickAct());
 
-            userNameTxt.setText(appFunctions.getJsonValue("vName", profileData)+" "+appFunctions.getJsonValue("vLastName", profileData));
-            userNameLabel.setText(("@"+appFunctions.getJsonValue("vName", profileData)+""+appFunctions.getJsonValue("vLastName", profileData)).replace(" ", "").toLowerCase(Locale.ROOT));
+            userNameTxt.setText(appFunctions.getFullName());
+            userNameLabel.setText(appFunctions.getUserName());
         }
 
 
@@ -140,7 +143,7 @@ public class AccountFragment  extends Fragment {
     }
 
     public Context getActContext(){
-        return   getActivity().getApplicationContext();
+        return   getActivity();
     }
 
     public class setOnClickAct implements View.OnClickListener {
@@ -267,8 +270,9 @@ public class AccountFragment  extends Fragment {
         HashMap<String, String> parameters = new HashMap<String, String>();
         parameters.put("type", "SEND_EMAIL_VERIFICATION");
         parameters.put("userId", appFunctions.getMemberId());
-        parameters.put("token", "");
-        parameters.put("username", appFunctions.getJsonValue("vName", profileData));
+        parameters.put("token", "sdsdsdsdsds");
+        parameters.put("name", appFunctions.getJsonValue("vName", profileData));
+        parameters.put("fullname", appFunctions.getFullName());
         parameters.put("email", appFunctions.getJsonValue("vEmail", profileData));
         parameters.put("latitude", appFunctions.retrieveValue(Utils.CURRENT_LATITUDE));
         parameters.put("longitude", appFunctions.retrieveValue(Utils.CURRENT_LONGITUDE));
@@ -282,6 +286,8 @@ public class AccountFragment  extends Fragment {
                 myDialog.dismiss();
                 if(responseString != null){
 
+                 //   appFunctions.showMessage(responseString);
+
                     try{
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -292,6 +298,8 @@ public class AccountFragment  extends Fragment {
                         AppCompatTextView message = dialog.findViewById( R.id.message );
                         MaterialButton positive_btn = dialog.findViewById( R.id.positive_btn);
                         MaterialButton negtive_btn = dialog.findViewById( R.id.negative_btn);
+                        ImageView dialog_image = dialog.findViewById(R.id.dialog_image);
+                        dialog_image.setImageResource(R.drawable.email_confirm);
                         View seperator4 = dialog.findViewById(R.id.seperator4);
                         builder.setView(dialog);
 

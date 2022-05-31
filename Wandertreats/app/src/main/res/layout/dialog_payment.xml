@@ -23,6 +23,20 @@
             android:layout_gravity="center"
             android:background="@color/gray"/>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginStart="@dimen/space_20"
+            android:layout_marginEnd="@dimen/space_20"
+            android:layout_marginBottom="@dimen/space_5"
+            android:gravity="center_vertical"
+            android:text="Select Payment Method"
+            android:includeFontPadding="false"
+            android:clickable="false"
+            android:textAllCaps="false"
+            android:textColor="@color/appThemeFontColor"
+            android:textSize="@dimen/txt_size_16" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -28,6 +28,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="15dp"
             app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/white"
             android:elevation="0dp"
             app:cardElevation="0dp"
             app:contentPadding="15dp">
@@ -50,13 +51,12 @@
                         android:id="@+id/titleTxt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/poppins_semibold"
                         android:gravity="start"
                         android:text="Treats"
                         android:textColor="@color/appThemeFontColor"
-                        android:textSize="@dimen/txt_size_16" />
+                        android:textSize="@dimen/txt_size_14" />
 
                     <ImageView
                         android:id="@+id/warningIcon"
@@ -80,7 +80,7 @@
                     android:gravity="start"
                     android:text="Order Details Treats"
                     android:textColor="@color/appThemeFontColor"
-                    android:textSize="@dimen/txt_size_14" />
+                    android:textSize="@dimen/txt_size_14"  />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/infoTxt"
@@ -89,8 +89,8 @@
                     android:fontFamily="@font/poppins_regular"
                     android:gravity="start"
                     android:text="Order Details Treats"
-                    android:textColor="@color/appThemeFontColor"
-                    android:textSize="@dimen/txt_size_14" />
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/txt_size_14"  />
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>

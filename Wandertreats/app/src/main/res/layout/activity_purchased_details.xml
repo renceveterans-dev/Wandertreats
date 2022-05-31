@@ -104,7 +104,7 @@
                                 android:gravity="start"
                                 android:text="Prroduct Name"
                                 android:textColor="@color/appThemeFontColor"
-                                android:textSize="@dimen/txt_size_20"
+                                android:textSize="@dimen/txt_size_16"
                                 android:visibility="visible"
                                 tools:ignore="VectorDrawableCompat" />
 
@@ -129,10 +129,11 @@
                             android:layout_marginEnd="20dp"
                             android:fontFamily="@font/poppins_regular"
                             android:gravity="start"
-                            android:padding="5dp"
+                            android:textSize="@dimen/txt_size_14"
                             android:text="hHhahaha"
                             android:textColor="@color/appThemeFontColor"
                             android:visibility="visible"
+                            android:includeFontPadding="false"
                             tools:ignore="VectorDrawableCompat" />
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -141,10 +142,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginBottom="10dp"
+                            android:includeFontPadding="false"
                             android:fontFamily="@font/poppins_regular"
                             android:text="N/A"
                             android:textColor="@color/appThemeFontColor"
-                            android:textSize="@dimen/txt_size_16" />
+                            android:textSize="@dimen/txt_size_14" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -187,12 +189,12 @@
                                 android:layout_weight="1"
                                 android:singleLine="true"
                                 android:fontFamily="@font/poppins_medium"
-                                android:gravity="center|center_horizontal"
-                                android:textAlignment="center"
+                                android:gravity="start|center_vertical"
+                                android:textAlignment="textStart"
                                 android:text="ahah"
                                 android:textColor="@color/white"
                                 android:includeFontPadding="false"
-                                android:textSize="@dimen/txt_size_16"
+                                android:textSize="@dimen/txt_size_14"
                                 android:visibility="visible" />
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -215,7 +217,7 @@
                                 android:gravity="end|center_vertical"
                                 android:paddingEnd="5dp"
                                 android:textAlignment="viewEnd"
-                                android:textSize="@dimen/txt_size_16"
+                                android:textSize="@dimen/txt_size_14"
                                 android:visibility="gone" />
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -259,7 +261,7 @@
                                 android:paddingEnd="5dp"
                                 android:text="@string/fa_check_solid"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/txt_size_16"
+                                android:textSize="@dimen/txt_size_14"
                                 app:solid_icon="true" />
 
                         </LinearLayout>
@@ -331,14 +333,14 @@
                             android:layout_height="25dp"
                             android:gravity="center"
                             android:visibility="visible"
-                            android:src="@drawable/price_tag"
-                            app:tint="@color/appThemeColor"/>
+                            android:src="@drawable/tag"
+                            app:tint="@color/black"/>
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/productQtyTxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="15dp"
                             android:fontFamily="@font/poppins_regular"
                             android:text="N/A"
                             android:textColor="@color/appThemeFontColor"
@@ -361,7 +363,7 @@
                             android:gravity="center"
                             android:visibility="invisible"
                             android:src="@drawable/price_tag"
-                            app:tint="@color/appThemeColor"/>
+                            app:tint="@color/black"/>
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/productPriceTxt"
@@ -371,7 +373,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:text="N/A"
                             android:textColor="@color/appThemeFontColor"
-                            android:textSize="@dimen/txt_size_16" />
+                            android:textSize="@dimen/txt_size_14" />
 
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -385,21 +387,21 @@
 
 
                         <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:gravity="center"
-                            android:src="@drawable/store_line"
-                            app:tint="@color/appThemeColor"/>
+                            android:src="@drawable/store"
+                            app:tint="@color/black"/>
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/productDetailTxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="15dp"
                             android:fontFamily="@font/poppins_regular"
                             android:text="N/A"
                             android:textColor="@color/appThemeFontColor"
-                            android:textSize="@dimen/txt_size_16" />
+                            android:textSize="@dimen/txt_size_16"  />
 
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -410,8 +412,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:text="N/A"
+                        android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/appThemeFontColor"
-                        android:textSize="@dimen/txt_size_16" />
+                        android:textSize="@dimen/txt_size_14" />
 
 
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -423,21 +426,21 @@
 
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:gravity="center"
                             android:src="@drawable/location"
-                            app:tint="@color/appThemeColor"/>
+                            app:tint="@color/black"/>
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/storeLocationHTxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="15dp"
                             android:fontFamily="@font/poppins_regular"
                             android:text="Location"
                             android:textColor="@color/appThemeFontColor"
-                            android:textSize="@dimen/txt_size_16" />
+                            android:textSize="@dimen/txt_size_16"  />
 
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -451,7 +454,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="N/A"
                         android:textColor="@color/appThemeFontColor"
-                        android:textSize="@dimen/txt_size_16" />
+                        android:textSize="@dimen/txt_size_14" />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -462,21 +465,21 @@
 
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:gravity="center"
-                            android:src="@drawable/file"
-                            app:tint="@color/appThemeColor"/>
+                            android:src="@drawable/audit"
+                            app:tint="@color/black"/>
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/rulesHTxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="15dp"
                             android:fontFamily="@font/poppins_regular"
                             android:text="Terms"
                             android:textColor="@color/appThemeFontColor"
-                            android:textSize="@dimen/txt_size_16" />
+                            android:textSize="@dimen/txt_size_14" />
 
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -488,8 +491,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:text="N/A"
+                        android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/appThemeFontColor"
-                        android:textSize="@dimen/txt_size_16" />
+                        android:textSize="@dimen/txt_size_14" />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -500,21 +504,21 @@
 
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:gravity="center"
                             android:src="@drawable/megaphone"
-                            app:tint="@color/appThemeColor"/>
+                            app:tint="@color/black"/>
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/claimTxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="15dp"
                             android:fontFamily="@font/poppins_regular"
                             android:text="How to claim"
                             android:textColor="@color/appThemeFontColor"
-                            android:textSize="@dimen/txt_size_16" />
+                            android:textSize="@dimen/txt_size_16"  />
 
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -529,7 +533,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="N/A"
                         android:textColor="@color/appThemeFontColor"
-                        android:textSize="@dimen/txt_size_16" />
+                        android:textSize="@dimen/txt_size_14" />
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -566,8 +570,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Php 123.98594"
+                android:gravity="center"
                 android:layout_weight="1"
                 app:fontFamily="@font/poppins_medium"
                 android:textColor="@color/appThemeColor_dark"
@@ -587,7 +593,7 @@
                 android:layout_marginEnd="20dp"
                 app:fontFamily="@font/poppins_medium"
                 android:textColor="@color/appThemeFontColor"
-                android:textSize="@dimen/txt_size_16" />
+                android:textSize="@dimen/txt_size_14" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

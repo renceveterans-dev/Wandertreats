@@ -67,7 +67,7 @@
                             android:text="something"
                             android:gravity="center"
                             android:textColor="@color/appThemeFontColor"
-                            android:textSize="18sp"
+                            android:textSize="@dimen/txt_size_16"
                             android:visibility="visible" />
 
                     </LinearLayout>
@@ -89,7 +89,7 @@
                             android:layout_marginBottom="10dp"
                             android:textColor="@color/appThemeFontColor"
                             android:text="something"
-                            android:textSize="16dp" />
+                            android:textSize="@dimen/txt_size_14" />
 
 
 

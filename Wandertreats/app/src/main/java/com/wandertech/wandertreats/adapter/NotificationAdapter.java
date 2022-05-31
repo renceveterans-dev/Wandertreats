@@ -47,9 +47,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
-        holder.headingTxt.setText(notifList.get(position).get("vTitle"));
-        holder.messageTxt.setText(notifList.get(position).get("vDescription"));
-        holder.dateTimeTxt.setText(notifList.get(position).get("dDateCreated"));
+        holder.headingTxt.setText(appFunctions.capitalize(notifList.get(position).get("vTitle")));
+        holder.messageTxt.setText(appFunctions.capitalize(notifList.get(position).get("vDescription")));
+        holder.dateTimeTxt.setText(appFunctions.formatDateTime(notifList.get(position).get("dDateCreated")));
 
         holder.notifView.setOnClickListener(new View.OnClickListener() {
             @Override

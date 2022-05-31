@@ -30,10 +30,10 @@
                         android:id="@+id/closeBtn"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="12dp"
                         android:clickable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:padding="12dp">
 
                         <ImageView
                             android:layout_width="15dp"
@@ -51,24 +51,25 @@
                 android:id="@+id/titleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Titlw"
-                android:textSize="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/black" />
+                android:text="Titlw"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/messageText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Titlw"
-                android:textSize="20dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:fontFamily="@font/poppins_light"
-                android:textColor="@color/black" />
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Titlw"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

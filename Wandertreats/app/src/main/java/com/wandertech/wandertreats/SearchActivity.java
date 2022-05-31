@@ -43,7 +43,7 @@ public class SearchActivity  extends AppCompatActivity {
     private AppCompatEditText searchTxt;
     private AppCompatImageView scanBtn;
     private RecyclerView resultsRecyclerList;
-    private LinearLayoutCompat loadingLocationArea;
+    private LinearLayoutCompat loadingLocationArea, noResultsArea;
     private int claimType = 0;
     private String data = "";
     private long delay = 1000;
@@ -69,6 +69,9 @@ public class SearchActivity  extends AppCompatActivity {
         scanBtn = binding.scanBtn;
         resultsRecyclerList = binding.resultsRecyclerList;
         loadingLocationArea = binding.loadingLocationArea;
+        noResultsArea = binding.noResultsArea;
+
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,20 +148,39 @@ public class SearchActivity  extends AppCompatActivity {
 
                     if(appFunctions.checkDataAvail(Utils.action_str, responseString)){
 
-                        //appFunctions.showMessage(responseString);
+                        int resultsCount = Integer.parseInt(appFunctions.getJsonValue("productResultCount", responseString));
 
-                        mainArr.clear();
-                        mainArr = Data.getParentData(appFunctions.getJsonArray("featured", responseString), appFunctions);
-                        mainAdapter = new MainAdapter(mainArr, getActContext().getApplicationContext(), appFunctions);
-                        resultsRecyclerList.setLayoutManager(new LinearLayoutManager(getActContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-                        resultsRecyclerList.setNestedScrollingEnabled(false);
-                        resultsRecyclerList.setAdapter(mainAdapter);
+                        if(resultsCount > 0){
 
-                    }else{
+                            mainArr.clear();
+                            mainArr = Data.getParentData(appFunctions.getJsonArray("featured", responseString), appFunctions);
 
+                            if(mainArr.size() > 0){
+
+                                noResultsArea.setVisibility(View.GONE);
+                                loadingLocationArea.setVisibility(View.GONE);
+                                resultsRecyclerList.setVisibility(View.VISIBLE);
+
+                                mainAdapter = new MainAdapter(mainArr, getActContext().getApplicationContext(), appFunctions);
+                                resultsRecyclerList.setLayoutManager(new LinearLayoutManager(getActContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+                                resultsRecyclerList.setNestedScrollingEnabled(false);
+                                resultsRecyclerList.setAdapter(mainAdapter);
+
+                            }else{
+                                noResultsArea.setVisibility(View.VISIBLE);
+                                loadingLocationArea.setVisibility(View.GONE);
+                                resultsRecyclerList.setVisibility(View.GONE);
+
+
+                            }
+                        }else{
+
+                            noResultsArea.setVisibility(View.VISIBLE);
+                            loadingLocationArea.setVisibility(View.GONE);
+                            resultsRecyclerList.setVisibility(View.GONE);
+                        }
 
                     }
-
                 }
 
             }

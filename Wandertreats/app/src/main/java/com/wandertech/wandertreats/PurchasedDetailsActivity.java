@@ -160,7 +160,7 @@ public class PurchasedDetailsActivity extends AppCompatActivity implements  AppB
 
             productPriceTxt.setText("₱"+appFunctions.getJsonValue("fNetTotal", purchasedData));
             productDetailTxt.setText(appFunctions.getJsonValue("vStoreName", purchasedData));
-            productDatePurchaseTxt.setText(appFunctions.getJsonValue("tPurchaseRequestDate", purchasedData));
+            productDatePurchaseTxt.setText(appFunctions.formatDateTime(appFunctions.getJsonValue("tPurchaseRequestDate", purchasedData)));
             productQtyTxt.setText(appFunctions.getJsonValue("iQty", productData)+"x - "+appFunctions.getJsonValue("fPrice", productData));
             storeLocationVTxt.setText(appFunctions.getJsonValue("vStoreAddress",merchantData));
 

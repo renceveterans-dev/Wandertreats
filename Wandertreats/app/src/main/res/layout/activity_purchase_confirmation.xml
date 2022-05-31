@@ -17,8 +17,8 @@
             android:background="@drawable/background_gradient"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
             android:id="@+id/content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -50,13 +50,13 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/downloadBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/downloadBtn"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="30dp"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_marginBottom="20dp"
+                android:background="?android:attr/selectableItemBackground"
                 android:gravity="center_horizontal|center_vertical"
                 android:orientation="horizontal">
 
@@ -64,6 +64,7 @@
 
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginEnd="15dp"
                     android:src="@drawable/download"
                     android:visibility="visible"
@@ -73,10 +74,11 @@
                     android:id="@+id/downloadTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
+                    android:fontFamily="@font/poppins_medium"
+                    android:includeFontPadding="false"
                     android:text="Download"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/txt_size_20" />
+                    android:textSize="@dimen/txt_size_16"  />
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -112,7 +114,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/poppins_semibold"
                         android:text="Successfully Confirmed"
                         android:textColor="@color/black"
                         android:textSize="@dimen/txt_size_16" />
@@ -239,8 +241,8 @@
                             android:id="@+id/toPayAmounTxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginTop="5dp"
+                            android:layout_weight="1"
                             android:fontFamily="@font/poppins_bold"
                             android:gravity="center"
                             android:text="Download"

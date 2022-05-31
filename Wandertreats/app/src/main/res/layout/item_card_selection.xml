@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:aap="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/itemCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="5dp"
-        android:elevation="1dp"
-        aap:cardCornerRadius="12dp"
-        aap:cardBackgroundColor="#ffffff">
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="7dp"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="12dp">
 
         <LinearLayout
             android:id="@+id/viewBox"
@@ -57,14 +58,15 @@
                     android:id="@+id/titleText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
+                    android:fontFamily="@font/poppins_medium"
+                    android:includeFontPadding="false"
                     android:gravity="center_vertical"
                     android:text="Item Header"
                     android:visibility="gone"
                     android:clickable="false"
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/appThemeFontColor"
-                    android:textSize="@dimen/txt_size_16" />
+                    android:textSize="@dimen/txt_size_14" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/mesageText"
@@ -73,10 +75,11 @@
                     android:fontFamily="@font/poppins_regular"
                     android:gravity="center_vertical"
                     android:text="Item Header"
+                    android:includeFontPadding="false"
                     android:clickable="false"
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/appThemeFontColor"
-                    android:textSize="@dimen/txt_size_16" />
+                    android:textSize="@dimen/txt_size_14" />
 
 
             </LinearLayout>

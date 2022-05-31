@@ -111,7 +111,7 @@
                                 android:ellipsize="end"
                                 android:maxLines="1"
                                 android:textColor="@color/appThemeFontColor"
-                                android:textSize="@dimen/txt_size_16" />
+                                android:textSize="@dimen/txt_size_14" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/scanBtn"

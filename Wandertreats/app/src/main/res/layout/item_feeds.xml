@@ -72,9 +72,11 @@
                 android:layout_weight="0"
                 android:clickable="false"
                 android:text="500"
-                android:textSize="18sp"
+                android:includeFontPadding="false"
+                android:textSize="@dimen/txt_size_14"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="#000"
+                android:layout_marginBottom="@dimen/space_10"
                 android:visibility="visible"  />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -96,7 +98,7 @@
                 android:clickable="false"
                 android:text="500"
                 android:textSize="14dp"
-                android:textColor="#000"
+                android:textColor="@color/gray"
                 android:visibility="visible"  />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </LinearLayout>

@@ -24,11 +24,9 @@ public class TemplateActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         appFunctions = MyApp.getInstance().getGeneralFun(getActContext());
         binding = ActivityTemplateBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
 
     }
 

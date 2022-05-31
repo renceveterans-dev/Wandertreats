@@ -7,18 +7,22 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,6 +35,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -67,6 +72,8 @@ public class MainActivity extends BaseActivity implements GetAddressFromLocation
     private GetAddressFromLocation  getAddressFromLocation;
     private LocationListener mLocationListener;
     private String isStart = "";
+    private MaterialToolbar toolbar;
+    private int currentTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +90,9 @@ public class MainActivity extends BaseActivity implements GetAddressFromLocation
         }
 
         setContentView(binding.getRoot());
-        getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        //transparentStatusAndNavigation();
 
+        getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         appFunctions.setWindowFlag((Activity) getActContext(), WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS ,false);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.transparent, this.getTheme()));
@@ -112,6 +120,65 @@ public class MainActivity extends BaseActivity implements GetAddressFromLocation
       //  NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        binding.navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+               // appFunctions.showMessage(item.getTitle()+" | "+ item.getItemId());
+                if(currentTab == item.getItemId()){
+                    return false;
+                }else{
+                    if(item.getItemId() == R.id.navigation_explore) {
+//                        currentTab = R.id.navigation_explore;
+                        onNavDestinationSelected(R.id.navigation_explore, navController);
+                    }else if(item.getItemId() == R.id.navigation_feed) {
+                        currentTab = R.id.navigation_feed;
+                        onNavDestinationSelected( R.id.navigation_feed, navController);
+                    }else if(item.getItemId() == R.id.navigation_treats) {
+                        currentTab = R.id.navigation_treats;
+                        onNavDestinationSelected(R.id.navigation_treats, navController);
+                    }else if(item.getItemId() == R.id.navigation_account) {
+                        currentTab = R.id.navigation_account;
+                        onNavDestinationSelected( R.id.navigation_account, navController);
+                    }else if(item.getItemId() == R.id.navigation_home) {
+                        currentTab = R.id.navigation_home;
+                        onNavDestinationSelected(R.id.navigation_home, navController);
+                        // appFunctions.showMessage("home");
+                    }
+                    return true;
+                }
+
+
+            }
+        });
+
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+               // appFunctions.showMessage((controller.getCurrentDestination().getId()+" | "+destination.getId()));
+                if(controller.getCurrentDestination().getId() == destination.getId()){
+                    if(destination.getId() == R.id.navigation_explore) {
+                        currentTab = R.id.navigation_explore;
+                        //onNavDestinationSelected(R.id.navigation_explore, navController);
+                    }else if(destination.getId() == R.id.navigation_feed) {
+                        currentTab = R.id.navigation_feed;
+                        //onNavDestinationSelected( R.id.navigation_feed, navController);
+                    }else if(destination.getId() == R.id.navigation_treats) {
+                        currentTab = R.id.navigation_treats;
+                        //onNavDestinationSelected(R.id.navigation_treats, navController);
+                    }else if(destination.getId() == R.id.navigation_account) {
+                        currentTab = R.id.navigation_account;
+                        //onNavDestinationSelected(R.id.navigation_home, navController);
+                    }else if(destination.getId() == R.id.navigation_home) {
+                        currentTab = R.id.navigation_home;
+                        //onNavDestinationSelected(R.id.navigation_home, navController);
+                       // appFunctions.showMessage("home");
+                    }
+                }
+
+
+            }
+        });
+
         init();
 
        // startService(new Intent(this, LocationService.class));
@@ -126,6 +193,43 @@ public class MainActivity extends BaseActivity implements GetAddressFromLocation
         }else{
             onNavDestinationSelected(R.id.navigation_home, navController);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    private void transparentStatusAndNavigation() {
+        //make full transparent statusBar
+        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
+            setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, true);
+        }
+        if (Build.VERSION.SDK_INT >= 19) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            );
+        }
+        if (Build.VERSION.SDK_INT >= 21) {
+            setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, false);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+            getWindow().setNavigationBarColor(Color.TRANSPARENT);
+        }
+    }
+
+    private void setWindowFlag(final int bits, boolean on) {
+        Window win = getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        if (on) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
+        }
+        win.setAttributes(winParams);
     }
 
     private static void onNavDestinationSelected(int id, @NonNull NavController navController) {

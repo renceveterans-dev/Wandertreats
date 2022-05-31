@@ -17,6 +17,9 @@ import com.wandertech.wandertreats.databinding.ActivityAboutBinding;
 import com.wandertech.wandertreats.databinding.ActivityAboutDetailBinding;
 import com.wandertech.wandertreats.general.GeneralFunctions;
 import com.wandertech.wandertreats.general.StartActProcess;
+import com.wandertech.wandertreats.utils.Utils;
+
+import org.json.JSONArray;
 
 public class AboutDetailActivity extends AppCompatActivity {
 
@@ -29,6 +32,8 @@ public class AboutDetailActivity extends AppCompatActivity {
     private MaterialToolbar toolbar;
     private AppCompatTextView titleTxt, contentText;
     private View contentView;
+    private String generalData;
+    public JSONArray configArr = new JSONArray();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,19 @@ public class AboutDetailActivity extends AppCompatActivity {
         titleTxt.setText(getIntent().getStringExtra("activity"));
         contentText.setText("Edit on admin");
 
+        generalData = appFunctions.retrieveValue(Utils.APP_GENERAL_DATA);
+        configArr = appFunctions.getJsonArray("about", generalData);
+
+        //appFunctions.showMessage(  configArr.toString());
+
+        if(getIntent().getStringExtra("activity").equalsIgnoreCase("About")){
+            contentText.setText(appFunctions.getJsonValue("vConfigValue", appFunctions.getJsonObject(configArr, 0).toString()));
+
+        }else if(getIntent().getStringExtra("activity").equalsIgnoreCase("Terms and Condition")){
+            contentText.setText(appFunctions.getJsonValue("vConfigValue", appFunctions.getJsonObject(configArr, 1).toString()));
+        }else if(getIntent().getStringExtra("activity").equalsIgnoreCase("Privacy Policy")) {
+            contentText.setText(appFunctions.getJsonValue("vConfigValue", appFunctions.getJsonObject(configArr, 2).toString()));
+        }
     }
 
     private void initView() {
