@@ -38,6 +38,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
+import com.hbb20.GThumb;
 import com.wandertech.wandertreats.AboutActivity;
 import com.wandertech.wandertreats.ContactUsActivity;
 import com.wandertech.wandertreats.LocationPickerActivity;
@@ -75,6 +76,7 @@ public class AccountFragment  extends Fragment {
     private ImageView closeVerifyEmailBtn;
     private CardView verifyEmailArea;
     private MainActivity mainActivity;
+    private GThumb profilePhoto;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -111,6 +113,7 @@ public class AccountFragment  extends Fragment {
             saveAddressArea =binding.saveAddressArea;
             logoutArea = binding.logoutArea;
             referralArea = binding.referralArea;
+            profilePhoto = binding.profileGthumb;
 
             verifyEmailBtn = binding.verifyEmailBtn;
             closeVerifyEmailBtn = binding.closeVerifyEmailBtn;
@@ -118,6 +121,11 @@ public class AccountFragment  extends Fragment {
             profile_image = binding.profileImage;
             userNameTxt = binding.userNameTxt;
             userNameLabel = binding.userNameLabel;
+
+            if(appFunctions.isEmailVerified()){
+
+                verifyEmailArea.setVisibility(View.GONE);
+            }
 
             profileArea.setOnClickListener(new setOnClickAct());
             saveAddressArea.setOnClickListener(new setOnClickAct());
@@ -128,8 +136,8 @@ public class AccountFragment  extends Fragment {
             verifyEmailBtn.setOnClickListener(new setOnClickAct());
             closeVerifyEmailBtn.setOnClickListener(new setOnClickAct());
 
-            userNameTxt.setText(appFunctions.getFullName());
-            userNameLabel.setText(appFunctions.getUserName());
+
+            setLabel();
         }
 
 
@@ -138,7 +146,10 @@ public class AccountFragment  extends Fragment {
     }
 
     public void setLabel(){
+        userNameTxt.setText(appFunctions.getFullName());
+        userNameLabel.setText(appFunctions.getUserName());
 
+        profilePhoto.loadThumbForName("", appFunctions.getFullName().charAt(0)+"");
 
     }
 
@@ -337,9 +348,6 @@ public class AccountFragment  extends Fragment {
             }
         });
         exeWebServer.execute();
-
-
-
 
     }
 

@@ -14,7 +14,7 @@
             android:id="@+id/contentView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/bottomArea"
+            android:layout_above="@+id/layoutBars"
             android:orientation="vertical">
 
             <androidx.viewpager.widget.ViewPager
@@ -39,8 +39,8 @@
                 android:id="@+id/layoubarsArea"
                 android:layout_width="wrap_content"
                 android:layout_height="15dp"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
             </LinearLayout>
         </LinearLayout>
@@ -53,6 +53,7 @@
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
             android:gravity="bottom"
+            android:layout_margin="5dp"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -60,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_50"
                 android:layout_gravity="bottom"
-                android:layout_margin="15dp"
+                android:layout_margin="20dp"
                 android:background="@drawable/button_style"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Store"
@@ -104,7 +105,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_50"
                 android:layout_gravity="bottom"
-                android:layout_margin="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="15dp"
                 android:background="@drawable/button_style"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Sign up"
@@ -117,9 +121,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_50"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"
                 android:background="@color/transparent"
                 android:fontFamily="@font/poppins_medium"
                 android:foreground="?attr/selectableItemBackground"

@@ -32,15 +32,19 @@ import com.wandertech.wandertreats.ProductActivity;
 import com.wandertech.wandertreats.PurchasedDetailsActivity;
 import com.wandertech.wandertreats.R;
 import com.wandertech.wandertreats.adapter.FeedPostAdapter;
+import com.wandertech.wandertreats.adapter.MainAdapter;
 import com.wandertech.wandertreats.adapter.MyTreatsAdapter;
 import com.wandertech.wandertreats.databinding.FragmentTreatsBinding;
 import com.wandertech.wandertreats.general.Data;
 import com.wandertech.wandertreats.general.ExecuteWebServiceApi;
+import com.wandertech.wandertreats.general.FavoriteUtils;
 import com.wandertech.wandertreats.general.GeneralFunctions;
 import com.wandertech.wandertreats.general.PopUpDialog;
 import com.wandertech.wandertreats.general.StartActProcess;
 import com.wandertech.wandertreats.main.explore.ExploreFragment;
 import com.wandertech.wandertreats.main.explore.ExploreViewModel;
+import com.wandertech.wandertreats.model.ItemModel;
+import com.wandertech.wandertreats.model.ParentModel;
 import com.wandertech.wandertreats.utils.Utils;
 
 import java.util.ArrayList;
@@ -48,21 +52,30 @@ import java.util.HashMap;
 
 public class TreatsFragment  extends Fragment implements MyTreatsAdapter.ItemOnClickListener{
 
+    private static String TYPE_ACTIVE = "ACTIVE";
+    private static String TYPE_HISTORY = "HISTORY";
+    private static String TYPE_FAVORITE = "FAVORITE";
+
     private ExploreViewModel exploreViewModel;
     private FragmentTreatsBinding binding;
     private TabLayout mainTab;
     private GeneralFunctions appFunctions;
     private TabItem activeTab, historyTab, favoriteTab;
-    private String type = "ACTIVE";
+    private String type = TYPE_ACTIVE;
     private RecyclerView treatsRecyclerList;
     private ShimmerFrameLayout loaderShimmer;
     private ArrayList<HashMap<String, String>> treatsArr = new ArrayList<>();
     private MyTreatsAdapter myTreatsAdapterAdapter;
     private LinearLayoutCompat treatsRecyclerListArea, noDataArea;
+    private FavoriteUtils favoriteUtils;
+
+    private ArrayList<ParentModel> mainArr = new ArrayList<>();
+    private MainAdapter mainAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         appFunctions = MyApp.getInstance().getGeneralFun(container.getContext());
+        favoriteUtils = new FavoriteUtils(getActContext(), appFunctions);
 
 //        try {
 //            ((MainActivity) getActivity()).  getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -94,18 +107,19 @@ public class TreatsFragment  extends Fragment implements MyTreatsAdapter.ItemOnC
 
                     if(tab.getPosition() == 0){
                         //appFunctions.showMessage("Active");
-                        type = "ACTIVE";
+                        type = TYPE_ACTIVE;
                     }
 
                     if(tab.getPosition() == 1){
-                        type = "HISTORY";
+                        type = TYPE_HISTORY;
                         //  appFunctions.showMessage("History");
 
                     }
 
                     if(tab.getPosition() == 2){
-                        type = "FAVORITE";
-                        //appFunctions.showMessage("Favorites");
+                        type = TYPE_FAVORITE;
+
+                        //appFunctions.showMessage(favoriteUtils.getFavoritemItemList());
                     }
                     retriveData();
                 }
@@ -144,6 +158,7 @@ public class TreatsFragment  extends Fragment implements MyTreatsAdapter.ItemOnC
         HashMap<String, String> parameters = new HashMap<String, String>();
         parameters.put("type", "RETRIEVE_DATA");
         parameters.put("userId", appFunctions.getMemberId());
+        parameters.put("favoriteIds", favoriteUtils.getFavoritemItemList());
         parameters.put("type", type);;
 
         ExecuteWebServiceApi exeWebServer = new ExecuteWebServiceApi(getActivity().getApplicationContext(), parameters, "api_load_purchased_products.php", true);
@@ -157,23 +172,42 @@ public class TreatsFragment  extends Fragment implements MyTreatsAdapter.ItemOnC
                     if(appFunctions.checkDataAvail(Utils.action_str, responseString)){
                         loaderShimmer.setVisibility(View.GONE);
 
-                        treatsArr  = Data.getMyPurchasedData(appFunctions.getJsonArray("data", responseString), appFunctions);
-                        //Toast.makeText(getActContext(),feedsArr.toString(), Toast.LENGTH_SHORT).show();
-                        if(treatsArr.size()>0){
-                            loaderShimmer.setVisibility(View.GONE);
-                            treatsRecyclerListArea.setVisibility(View.VISIBLE);
-                            noDataArea.setVisibility(View.GONE);
+                        if(type.equalsIgnoreCase(TYPE_ACTIVE) || type.equalsIgnoreCase(TYPE_HISTORY)){
+                            treatsArr  = Data.getMyPurchasedData(appFunctions.getJsonArray("data", responseString), appFunctions);
+                            //Toast.makeText(getActContext(),feedsArr.toString(), Toast.LENGTH_SHORT).show();
+                            if(treatsArr.size()>0){
+                                loaderShimmer.setVisibility(View.GONE);
+                                treatsRecyclerListArea.setVisibility(View.VISIBLE);
+                                noDataArea.setVisibility(View.GONE);
 
-                            myTreatsAdapterAdapter= new MyTreatsAdapter(getActContext(),  treatsArr);
-                            treatsRecyclerList.setLayoutManager(new LinearLayoutManager(getActContext()));
-                            treatsRecyclerList.setAdapter(myTreatsAdapterAdapter);
-                            myTreatsAdapterAdapter.setOnItemClick(TreatsFragment.this::setOnItemClick);
-                        }else{
-                            loaderShimmer.setVisibility(View.GONE);
-                            treatsRecyclerListArea.setVisibility(View.GONE);
-                            noDataArea.setVisibility(View.VISIBLE);
+                                myTreatsAdapterAdapter= new MyTreatsAdapter(getActContext(),  treatsArr);
+                                treatsRecyclerList.setLayoutManager(new LinearLayoutManager(getActContext()));
+                                treatsRecyclerList.setAdapter(myTreatsAdapterAdapter);
+                                myTreatsAdapterAdapter.setOnItemClick(TreatsFragment.this::setOnItemClick);
+                            }else{
+                                loaderShimmer.setVisibility(View.GONE);
+                                treatsRecyclerListArea.setVisibility(View.GONE);
+                                noDataArea.setVisibility(View.VISIBLE);
+
+                            }
+
+                        }else if(type.equalsIgnoreCase(TYPE_FAVORITE)){
+
+                            treatsArr.clear();
+
+                            ArrayList<ItemModel> productArrayList = new ArrayList<>();
+                            productArrayList = Data.getProductData(appFunctions.getJsonArray("favoriteData", responseString), appFunctions);
+
+                            mainArr.clear();
+                            treatsRecyclerList.clearOnChildAttachStateChangeListeners();
+                            mainArr = Data.getParentData(appFunctions.getJsonArray("favoriteData", responseString), appFunctions);
+                            appFunctions.showMessage(mainArr.size()+"");
+                            mainAdapter = new MainAdapter(mainArr, getActivity().getApplicationContext(), appFunctions);
+                            treatsRecyclerList.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+                            treatsRecyclerList.setNestedScrollingEnabled(false);
+                            treatsRecyclerList.setAdapter(mainAdapter);
+
                         }
-
                        // Toast.makeText(getActContext(), responseString, Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(getActContext(), "Error "+ responseString, Toast.LENGTH_SHORT).show();

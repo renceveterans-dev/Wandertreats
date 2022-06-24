@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     private AppCompatTextView titleTxt, forgotPasswordTxt;
     private TextInputLayout usernameTxtLayout, passwordTxtLayout;
     private TextInputEditText usernameTxt, passwordTxt;
-    private AppCompatButton loginBtn;
+    private AppCompatButton loginBtn, registerBtn;
     private LinearLayoutCompat  loginFbBtn;
     private AppCompatImageView backImgView, closeImgView;
     private MaterialToolbar toolbar;
@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onCancel() {
                 // App code
-                appFunctions.showMessage("cancel");
+                appFunctions.showMessage("Cancelled,");
             }
 
         });
@@ -161,12 +161,14 @@ public class LoginActivity extends AppCompatActivity {
         passwordTxtLayout = binding.passwordTxtLayout;
         passwordTxt = binding.passwordTxt;
         loginBtn = binding.loginBtn;
+        registerBtn = binding.registerBtn;
         loginFbBtn = binding.loginFbBtn;
         loginFbbutton = binding.loginFbbutton;;
         forgotPasswordTxt = binding.forgotPasswordTxt;
         toolbar = findViewById(R.id.toolbar);
 
         loginBtn.setOnClickListener(new setOnClickAct());
+        registerBtn.setOnClickListener(new setOnClickAct());
         loginFbBtn.setOnClickListener(new setOnClickAct());
         forgotPasswordTxt.setOnClickListener(new setOnClickAct());
         usernameTxt.addTextChangedListener(new setOnTextChangeAct(usernameTxt));
@@ -261,14 +263,19 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void setResponse(String responseString) {
 
-                appFunctions.displayLog(responseString);
-                appFunctions.showMessage(responseString);
+//                appFunctions.displayLog(responseString);
+//                appFunctions.showMessage(responseString);
 
                 if(responseString != null){
 
                     if(appFunctions.checkDataAvail(Utils.action_str, responseString)){
 
                         try{
+
+                            appFunctions.storeData(Utils.isUserLogIn, "1");
+                            appFunctions.storeData(Utils.iMemberId, appFunctions.getJsonValue("iUserId", responseString));
+                            appFunctions.storeData(Utils.USER_PROFILE_JSON, appFunctions.getJsonValue("result", responseString));
+                            appFunctions.storeData(Utils.USER_FIRST_LOGIN, "1");
 
                             appFunctions.storeData(Utils.isUserLogIn, "1");
                             appFunctions.storeData(Utils.iMemberId, appFunctions.getJsonValue("iUserId", responseString));
@@ -382,6 +389,12 @@ public class LoginActivity extends AppCompatActivity {
 
                     break;
 
+                case R.id.registerBtn:
+
+                    new StartActProcess(getActContext()).startAct(RegisterActivity.class);
+
+                    break;
+
             }
         }
     }
@@ -408,8 +421,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void setResponse(String responseString) {
 
-                appFunctions.showMessage(responseString);
-
+                //appFunctions.showMessage(responseString);
 
                 if(responseString != null){
 

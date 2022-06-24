@@ -19,6 +19,8 @@
     <color name="appThemeColor_light">#25C1CF</color>
     <color name="appThemeColor_dark">#1F6DAA</color>
 
+    <color name="appThemeColor_fade_background">#329EE0FF</color>
+
     <color name="appThemeColor_fade_light">#cee6f2</color>
 
     <color name="appThemeColor_bg">#34E5E5E5</color>

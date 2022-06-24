@@ -83,7 +83,8 @@
             android:parentActivityName=".MainActivity" />
 
         <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity android:name=".NotificationDetailsActivity"
             android:screenOrientation="portrait"/>
@@ -162,6 +163,11 @@
         <activity android:name=".AboutDetailActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".VerifyActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".PreRegisterActivity"
+            android:screenOrientation="portrait"/>
 
 
     </application>

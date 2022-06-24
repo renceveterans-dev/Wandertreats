@@ -15,10 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
@@ -39,21 +41,25 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 import com.wandertech.wandertreats.adapter.ImagePreviewAdapter;
 import com.wandertech.wandertreats.adapter.MainAdapter;
+import com.wandertech.wandertreats.adapter.MainItemAdapter;
 import com.wandertech.wandertreats.databinding.ActivityProductBinding;
 import com.wandertech.wandertreats.databinding.ActivityStoreBinding;
 import com.wandertech.wandertreats.general.Data;
 import com.wandertech.wandertreats.general.ExecuteWebServiceApi;
+import com.wandertech.wandertreats.general.FavoriteUtils;
 import com.wandertech.wandertreats.general.GeneralFunctions;
 import com.wandertech.wandertreats.general.ImagePreviewDialog;
 import com.wandertech.wandertreats.general.MockData;
 import com.wandertech.wandertreats.general.PopUpDialog;
 import com.wandertech.wandertreats.general.StartActProcess;
+import com.wandertech.wandertreats.model.ItemModel;
 import com.wandertech.wandertreats.model.ParentModel;
 import com.wandertech.wandertreats.utils.Constants;
 import com.wandertech.wandertreats.utils.Utils;
 
 import org.json.JSONArray;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -83,12 +89,16 @@ public class ProductActivity extends AppCompatActivity implements AppBarLayout.O
             productPriceTxt, storeLocationVTxt, rulesVTxt, claimInstructionTxt;
     private ImageView productImage;
     private String productData = "";
+    private String productId = "";
     private ViewPager viewpagerImagePreview;
     private TextView[] imagePreviewIndicator;
     private LinearLayout imagePreviewIndicatorLayout;
     private ImagePreviewAdapter imagePreviewAdapter;
     private ArrayList<String> imagelist = new ArrayList<>();
     private AppCompatTextView noteText;
+    private RecyclerView simillarRecyclerList;
+    private ToggleButton favoriteBtn;
+    private FavoriteUtils favoriteUtils;
 
 
     public String filePath = Constants.SERVER+"uploads/products/";
@@ -99,6 +109,7 @@ public class ProductActivity extends AppCompatActivity implements AppBarLayout.O
 
         appFunctions = MyApp.getInstance().getGeneralFun(getActContext());
         binding = ActivityProductBinding.inflate(getLayoutInflater());
+        favoriteUtils = new FavoriteUtils(getActContext(), appFunctions);
 
         appFunctions = MyApp.getInstance().getGeneralFun(getActContext());
         getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -109,41 +120,22 @@ public class ProductActivity extends AppCompatActivity implements AppBarLayout.O
             getWindow().setStatusBarColor(getResources().getColor(R.color.transparent));
         }
 
-
-
         setContentView(binding.getRoot());
 
-
-
         productData = getIntent().getStringExtra("data");
+        productId = appFunctions.getJsonValue("iProductId", productData);
 
-        titleTxt = binding.  titleTxt;
-        appBarLayout = binding.appBarLayout;
-        materialToolbar = binding.toolbar;
+        setInitView();
+        setEventListeners();
 
-        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) materialToolbar.getLayoutParams();
-        params.topMargin = getStatusBarHeight();
-        materialToolbar.setLayoutParams(params);
+        loadProduct();
+        setFavoriteItem();
 
-        productArea = binding.productArea;
-        shareBtn = binding.shareBtn;
-        buyBtn = binding.buyBtn;
+    }
 
-        productName = binding.productName;
-        productLabel = binding.productLabel;
-        productPriceTxt = binding.productPriceTxt;
-        productDescription = binding.productDescription;
-        rulesVTxt = binding.rulesVTxt;
-        storeLocationVTxt = binding.storeLocationVTxt;
-        productImageArea = binding.productImageArea;
-        productImage = binding.productImage;
-        viewpagerImagePreview = binding.viewpagerImagePreview;
-        imagePreviewIndicatorLayout = binding.imagePreviewIndicatorLayout;
-        claimInstructionTxt = binding.claimInstructionTxt;
-        noteText = binding.noteText;
+    private void setEventListeners() {
 
         appBarLayout.addOnOffsetChangedListener(this::onOffsetChanged);
-
         buyBtn.setOnClickListener(new setOnClickAct());
 
         productName.setText(appFunctions.getJsonValue("vProductName", productData));
@@ -162,7 +154,6 @@ public class ProductActivity extends AppCompatActivity implements AppBarLayout.O
 
         try{
             imagelist = Data.getProductImages(appFunctions.getJsonArray("vImages",productData), appFunctions);
-            //appFunctions.showMessage(imagelist.toString());
         }catch (Exception e){
             appFunctions.showMessage(e.toString());
         }
@@ -194,9 +185,57 @@ public class ProductActivity extends AppCompatActivity implements AppBarLayout.O
             }
         });
 
+    }
 
-        loadProduct();
+    private void setInitView() {
 
+        titleTxt = binding.  titleTxt;
+        appBarLayout = binding.appBarLayout;
+        materialToolbar = binding.toolbar;
+
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) materialToolbar.getLayoutParams();
+        params.topMargin = getStatusBarHeight();
+        materialToolbar.setLayoutParams(params);
+
+        productArea = binding.productArea;
+        shareBtn = binding.shareBtn;
+        buyBtn = binding.buyBtn;
+
+        productName = binding.productName;
+        productLabel = binding.productLabel;
+        productPriceTxt = binding.productPriceTxt;
+        productDescription = binding.productDescription;
+        rulesVTxt = binding.rulesVTxt;
+        storeLocationVTxt = binding.storeLocationVTxt;
+        productImageArea = binding.productImageArea;
+        productImage = binding.productImage;
+        viewpagerImagePreview = binding.viewpagerImagePreview;
+        imagePreviewIndicatorLayout = binding.imagePreviewIndicatorLayout;
+        claimInstructionTxt = binding.claimInstructionTxt;
+        noteText = binding.noteText;
+        favoriteBtn = binding.favoriteBtn;
+        simillarRecyclerList = binding.simillarRecyclerList;
+    }
+
+    private void setFavoriteItem() {
+
+        if(favoriteUtils.isFavorite(productId)){
+            favoriteBtn.setChecked(true);
+        }else{
+            favoriteBtn.setChecked(false);
+        }
+
+        favoriteBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    favoriteUtils.addToFavoritemItemList(appFunctions.getJsonValue("iProductId", productData));
+                } else {
+                    favoriteUtils.removeToFavoritemItemList(appFunctions.getJsonValue("iProductId", productData));
+                }
+
+                appFunctions.showMessage(favoriteUtils.getFavoritemItemList());
+            }
+        });
     }
 
     public int getStatusBarHeight(){
@@ -240,13 +279,13 @@ public class ProductActivity extends AppCompatActivity implements AppBarLayout.O
 
             productArea.setVisibility(View.INVISIBLE);
             materialToolbar.setBackgroundColor(getActContext().getResources().getColor(R.color.white));
-            materialToolbar.setNavigationIconTint(getActContext().getResources().getColor(R.color.black));
+            materialToolbar.setNavigationIconTint(ContextCompat.getColor(ProductActivity.this,R.color.appThemeColor));
             titleTxt.setText("STORE");
             titleTxt.setText(appFunctions.getJsonValue("vProductName", productData));
             titleTxt.setTextColor(getActContext().getResources().getColor(R.color.black));
 
-
             getWindow().setStatusBarColor(ContextCompat.getColor(ProductActivity.this,R.color.appThemeColor));
+
 
         } else {
             //Expanded
@@ -285,8 +324,6 @@ public class ProductActivity extends AppCompatActivity implements AppBarLayout.O
 
                         productData = appFunctions.getJsonValue("productData", data);
 
-                        //Toast.makeText(getActContext(), appFunctions.getJsonValue("buyButtonEnable", responseString) , Toast.LENGTH_SHORT).show();
-
                         productName.setText(appFunctions.getJsonValue("vProductName", productData));
                         productLabel.setText(appFunctions.getJsonValue("vUserName", productData));
                         productPriceTxt.setText(appFunctions.getDecimalWithSymbol(appFunctions.getJsonValue("fPrice", productData)));
@@ -311,6 +348,16 @@ public class ProductActivity extends AppCompatActivity implements AppBarLayout.O
                             buyBtn.setEnabled(false);
 
                         }
+
+                        ArrayList<ItemModel> productArrayList = new ArrayList<>();
+                        productArrayList = Data.getProductData(appFunctions.getJsonArray("simillarProductData",  data), appFunctions);
+
+                        //appFunctions.showMessage(appFunctions.getJsonArray("productData", storeData).toString());
+
+                        MainItemAdapter mainItemAdapter = new MainItemAdapter(productArrayList, getActContext());
+                        simillarRecyclerList.setLayoutManager(new LinearLayoutManager(getActContext(), LinearLayoutManager.HORIZONTAL, false));
+                        simillarRecyclerList.setAdapter(mainItemAdapter);
+
 
                     }else{
 

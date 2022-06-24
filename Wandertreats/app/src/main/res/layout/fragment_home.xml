@@ -221,8 +221,8 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:background="@color/white"
+                        android:orientation="vertical"
                         android:visibility="visible">
 
 
@@ -239,9 +239,9 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <include layout="@layout/item_shimmering_main"/>
+                                <include layout="@layout/item_shimmering_main" />
 
-                                <include layout="@layout/item_shimmering_main"/>
+                                <include layout="@layout/item_shimmering_main" />
 
                                 <View
                                     android:id="@+id/bgGradient"
@@ -260,11 +260,11 @@
                             <androidx.cardview.widget.CardView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:contentPadding="@dimen/space_10"
-                                app:cardCornerRadius="@dimen/space_12"
                                 android:layout_margin="@dimen/space_20"
+                                app:cardBackgroundColor="@color/white"
+                                app:cardCornerRadius="@dimen/space_12"
                                 app:cardElevation="3dp"
-                                app:cardBackgroundColor="@color/white">
+                                app:contentPadding="@dimen/space_10">
 
                                 <androidx.recyclerview.widget.RecyclerView
                                     android:id="@+id/categoryRecyclerList"
@@ -272,7 +272,6 @@
                                     android:layout_height="match_parent" />
 
                             </androidx.cardview.widget.CardView>
-
 
 
                             <androidx.recyclerview.widget.RecyclerView

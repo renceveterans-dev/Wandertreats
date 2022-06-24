@@ -106,19 +106,15 @@ public class MainActivity extends BaseActivity implements GetAddressFromLocation
         getAddressFromLocation.setLocation(Double.parseDouble(appFunctions.retrieveValue(Utils.CURRENT_LATITUDE)), Double.parseDouble(appFunctions.retrieveValue(Utils.CURRENT_LONGITUDE)));
         getAddressFromLocation.execute();
 
-
-       //navView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_explore, R.id.navigation_feed, R.id.navigation_treats, R.id.navigation_account)
                 .build();
-
-
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-
       //  NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+
+
 
         binding.navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -150,6 +146,10 @@ public class MainActivity extends BaseActivity implements GetAddressFromLocation
 
             }
         });
+
+        if(!appFunctions.isEmailVerified()){
+            new StartActProcess(getActContext()).startAct(VerifyActivity.class);
+        }
 
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
@@ -252,7 +252,9 @@ public class MainActivity extends BaseActivity implements GetAddressFromLocation
     public void init(){
 
         String isForceUpdate = appFunctions.getJsonValue("APP_FORCE_UPDATE", appFunctions.retrieveValue(Utils.APP_GENERAL_DATA));
-        if(isForceUpdate.equalsIgnoreCase("Yes")){
+        int appVersionCode = Integer.parseInt(appFunctions.getJsonValue("APP_VERSION_CODE", appFunctions.retrieveValue(Utils.APP_GENERAL_DATA)));
+
+        if(isForceUpdate.equalsIgnoreCase("Yes") && appFunctions.getAppVersionCode() < appVersionCode){//&& appFunctions.getAppVersionCode() < appVersionCode
             new Handler().postDelayed(new Runnable() {
 
                 @Override
@@ -267,6 +269,7 @@ public class MainActivity extends BaseActivity implements GetAddressFromLocation
                     MaterialButton positive_btn = dialog.findViewById( R.id.positive_btn);
                     MaterialButton negative_btn = dialog.findViewById( R.id.negative_btn);
                     ImageView alertIcon = dialog.findViewById(R.id.alertIcon);
+
                     builder.setView(dialog);
 
                     title.setText("Theres a shiny new update!");

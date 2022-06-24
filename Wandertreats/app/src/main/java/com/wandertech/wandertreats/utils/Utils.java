@@ -53,6 +53,7 @@ public class Utils {
     public static final String pubNub_Update_Loc_Channel_Prefix = "ONLINE_DRIVER_LOC_";
     public static final String deviceType = "Android";
     public static final String REMAINING_TIME = "REMAINING_TIME";
+    public static final String FAVORITE_ITEM_LIST =  "FAVORITE_ITEM_LIST";
     public static String userType = "";
     public static String USER_ID_KEY = "";
     public static String IS_APP_IN_DEBUG_MODE = "";
@@ -287,6 +288,8 @@ public class Utils {
     public static final int RC_USE_VOUCHER = 12;
     public static final int RC_FIND_ITEM = 13;
     public static final int RC_FIND_STORE = 14;
+    public static final String EMAIL_VERIFICATOION = "Email";
+    public static final String MOBILE_VERIFICATOION = "Mobile";
 
     public Utils() {
     }

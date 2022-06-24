@@ -49,7 +49,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerInParent="true"
-                app:srcCompat="@drawable/pin_location" />
+                app:srcCompat="@drawable/pin_location_2" />
 
         </RelativeLayout>
 

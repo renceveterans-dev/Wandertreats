@@ -17,7 +17,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="300dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content">
 
             <LinearLayout
@@ -33,7 +33,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
-                    android:elevation="1dp"
+                    android:elevation="3dp"
                     aap:cardCornerRadius="12dp"
                     aap:cardBackgroundColor="#ffffff">
 
@@ -100,7 +100,7 @@
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="3dp"
                     android:orientation="horizontal">
 
 
@@ -109,9 +109,9 @@
                         android:layout_height="60dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="5dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
-                        android:elevation="1dp"
+                        android:elevation="3dp"
                         aap:cardCornerRadius="12dp"
                         aap:cardBackgroundColor="#ffffff"
                         >
@@ -139,7 +139,6 @@
                             android:maxLines="1"
                             android:lines="1"
                             android:ellipsize="end"
-                            android:paddingStart="5sp"
                             android:paddingEnd="5sp"
                             android:text="Title"
                             android:fontFamily="@font/poppins_medium"
@@ -173,7 +172,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="start"
                                     android:layout_marginTop="5dp"
-                                    android:paddingStart="5sp"
                                     android:paddingEnd="5sp"
                                     android:maxLines="1"
                                     android:ellipsize="end"

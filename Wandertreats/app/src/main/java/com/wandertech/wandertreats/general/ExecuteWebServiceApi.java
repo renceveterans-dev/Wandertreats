@@ -2,7 +2,9 @@ package com.wandertech.wandertreats.general;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.wandertech.wandertreats.BuildConfig;
+import com.wandertech.wandertreats.MainActivity;
 import com.wandertech.wandertreats.MyApp;
 import com.wandertech.wandertreats.utils.Constants;
 import com.wandertech.wandertreats.utils.DeviceData;
@@ -198,11 +201,22 @@ public class ExecuteWebServiceApi {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("REST :", error.toString());
-                        Toast.makeText(mContext,  "ERROR "+error.toString(), Toast.LENGTH_SHORT).show();
-                        responseString = error.toString();
-                        fireResponse();
+                       Toast.makeText(mContext,  "ERROR "+error.toString(), Toast.LENGTH_SHORT).show();
+
 
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+
+                            PopUpDialog dialog = new PopUpDialog(mContext, "No Connection problem");
+                            dialog.setMessage("There seems to be a problem on your active internet connection. Please check your connection and try again.");
+                            dialog.setPositiveBtn("Okay");
+                            dialog.show();
+                            dialog.setCancelable(false);
+                            dialog.getPositive_btn().setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                }
+                            });
                             // Toast.makeText(mContext, "ADL : No Internet Connection", Toast.LENGTH_SHORT).show();
                         } else if (error instanceof AuthFailureError) {
                             Toast.makeText(mContext, "ADL : Auth Error", Toast.LENGTH_SHORT).show();
@@ -212,6 +226,9 @@ public class ExecuteWebServiceApi {
                             Toast.makeText(mContext, "ADL : Network Error", Toast.LENGTH_SHORT).show();
                         } else if (error instanceof ParseError) {
                             Toast.makeText(mContext, "ADL : Parse Error", Toast.LENGTH_SHORT).show();
+                        }else {
+                            responseString = error.toString();
+                            fireResponse();
                         }
                     }
                 }){

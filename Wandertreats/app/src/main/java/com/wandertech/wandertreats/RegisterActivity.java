@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 
@@ -44,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
     private MaterialToolbar toolbar;
     private AppCompatImageView backImgView;
     private AppCompatImageView closeImgView;
+    private AppCompatCheckBox agreeCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,8 @@ public class RegisterActivity extends AppCompatActivity {
         mobileTxtLayout = binding.mobileTxtLayout;
         passwordTxtLayout = binding.passwordTxtLayout;
         rePasswordTxtLayout = binding.rePasswordTxtLayout;
+
+        agreeCheckBox = binding.agreeCheckBox;
 
         registerBtn = binding.registerBtn;
         loginBtn = binding.loginBtn;
@@ -281,6 +285,15 @@ public class RegisterActivity extends AppCompatActivity {
                         return;
                     }
 
+                    if(mobileTxt.getText().length() != 11 ){
+
+                        mobileTxtLayout.setErrorEnabled(true);
+                        mobileTxtLayout.setHelperTextEnabled(true);
+                        mobileTxtLayout.setHelperText("Invalid mobile number.");
+
+                        return;
+                    }
+
                     break;
 
 
@@ -407,7 +420,7 @@ public class RegisterActivity extends AppCompatActivity {
                     break;
 
                 case R.id.loginBtn:
-                    onBackPressed();
+                    new StartActProcess(getActContext()).startAct(LoginActivity.class);
                     break;
 
                 case R.id.registerBtn:
@@ -457,6 +470,15 @@ public class RegisterActivity extends AppCompatActivity {
                         return;
                     }
 
+                    if(mobileTxt.getText().length() != 11 ){
+
+                        mobileTxtLayout.setErrorEnabled(true);
+                        mobileTxtLayout.setHelperTextEnabled(true);
+                        mobileTxtLayout.setHelperText("Invalid mobile number.");
+
+                        return;
+                    }
+
                     if(passwordTxt.getText().length() == 0 ){
 
                         passwordTxtLayout.setErrorEnabled(true);
@@ -483,6 +505,20 @@ public class RegisterActivity extends AppCompatActivity {
                         rePasswordTxtLayout.setHelperTextEnabled(true);
                         rePasswordTxtLayout.setHelperText("Password doest matched.");
 
+                        return;
+                    }
+
+                    if(rePasswordTxt.getText().length() > 0 && !rePasswordTxt.getText().toString().equalsIgnoreCase(passwordTxt.getText().toString())){
+
+                        rePasswordTxtLayout.setErrorEnabled(true);
+                        rePasswordTxtLayout.setHelperTextEnabled(true);
+                        rePasswordTxtLayout.setHelperText("Password doest matched.");
+
+                        return;
+                    }
+
+                    if(!agreeCheckBox.isChecked()){
+                        appFunctions.showMessageDialog("Please check the checkbox to confirm that you agree to our Terms and conditions.");
                         return;
                     }
 

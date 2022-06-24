@@ -2,6 +2,9 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@drawable/background_gradient"
+    android:layout_margin="0dp"
+    android:padding="0dp"
     android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
@@ -12,7 +15,7 @@
             android:id="@+id/contentView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/appThemeColor"
+
             android:orientation="vertical">
 
             <include
@@ -22,11 +25,21 @@
                 android:layout_height="wrap_content"/>
 
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/space_15"
+                android:layout_margin="@dimen/space_20"
+                app:cardElevation="6dp">
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/background_round_top_light"
                     android:orientation="vertical">
+
+
+
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -37,17 +50,27 @@
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Login to your account"
+                            android:text="Welcome!"
                             android:textColor="@color/appThemeFontColor"
                             android:textSize="@dimen/txt_size_22"
                             android:fontFamily="@font/poppins_semibold"/>
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Enter your login details"
+                            android:textSize="@dimen/txt_size_14"
+                            android:textColor="@color/appThemeFontColor"
+                            android:fontFamily="@font/poppins_regular"/>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/usernameTxtLayout"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/space_90"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="15dp"
                             app:boxCornerRadiusBottomEnd="8dp"
                             android:outlineAmbientShadowColor="@color/ThemeColorPrimary"
                             app:boxCornerRadiusTopEnd="8dp"
@@ -103,16 +126,7 @@
 
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/forgotPasswordTxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/txt_size_16"
-                            android:textColor="@color/appThemeColor_dark"
-                            app:fontFamily="@font/poppins_medium"
-                            android:layout_margin="15dp"
-                            android:gravity="center_horizontal"
-                            android:text="Forgot you Password ?"/>
+
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
@@ -131,7 +145,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dimen_50"
                             android:textColor="@color/white"
-                            android:layout_margin="25dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginRight="25dp"
                             android:layout_gravity="bottom"
                             android:textAllCaps="true"
                             android:background="@drawable/button_style"
@@ -146,6 +161,8 @@
                             android:layout_gravity="center_vertical"
                             android:gravity="center_vertical"
                             android:layout_marginStart="15dp"
+                            android:layout_marginTop="@dimen/space_15"
+                            android:layout_marginBottom="@dimen/space_15"
                             android:layout_marginEnd="15dp"
                             android:orientation="horizontal">
 
@@ -178,6 +195,7 @@
                         <FrameLayout
                             android:id="@+id/FrameLayout1"
                             android:layout_width="match_parent"
+
                             android:layout_height="wrap_content" >
 
                             <com.facebook.login.widget.LoginButton
@@ -195,7 +213,9 @@
                                 android:id="@+id/loginFbBtn"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dimen_50"
-                                android:layout_margin="25dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginRight="25dp"
+
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:background="@drawable/button_style"
@@ -228,6 +248,21 @@
                         </FrameLayout>
 
 
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/forgotPasswordTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/txt_size_16"
+                            android:textColor="@color/appThemeColor"
+                            app:fontFamily="@font/poppins_semibold"
+                            android:layout_marginLeft="@dimen/space_25"
+                            android:layout_marginRight="@dimen/space_25"
+                            android:layout_marginTop="@dimen/space_15"
+                            android:layout_marginBottom="@dimen/space_30"
+                            android:gravity="center_horizontal"
+                            android:text="Forgot you Password?"/>
+
+
 
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -236,6 +271,23 @@
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@id/registerBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="15dp"
+                android:background="@color/transparent"
+                android:fontFamily="@font/poppins_medium"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="DON'T HAVE AN ACCOUNT? "
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size_16" />
 
 
 

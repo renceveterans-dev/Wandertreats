@@ -27,6 +27,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemViewHolder
     private ArrayList<HashMap<String, String>> flashList;
     private ArrayList<HashMap<String, String>> bulkList;
     public static final int TYPE_HORIZONTAL = 1;
+    public static final int TYPE_HORIZONTAL_FAVORITE = 11;
     public static final int TYPE_VERTICAL = 2;
     private Context mContext;
     private GeneralFunctions appFunctions;
@@ -67,6 +68,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemViewHolder
 
         if(parentArrayList.get(position).getMainType().equalsIgnoreCase("HORIZONTAL")){
             return TYPE_HORIZONTAL;
+
+        }else if(parentArrayList.get(position).getMainType().equalsIgnoreCase("HORIZONTAL_FAVORITE")){
+            return TYPE_HORIZONTAL;
+
         }else{
             return TYPE_VERTICAL;
         }
@@ -94,6 +99,18 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemViewHolder
             arrayList = Data.getProductData(appFunctions.getJsonArray(currentItem.getMainProducts()), appFunctions);
             MainItemAdapter mainItemAdapter = new MainItemAdapter(arrayList,holder.itemRecyclerView.getContext());
             holder.itemRecyclerView.setAdapter(mainItemAdapter);
+
+        }else if(currentItem.getMainType().equalsIgnoreCase("HORIZONTAL_FAVORITE")){
+
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+            holder.itemRecyclerView.setLayoutManager(layoutManager);
+            holder.itemRecyclerView.setHasFixedSize(true);
+            holder.mainTitle.setText(currentItem.getMainTitle());
+
+            ArrayList<ItemModel> arrayList = new ArrayList<>();
+            arrayList = Data.getProductData(appFunctions.getJsonArray(currentItem.getMainProducts()), appFunctions);
+            FavoritesAdapter favoritesAdapter = new FavoritesAdapter(arrayList,holder.itemRecyclerView.getContext());
+            holder.itemRecyclerView.setAdapter(favoritesAdapter);
 
         }else{
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);

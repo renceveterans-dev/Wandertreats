@@ -37,15 +37,19 @@
 
                 <ImageView
                     android:id="@+id/alertIcon"
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
-                    android:layout_marginTop="20dp"
-                    android:visibility="visible"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_above="@+id/contenrArea"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/payment"
-                    android:scaleType="centerCrop"/>
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/contenrArea"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"

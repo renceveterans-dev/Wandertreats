@@ -8,18 +8,18 @@ import java.util.HashMap;
 public class MockData {
 
 
-//    public static ArrayList<ParentModel> getMockParentData(){
-//
-//        ArrayList<ParentModel> mainArr = new ArrayList<>();
-//        mainArr.add(new ParentModel("HEllo"));
-//        mainArr.add(new ParentModel("HEllo"));
-//        mainArr.add(new ParentModel("HEllo"));
-//        mainArr.add(new ParentModel("HEllo"));
-//        mainArr.add(new ParentModel("HEllo"));
-//        mainArr.add(new ParentModel("HEllo"));
-//
-//        return  mainArr;
-//    }
+    public static ArrayList<ParentModel> getMockParentData(){
+
+        ArrayList<ParentModel> mainArr = new ArrayList<>();
+        mainArr.add(new ParentModel("HEllo", "HEllo", "HEllo", "HEllo"));
+        mainArr.add(new ParentModel("HEllo", "HEllo", "HEllo", "HEllo"));
+        mainArr.add(new ParentModel("HEllo", "HEllo", "HEllo", "HEllo"));
+        mainArr.add(new ParentModel("HEllo", "HEllo", "HEllo", "HEllo"));
+        mainArr.add(new ParentModel("HEllo", "HEllo", "HEllo", "HEllo"));
+        mainArr.add(new ParentModel("HEllo", "HEllo", "HEllo", "HEllo"));
+
+        return  mainArr;
+    }
 
 //    public static ArrayList<ParentModel> getMockParentData(int no){
 //

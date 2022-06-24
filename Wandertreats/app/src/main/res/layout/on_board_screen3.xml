@@ -15,8 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:scaleType="fitStart"
             android:layout_margin="25dp"
+            android:scaleType="fitStart"
             android:src="@drawable/onboarding_3" />
 
 
@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/space_30"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -36,18 +37,18 @@
             android:gravity="center"
             android:textSize="@dimen/txt_size_20"
             android:textColor="@color/black"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Taste the Hot Eats!" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+
             android:gravity="center"
             android:lines="3"
             android:fontFamily="@font/poppins_medium"
             android:textSize="@dimen/txt_size_16"
-            android:text="" />
+            android:text="You don't have to make cravings go away. Pick up your favorite food on different merchants nearby!" />
 
     </LinearLayout>
 

@@ -36,7 +36,10 @@ import android.text.format.DateFormat;
 import android.text.method.LinkMovementMethod;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
@@ -56,6 +59,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.wandertech.wandertreats.LauncherActivity;
 import com.wandertech.wandertreats.MainActivity;
+import com.wandertech.wandertreats.R;
 import com.wandertech.wandertreats.utils.Constants;
 import com.wandertech.wandertreats.utils.Utils;
 
@@ -76,10 +80,12 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -906,6 +912,45 @@ public class GeneralFunctions {
 
         String profileData = this.retrieveValue(Utils.USER_PROFILE_JSON);
         return this.getJsonValue("vName", profileData)+" "+this.getJsonValue("vLastName", profileData);
+    }
+
+    public String getEmail() {
+
+        String profileData = this.retrieveValue(Utils.USER_PROFILE_JSON);
+        return this.getJsonValue("vEmail", profileData);
+    }
+
+
+    public String getMobileNumber() {
+
+        String profileData = this.retrieveValue(Utils.USER_PROFILE_JSON);
+        return this.getJsonValue("vPhone", profileData);
+    }
+
+
+    public void showMessageDialog(String s){
+
+        LayoutInflater inflater = ((Activity) a).getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_main, (ViewGroup) ((Activity) a).findViewById(R.id.toast_layout_root));
+
+        ImageView image = (ImageView) layout.findViewById(R.id.image);
+        TextView text = (TextView) layout.findViewById(R.id.text);
+        text.setText(s);
+
+        Toast toast = new Toast(a);
+        toast.setGravity(Gravity.TOP| Gravity.FILL_HORIZONTAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+
+        //Toast.makeText(mContext, s, Toast.LENGTH_SHORT).show();
+    }
+
+
+    public boolean isEmailVerified() {
+
+        String profileData = this.retrieveValue(Utils.USER_PROFILE_JSON);
+        return this.getJsonValue("eEmailVerified", profileData).equalsIgnoreCase("Yes") ? true : false;
     }
 
     public String getUserName() {
@@ -1973,7 +2018,6 @@ public class GeneralFunctions {
         return var3;
     }
 
-
     public interface OnAlertButtonClickListener {
         void onAlertButtonClick(int var1);
     }
@@ -2137,5 +2181,18 @@ public class GeneralFunctions {
         }
 
         return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+    public int getAppVersionCode(){
+        PackageInfo pInfo = null;
+        try {
+            pInfo = a.getPackageManager().getPackageInfo(a.getPackageName(), 0);
+            int versionCode = pInfo.versionCode;
+            return versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return 0;
+        }
+
     }
 }

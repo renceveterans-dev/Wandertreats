@@ -1,5 +1,7 @@
 package com.wandertech.wandertreats;
 
+import static org.osmdroid.tileprovider.util.StorageUtils.getStorage;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -38,12 +40,15 @@ import com.wandertech.wandertreats.utils.Utils;
 import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
+import org.osmdroid.config.IConfigurationProvider;
 import org.osmdroid.events.DelayedMapListener;
 import org.osmdroid.events.MapListener;
 import org.osmdroid.events.ScrollEvent;
 import org.osmdroid.events.ZoomEvent;
+import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
+import org.osmdroid.util.MapTileIndex;
 import org.osmdroid.views.MapView;
 
 import java.util.Timer;
@@ -129,11 +134,35 @@ public class LocationPickerActivity extends AppCompatActivity implements GetAddr
     }
 
     public void initMap(){
+
+        IConfigurationProvider provider = Configuration.getInstance();
+        provider.setUserAgentValue(BuildConfig.APPLICATION_ID);
+
+        provider.setOsmdroidBasePath(getStorage());
+        provider.setOsmdroidTileCache(getStorage());
+
         Context ctx = getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
 
         map = (MapView) findViewById(R.id.map);
-        map.setTileSource(TileSourceFactory.MAPNIK);
+        //map.setTileSource(TileSourceFactory.MAPNIK);
+
+        map.getTileProvider().clearTileCache();
+        Configuration.getInstance().setCacheMapTileCount((short)12);
+        Configuration.getInstance().setCacheMapTileOvershoot((short)12);
+        // Create a custom tile source
+        map.setTileSource(new OnlineTileSourceBase("", 1, 20, 512, ".png",
+                new String[] { "https://a.tile.openstreetmap.org/" }) {
+            @Override
+            public String getTileURLString(long pMapTileIndex) {
+                return getBaseUrl()
+                        + MapTileIndex.getZoom(pMapTileIndex)
+                        + "/" + MapTileIndex.getX(pMapTileIndex)
+                        + "/" + MapTileIndex.getY(pMapTileIndex)
+                        + mImageFilenameEnding;
+            }
+        });
+
         map.setMinZoomLevel(6.0);
         map.setMaxZoomLevel(17.50);
         map.setMultiTouchControls(true);

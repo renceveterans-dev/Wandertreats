@@ -170,6 +170,7 @@ public class LauncherActivity extends AppCompatActivity {
 
         HashMap<String, String> parameters = new HashMap<String, String>();
         parameters.put("type", "LOAD_GENERAL_DATA");
+        parameters.put("iUserId", appFunctions.isUserLoggedIn()? appFunctions.getMemberId(): "");
         parameters.put("userType", Utils.app_type);
 
         ExecuteWebServiceApi exeWebServer = new ExecuteWebServiceApi(getActContext(), parameters, "api_load_general_data.php", true);
@@ -193,6 +194,7 @@ public class LauncherActivity extends AppCompatActivity {
                                 public void run() {
 
                                     if (appFunctions.isUserLoggedIn()) {
+                                        appFunctions.storeData(Utils.USER_PROFILE_JSON, appFunctions.getJsonValue("profileData", responseString));
                                         new StartActProcess(getActContext()).startAct(MainActivity.class);
                                         finish();
                                     } else {
