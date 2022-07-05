@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import com.wandertech.wandertreats.general.StartActProcess;
 
 import org.json.JSONArray;
 
+import java.io.Console;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -42,6 +44,7 @@ public class PurchaseConfirmationActivity extends BaseActivity {
     private AppCompatTextView title;
     private ImageView backArrow;
     private ActivityPurchaseConfirmationBinding binding;
+    LinearLayout mainContent;
     private LinearLayoutCompat downloadBtn, receiptArea;
     private AppCompatButton okayBtn;
     private AppCompatTextView titleTxt, downloadTxt, headeingTxt, messageTxt, storeNameTxt, subtotalAmounTxt, totalAmounTxt, purchaseNoTxt, purchaseDateTxt;
@@ -67,6 +70,7 @@ public class PurchaseConfirmationActivity extends BaseActivity {
         titleTxt = binding.titleTxt;
         headeingTxt = binding. headeingTxt;
         messageTxt = binding.messageTxt;
+        mainContent = binding.mainContent;
         receiptArea = binding.receiptArea;
         downloadBtn = binding.downloadBtn;
         downloadTxt = binding.downloadTxt;
@@ -181,9 +185,16 @@ public class PurchaseConfirmationActivity extends BaseActivity {
 
                     break;
 
+
                 case R.id.downloadBtn:
-                    View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
-                    downloadReceipt();
+
+                    try{
+                        //View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
+                        downloadReceipt();
+                    }catch (Exception e){
+                        appFunctions.showMessage(e.toString());
+                    }
+
                    // store(getScreenShot(rootView), appFunctions.getJsonValue("vPurchaseNo", data));
 
                     break;
@@ -208,27 +219,37 @@ public class PurchaseConfirmationActivity extends BaseActivity {
     public void downloadReceipt() {
 
         LayoutToImage layoutToImage;  //Create Object of Layout_to_Image Class
-        RelativeLayout relativeLayout;   //Define Any Layout
+        //RelativeLayout relativeLayout;   //Define Any Layout
 
         Bitmap bitmap;                  //Bitmap for holding Image of layout
 
         //provide layout with its id in Xml
 
-        relativeLayout=(RelativeLayout)findViewById(R.id.container);
+       // relativeLayout=(RelativeLayout)findViewById(R.id.container);
 
         //initialise layout_to_image object with its parent class and pass parameters as (<Current Activity>,<layout object>)
 
-        layoutToImage = new LayoutToImage(PurchaseConfirmationActivity.this, receiptArea);
-
-        //now call the main working function ;) and hold the returned image in bitmap
-
-        bitmap = layoutToImage.convertLayout();
         try {
-            saveImage( bitmap, appFunctions.getJsonValue("vPurchaseNo", data));
-        } catch (IOException e) {
+            //receiptArea.setVisibility(View.VISIBLE);
+            layoutToImage = new LayoutToImage(PurchaseConfirmationActivity.this, receiptArea);
+            //receiptArea.setVisibility(View.GONE);
+            //now call the main working function ;) and hold the returned image in bitmap
+
+            bitmap = layoutToImage.convertLayout();
+            try {
+                saveImage( bitmap, appFunctions.getJsonValue("vPurchaseNo", data));
+            } catch (IOException e) {
+                e.printStackTrace();
+                appFunctions.showMessage("3"+e.toString());
+                System.out.println("3"+e.toString());
+            }
+        } catch (Exception e) {
             e.printStackTrace();
-            appFunctions.showMessage(e.toString());
+            appFunctions.showMessage("4"+e.toString());
+            System.out.println("4"+e.toString());
         }
+
+
 
         appFunctions.showMessage("Successfully saved to gallery.");
 

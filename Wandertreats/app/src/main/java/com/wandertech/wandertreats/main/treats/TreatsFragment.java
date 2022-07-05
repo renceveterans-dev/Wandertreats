@@ -66,7 +66,7 @@ public class TreatsFragment  extends Fragment implements MyTreatsAdapter.ItemOnC
     private ShimmerFrameLayout loaderShimmer;
     private ArrayList<HashMap<String, String>> treatsArr = new ArrayList<>();
     private MyTreatsAdapter myTreatsAdapterAdapter;
-    private LinearLayoutCompat treatsRecyclerListArea, noDataArea;
+    private LinearLayoutCompat treatsRecyclerListArea, noDataArea, noFaviroteArea, noTreatsArea;
     private FavoriteUtils favoriteUtils;
 
     private ArrayList<ParentModel> mainArr = new ArrayList<>();
@@ -97,6 +97,8 @@ public class TreatsFragment  extends Fragment implements MyTreatsAdapter.ItemOnC
             loaderShimmer = binding.loaderShimmer;
             treatsRecyclerList= binding.treatsRecyclerList;
             noDataArea = binding.noDataArea;
+            noFaviroteArea = binding.noFaviroteArea;
+            noTreatsArea = binding.noTreatsArea;
             treatsRecyclerListArea = binding.treatsRecyclerListArea;
 
             //retriveData();
@@ -136,10 +138,7 @@ public class TreatsFragment  extends Fragment implements MyTreatsAdapter.ItemOnC
             });
 
             retriveData();
-
         }
-
-
 
         return root;
     }
@@ -148,8 +147,15 @@ public class TreatsFragment  extends Fragment implements MyTreatsAdapter.ItemOnC
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        retriveData();
+    }
 
     public void retriveData() {
 
@@ -171,6 +177,9 @@ public class TreatsFragment  extends Fragment implements MyTreatsAdapter.ItemOnC
 
                     if(appFunctions.checkDataAvail(Utils.action_str, responseString)){
                         loaderShimmer.setVisibility(View.GONE);
+                        noDataArea.setVisibility(View.GONE);
+                        noFaviroteArea.setVisibility(View.GONE);
+                        noTreatsArea.setVisibility(View.GONE);
 
                         if(type.equalsIgnoreCase(TYPE_ACTIVE) || type.equalsIgnoreCase(TYPE_HISTORY)){
                             treatsArr  = Data.getMyPurchasedData(appFunctions.getJsonArray("data", responseString), appFunctions);
@@ -179,6 +188,8 @@ public class TreatsFragment  extends Fragment implements MyTreatsAdapter.ItemOnC
                                 loaderShimmer.setVisibility(View.GONE);
                                 treatsRecyclerListArea.setVisibility(View.VISIBLE);
                                 noDataArea.setVisibility(View.GONE);
+                                noFaviroteArea.setVisibility(View.GONE);
+                                noTreatsArea.setVisibility(View.GONE);
 
                                 myTreatsAdapterAdapter= new MyTreatsAdapter(getActContext(),  treatsArr);
                                 treatsRecyclerList.setLayoutManager(new LinearLayoutManager(getActContext()));
@@ -187,11 +198,13 @@ public class TreatsFragment  extends Fragment implements MyTreatsAdapter.ItemOnC
                             }else{
                                 loaderShimmer.setVisibility(View.GONE);
                                 treatsRecyclerListArea.setVisibility(View.GONE);
-                                noDataArea.setVisibility(View.VISIBLE);
-
+                                noDataArea.setVisibility(View.GONE);
+                                noFaviroteArea.setVisibility(View.GONE);
+                                noTreatsArea.setVisibility(View.VISIBLE);
                             }
 
                         }else if(type.equalsIgnoreCase(TYPE_FAVORITE)){
+
 
                             treatsArr.clear();
 
@@ -201,15 +214,34 @@ public class TreatsFragment  extends Fragment implements MyTreatsAdapter.ItemOnC
                             mainArr.clear();
                             treatsRecyclerList.clearOnChildAttachStateChangeListeners();
                             mainArr = Data.getParentData(appFunctions.getJsonArray("favoriteData", responseString), appFunctions);
-                            appFunctions.showMessage(mainArr.size()+"");
-                            mainAdapter = new MainAdapter(mainArr, getActivity().getApplicationContext(), appFunctions);
-                            treatsRecyclerList.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-                            treatsRecyclerList.setNestedScrollingEnabled(false);
-                            treatsRecyclerList.setAdapter(mainAdapter);
+
+                            if( mainArr.size()>0){
+                                mainAdapter = new MainAdapter(mainArr, getActivity().getApplicationContext(), appFunctions);
+                                treatsRecyclerList.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+                                treatsRecyclerList.setNestedScrollingEnabled(false);
+                                treatsRecyclerList.setAdapter(mainAdapter);
+
+                            }else {
+                                loaderShimmer.setVisibility(View.GONE);
+                                treatsRecyclerListArea.setVisibility(View.GONE);
+                                noDataArea.setVisibility(View.GONE);
+                                noFaviroteArea.setVisibility(View.VISIBLE);
+                                noTreatsArea.setVisibility(View.GONE);
+                            }
+                            //appFunctions.showMessage(mainArr.size()+"");
+
 
                         }
                        // Toast.makeText(getActContext(), responseString, Toast.LENGTH_SHORT).show();
                     }else{
+//
+//                        if(type.equalsIgnoreCase(TYPE_ACTIVE) || type.equalsIgnoreCase(TYPE_HISTORY)){
+//
+//
+//                        }else if(type.equalsIgnoreCase(TYPE_FAVORITE)){
+//
+//
+//                        }
                         Toast.makeText(getActContext(), "Error "+ responseString, Toast.LENGTH_SHORT).show();
                     }
                 }else{

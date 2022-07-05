@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/mainContent"
-            android:visibility="visible"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -65,20 +65,39 @@
             android:id="@+id/noDataArea"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            android:padding="25dp">
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/space_100"
+            android:orientation="vertical"
+            android:padding="@dimen/space_30"
+            android:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/space_120"
+                android:layout_height="@dimen/space_120"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/no_favorite" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/nodata"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textSize="@dimen/txt_size_20"
+                android:layout_marginTop="@dimen/space_20"
                 android:fontFamily="@font/poppins_medium"
-                android:text="No Result."
-                android:orientation="vertical"/>
+                android:gravity="center"
+                android:orientation="vertical"
+                android:text="No New Notifications."
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_size_20" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:text="News, updates and events from WanderTreats will be displayed here."
+                android:textColor="@color/black"
+
+                android:textSize="@dimen/txt_size_14" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

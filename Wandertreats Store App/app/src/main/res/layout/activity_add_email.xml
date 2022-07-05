@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/mainToolbar"
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add an email"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/appThemeFontColor"
+        android:textSize="@dimen/txt_size_22"
+        android:fontFamily="@font/poppins_semibold"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="Submit your email address to complete thre registration."
+        android:textSize="@dimen/txt_size_14"
+        android:textColor="@color/appThemeFontColor"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailTxtLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_90"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="15dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        android:outlineAmbientShadowColor="@color/ThemeColorPrimary"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:helperTextTextColor="@color/appThemeColor_red"
+        app:errorTextColor="@color/appThemeColor_red">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="@dimen/txt_size_14"
+            android:includeFontPadding="false"
+            android:inputType="textNoSuggestions"
+            android:importantForAutofill="no"
+            android:textColorHint="@color/light_gray"
+            android:hint="Email or Phone number"
+            android:maxLines="1"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/continueBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50"
+        android:textColor="@color/white"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="bottom"
+        android:textAllCaps="true"
+        android:background="@drawable/button_style"
+        android:textSize="@dimen/txt_size_14"
+        android:fontFamily="@font/poppins_medium"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="Continue"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

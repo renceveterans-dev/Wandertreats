@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".main.treats.TreatsFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -54,18 +55,18 @@
     </com.google.android.material.tabs.TabLayout>
 
 
-
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/mainTab"
+        android:background="@color/appThemeColor_bg"
         android:orientation="vertical">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/mainTab"
-            android:background="@color/seperator"/>
+            android:background="@color/seperator" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/loaderShimmer"
@@ -74,7 +75,7 @@
             android:layout_below="@id/mainContent"
             android:orientation="vertical"
             android:paddingTop="@dimen/space_10"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -82,13 +83,21 @@
                 android:orientation="vertical">
 
                 <include layout="@layout/item_shimmering_purchased" />
+
                 <include layout="@layout/item_shimmering_purchased" />
+
                 <include layout="@layout/item_shimmering_purchased" />
+
                 <include layout="@layout/item_shimmering_purchased" />
+
                 <include layout="@layout/item_shimmering_purchased" />
+
                 <include layout="@layout/item_shimmering_purchased" />
+
                 <include layout="@layout/item_shimmering_purchased" />
+
                 <include layout="@layout/item_shimmering_purchased" />
+
                 <include layout="@layout/item_shimmering_purchased" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -100,8 +109,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="60dp"
-            android:background="@color/white"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/treatsRecyclerList"
@@ -112,23 +121,103 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/noTreatsArea"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/space_100"
+            android:orientation="vertical"
+            android:padding="@dimen/space_30"
+            android:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/space_120"
+                android:layout_height="@dimen/space_120"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/no_treats" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_20"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:text="No New Treats."
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_size_20" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:text="Buy and avail vouchers as many as you can! To enjoy the treats!"
+                android:textColor="@color/black"
+
+                android:textSize="@dimen/txt_size_14" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/noDataArea"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:visibility="gone"
-            android:padding="25dp">
+            android:padding="25dp"
+            android:visibility="gone">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/nodata"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textSize="@dimen/txt_size_20"
                 android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:orientation="vertical"
                 android:text="No Result."
-                android:orientation="vertical"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_size_20" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/noFaviroteArea"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/space_100"
+            android:orientation="vertical"
+            android:padding="@dimen/space_30"
+            android:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/space_120"
+                android:layout_height="@dimen/space_120"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/no_favorite" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_20"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:text="No Favorite yet"
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_size_20" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:text="Tap the heart icon on products and you see it here, next time you visit!"
+                android:textColor="@color/black"
+
+                android:textSize="@dimen/txt_size_14" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

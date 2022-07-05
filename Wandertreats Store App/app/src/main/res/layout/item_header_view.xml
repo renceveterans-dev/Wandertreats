@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/itemHeaderArea"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/itemHeaderTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/appThemeFontColor"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/txt_size_14"
+            android:text="Item Header"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/itemNoteArea"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="15dp"
+        android:visibility="visible"
+        android:paddingBottom="5dp"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/itemNoteTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/appThemeFontColor"
+            android:textSize="@dimen/txt_size_14"
+            android:textAlignment="center"
+            android:text="Item Header"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

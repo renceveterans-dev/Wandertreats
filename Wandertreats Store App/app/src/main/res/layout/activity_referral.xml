@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/appThemeColor_bg"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/addressRecyclerList"
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <include
+        android:id="@+id/noConnection"
+        layout="@layout/no_internet"
+        android:layout_marginTop="@dimen/dimen_50"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+
+    <include
+        android:id="@+id/loader"
+        layout="@layout/loader"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+
+
+
+</RelativeLayout>

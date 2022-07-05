@@ -249,7 +249,7 @@ public class ClaimActivity extends AppCompatActivity implements  AppBarLayout.On
                         long endClaimTime = appFunctions.findDifference( appFunctions.getJsonValue("dRequestClaimDate", claimData), appFunctions.getJsonValue("claimEndTime", claimData));
                         long remainingTime = endClaimTime - dRequestClaimDate;
 
-                        appFunctions.showMessage(appFunctions.getJsonValue("dRequestClaimDate", claimData)+" | "+ appFunctions.getJsonValue("claimEndTime", claimData)+"\n"+remainingTime);
+                        //appFunctions.showMessage(appFunctions.getJsonValue("dRequestClaimDate", claimData)+" | "+ appFunctions.getJsonValue("claimEndTime", claimData)+"\n"+remainingTime);
 
                         if(remainingTime > 0){
 

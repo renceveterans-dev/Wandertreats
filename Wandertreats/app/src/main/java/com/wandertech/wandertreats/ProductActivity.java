@@ -229,11 +229,13 @@ public class ProductActivity extends AppCompatActivity implements AppBarLayout.O
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     favoriteUtils.addToFavoritemItemList(appFunctions.getJsonValue("iProductId", productData));
+                    appFunctions.showMessage("Favarite!");
                 } else {
                     favoriteUtils.removeToFavoritemItemList(appFunctions.getJsonValue("iProductId", productData));
+                    appFunctions.showMessage("Umfavarite.");
                 }
 
-                appFunctions.showMessage(favoriteUtils.getFavoritemItemList());
+
             }
         });
     }

@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/contentView"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/mainToolbar"
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="25dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Create an account"
+                    android:textColor="@color/appThemeFontColor"
+                    android:textSize="@dimen/txt_size_22"
+                    android:fontFamily="@font/poppins_semibold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Enter you firstname and Last name"
+                    android:textSize="@dimen/txt_size_14"
+                    android:textColor="@color/appThemeFontColor"
+                    android:fontFamily="@font/poppins_regular"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:id="@+id/fNameTxtLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="First Name"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    android:outlineAmbientShadowColor="@color/ThemeColorPrimary"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:helperTextTextColor="@color/appThemeColor_red"
+                    app:errorTextColor="@color/appThemeColor_red">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fNameTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:importantForAutofill="no"
+                        android:inputType="textCapWords"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="@dimen/txt_size_14"
+                        android:includeFontPadding="false"
+                        android:textColorHint="@color/light_gray"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/lNameTxtLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    android:outlineAmbientShadowColor="@color/ThemeColorPrimary"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:helperTextTextColor="@color/appThemeColor_red"
+                    app:errorTextColor="@color/appThemeColor_red">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/lNameTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:hint="Last Name"
+                        android:importantForAutofill="no"
+                        android:maxLines="1"
+                        android:inputType="textCapWords"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="@dimen/txt_size_14"
+                        android:includeFontPadding="false"
+                        android:textColorHint="@color/light_gray"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Enter your email address"
+                    android:textSize="@dimen/txt_size_14"
+                    android:textColor="@color/appThemeFontColor"
+                    android:fontFamily="@font/poppins_regular"/>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/emailTxtLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    android:outlineAmbientShadowColor="@color/ThemeColorPrimary"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:helperTextTextColor="@color/appThemeColor_red"
+                    app:errorTextColor="@color/appThemeColor_red">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/emailTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:hint="Email Address"
+                        android:importantForAutofill="no"
+                        android:maxLines="1"
+                        android:inputType="textNoSuggestions|textEmailAddress"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="@dimen/txt_size_14"
+                        android:includeFontPadding="false"
+                        android:textColorHint="@color/light_gray"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Enter your mobile number"
+                    android:textSize="@dimen/txt_size_14"
+                    android:textColor="@color/appThemeFontColor"
+                    android:fontFamily="@font/poppins_regular"/>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mobileTxtLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    android:outlineAmbientShadowColor="@color/ThemeColorPrimary"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:helperTextTextColor="@color/appThemeColor_red"
+                    app:errorTextColor="@color/appThemeColor_red">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mobileTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:hint="Mobile Number"
+                        android:inputType="number"
+                        android:importantForAutofill="no"
+                        android:maxLines="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="@dimen/txt_size_14"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Create your password"
+
+                    android:textColor="@color/appThemeFontColor"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordTxtLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    android:outlineAmbientShadowColor="@color/ThemeColorPrimary"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:helperTextTextColor="@color/appThemeColor_red"
+                    app:errorTextColor="@color/appThemeColor_red">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:inputType="textPassword"
+                        android:hint="Password"
+                        android:maxLines="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="@dimen/txt_size_14"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/rePasswordTxtLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    android:outlineAmbientShadowColor="@color/ThemeColorPrimary"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:helperTextTextColor="@color/appThemeColor_red"
+                    app:errorTextColor="@color/appThemeColor_red">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/rePasswordTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:hint="Retype Password"
+                        android:maxLines="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:inputType="textPassword"
+                        android:textSize="@dimen/txt_size_14"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/agreeCheckBox"
+                        android:layout_width="@dimen/dimen_50"
+                        android:layout_height="@dimen/dimen_50"
+                        android:layout_gravity="center"
+                        app:buttonTint="@color/appThemeColor"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/txt_size_14"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"
+                        android:text="By conitnuing you agree to our Terms and Conditions. Please also check out our Privacy Policy"/>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:gravity="top"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/registerBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_50"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="25dp"
+                        android:layout_gravity="bottom"
+                        android:textAllCaps="true"
+                        android:maxLines="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:background="@drawable/button_style"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:text="Register"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/loginBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_50"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/transparent"
+                        android:fontFamily="@font/poppins_medium"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:text="ALREAY HAVE AN ACCOUNT"
+                        android:textAllCaps="true"
+                        android:textColor="@color/appThemeColor"
+                        android:textSize="@dimen/txt_size_16" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
